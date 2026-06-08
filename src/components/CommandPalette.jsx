@@ -5,14 +5,12 @@ import {
   Github,
   Linkedin,
   Mail,
-  ScanSearch,
-  Sparkles,
   Wrench,
 } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { profile } from "../data/profile";
 
-export default function CommandPalette({ open, setOpen, onRecruiterMode }) {
+export default function CommandPalette({ open, setOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -47,10 +45,6 @@ export default function CommandPalette({ open, setOpen, onRecruiterMode }) {
             <Wrench aria-hidden="true" />
             View Skills
           </Command.Item>
-          <Command.Item onSelect={() => scrollTo("contact")}>
-            <Mail aria-hidden="true" />
-            Contact by Email
-          </Command.Item>
         </Command.Group>
         <Command.Group heading="Actions">
           <Command.Item onSelect={() => runCommand(() => window.open(profile.cv.english, "_self"))}>
@@ -66,12 +60,8 @@ export default function CommandPalette({ open, setOpen, onRecruiterMode }) {
             Open LinkedIn
           </Command.Item>
           <Command.Item onSelect={() => runCommand(() => window.open(profile.socials.email, "_self"))}>
-            <Sparkles aria-hidden="true" />
+            <Mail aria-hidden="true" />
             Contact by Email
-          </Command.Item>
-          <Command.Item onSelect={() => runCommand(onRecruiterMode)}>
-            <ScanSearch aria-hidden="true" />
-            Recruiter Mode
           </Command.Item>
         </Command.Group>
       </Command.List>

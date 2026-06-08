@@ -2,13 +2,13 @@ import { ArrowUpRight, Github, LockKeyhole, Route } from "lucide-react";
 import { Link } from "react-router-dom";
 import MotionWrapper from "./MotionWrapper";
 
-export default function ProjectCard({ project, index = 0, recruiterMode = false }) {
+export default function ProjectCard({ project, index = 0 }) {
   return (
-    <MotionWrapper disabled={recruiterMode} delay={index * 0.05} className="project-card">
+    <MotionWrapper delay={index * 0.05} hover className="project-card">
       <div className="project-card-top">
         <div>
           <p className="project-meta">
-            {project.period} · {project.category}
+            {project.period} - {project.category}
           </p>
           <h3>{project.title}</h3>
         </div>

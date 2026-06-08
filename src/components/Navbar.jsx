@@ -8,7 +8,8 @@ import {
   Linkedin,
   Mail,
   Menu,
-  ScanSearch,
+  Moon,
+  Sun,
   X,
 } from "lucide-react";
 import { profile } from "../data/profile";
@@ -20,7 +21,7 @@ const navLinks = [
   { label: "Contact", id: "contact" },
 ];
 
-export default function Navbar({ recruiterMode, onToggleRecruiterMode, onOpenCommand }) {
+export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
@@ -55,7 +56,7 @@ export default function Navbar({ recruiterMode, onToggleRecruiterMode, onOpenCom
   function scrollToSection(id) {
     const scroll = () => {
       document.getElementById(id)?.scrollIntoView({
-        behavior: recruiterMode ? "auto" : "smooth",
+        behavior: "smooth",
         block: "start",
       });
     };
@@ -70,7 +71,7 @@ export default function Navbar({ recruiterMode, onToggleRecruiterMode, onOpenCom
   }
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-bg/82 backdrop-blur-xl">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-bg backdrop-blur-xl">
       <div className="nav-shell">
         <Link to="/" className="brand-link" aria-label={`${profile.name} home`}>
           <span className="brand-mark">{profile.initials}</span>
@@ -93,13 +94,12 @@ export default function Navbar({ recruiterMode, onToggleRecruiterMode, onOpenCom
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className={`icon-button ${recruiterMode ? "icon-button-active" : ""}`}
-            onClick={onToggleRecruiterMode}
-            aria-pressed={recruiterMode}
-            aria-label="Toggle recruiter mode"
-            title="Recruiter mode"
+            className="icon-button"
+            onClick={onToggleTheme}
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+            title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
-            <ScanSearch aria-hidden="true" />
+            {theme === "dark" ? <Sun aria-hidden="true" /> : <Moon aria-hidden="true" />}
           </button>
           <button
             type="button"

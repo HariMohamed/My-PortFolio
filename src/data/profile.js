@@ -47,7 +47,7 @@ export const profile = {
       detail: "Learning, shipping, refactoring, and integrating systems",
     },
     {
-      label: "Years Building",
+      label: "Years Learning & Building",
       value: 3,
       suffix: "+",
       detail: "From web foundations to applied AI systems",

@@ -3,7 +3,7 @@ import { profile } from "../data/profile";
 import MotionWrapper from "./MotionWrapper";
 import SectionTitle from "./SectionTitle";
 
-export default function Contact({ recruiterMode = false }) {
+export default function Contact() {
   return (
     <section id="contact" className="section-shell section-band" aria-labelledby="contact-heading">
       <SectionTitle
@@ -11,11 +11,10 @@ export default function Contact({ recruiterMode = false }) {
         eyebrow="Contact"
         title="Available for AI products, automation, and full-stack builds."
         description="Clear next actions for recruiters, founders, and teams who need a practical builder."
-        recruiterMode={recruiterMode}
       />
 
       <div className="contact-grid">
-        <MotionWrapper disabled={recruiterMode} className="contact-card contact-card-primary">
+        <MotionWrapper className="contact-card contact-card-primary">
           <p className="contact-kicker">Best fit</p>
           <h3>AI engineering roles, freelance automation systems, and SaaS MVP delivery.</h3>
           <p>
@@ -34,7 +33,7 @@ export default function Contact({ recruiterMode = false }) {
           </div>
         </MotionWrapper>
 
-        <MotionWrapper disabled={recruiterMode} className="contact-card">
+        <MotionWrapper className="contact-card">
           <div className="contact-list">
             <a href={profile.socials.email}>
               <Mail aria-hidden="true" />

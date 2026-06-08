@@ -5,6 +5,7 @@
 @tailwind utilities;
 
 :root {
+  color-scheme: dark;
   --bg: #090909;
   --surface: #121212;
   --surface-2: #181818;
@@ -12,6 +13,39 @@
   --muted: #8b8b8b;
   --accent: #00f58c;
   --border: rgba(255, 255, 255, 0.1);
+  --body-glow: rgba(0, 245, 140, 0.035);
+  --grid-line: rgba(255, 255, 255, 0.025);
+  --hero-gradient: linear-gradient(120deg, #090909 0%, rgba(9, 9, 9, 0.96) 42%, rgba(9, 9, 9, 0.68) 100%);
+  --hero-grid: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 96px);
+  --hero-overlay: linear-gradient(90deg, #090909 0%, rgba(9, 9, 9, 0.92) 42%, rgba(9, 9, 9, 0.42) 100%),
+    linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.72) 100%);
+  --band-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.018));
+  --card-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018));
+  --panel-fill: rgba(0, 0, 0, 0.25);
+  --soft-fill: rgba(255, 255, 255, 0.04);
+  --high-contrast-copy: rgba(255, 255, 255, 0.8);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: #f6f8f7;
+  --surface: #ffffff;
+  --surface-2: #eef3f0;
+  --text: #101412;
+  --muted: #5c6761;
+  --accent: #008f58;
+  --border: rgba(12, 24, 18, 0.12);
+  --body-glow: rgba(0, 143, 88, 0.08);
+  --grid-line: rgba(12, 24, 18, 0.055);
+  --hero-gradient: linear-gradient(120deg, rgba(246, 248, 247, 0.98) 0%, rgba(246, 248, 247, 0.94) 48%, rgba(246, 248, 247, 0.72) 100%);
+  --hero-grid: repeating-linear-gradient(0deg, rgba(12, 24, 18, 0.055) 0 1px, transparent 1px 96px);
+  --hero-overlay: linear-gradient(90deg, #f6f8f7 0%, rgba(246, 248, 247, 0.88) 48%, rgba(246, 248, 247, 0.44) 100%),
+    linear-gradient(180deg, transparent 0%, rgba(246, 248, 247, 0.76) 100%);
+  --band-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(238, 243, 240, 0.8));
+  --card-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(238, 243, 240, 0.8));
+  --panel-fill: rgba(12, 24, 18, 0.045);
+  --soft-fill: rgba(255, 255, 255, 0.72);
+  --high-contrast-copy: rgba(16, 20, 18, 0.84);
 }
 
 * {
@@ -28,8 +62,8 @@ body {
   margin: 0;
   min-width: 320px;
   background:
-    linear-gradient(180deg, rgba(0, 245, 140, 0.035), transparent 380px),
-    repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 120px),
+    linear-gradient(180deg, var(--body-glow), transparent 380px),
+    repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 120px),
     var(--bg);
   color: var(--text);
   font-family: "Outfit", sans-serif;
@@ -37,6 +71,7 @@ body {
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background 180ms ease, color 180ms ease;
 }
 
 body::selection {
@@ -77,10 +112,6 @@ img {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
-}
-
-.recruiter-mode * {
-  scroll-behavior: auto !important;
 }
 
 @layer components {
@@ -176,8 +207,8 @@ img {
     content: "";
     @apply absolute inset-0 -z-20;
     background:
-      linear-gradient(120deg, #090909 0%, rgba(9, 9, 9, 0.96) 42%, rgba(9, 9, 9, 0.68) 100%),
-      repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 96px);
+      var(--hero-gradient),
+      var(--hero-grid);
   }
 
   .hero-photo {
@@ -192,14 +223,41 @@ img {
 
   .hero-overlay {
     @apply absolute inset-0 -z-10;
-    background:
-      linear-gradient(90deg, #090909 0%, rgba(9, 9, 9, 0.92) 42%, rgba(9, 9, 9, 0.42) 100%),
-      linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.72) 100%);
+    background: var(--hero-overlay);
   }
 
   .hero-content {
     width: min(1180px, calc(100% - 32px));
     @apply mx-auto py-20;
+  }
+
+  .hero-layout {
+    @apply grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_340px];
+  }
+
+  .hero-portrait-card {
+    @apply mx-auto w-full max-w-[300px] overflow-hidden rounded-md border border-border bg-surface p-3 shadow-glow lg:mx-0 lg:max-w-none;
+  }
+
+  .hero-portrait-media {
+    @apply aspect-[4/5] overflow-hidden rounded-md bg-surface-2;
+  }
+
+  .hero-portrait-media img {
+    @apply h-full w-full object-cover;
+    object-position: center 48%;
+  }
+
+  .hero-portrait-card figcaption {
+    @apply grid gap-1 px-2 pb-1 pt-4;
+  }
+
+  .hero-portrait-card strong {
+    @apply text-lg font-bold text-text;
+  }
+
+  .hero-portrait-card span {
+    @apply text-sm font-semibold text-muted;
   }
 
   .hero-badge {
@@ -218,7 +276,8 @@ img {
   }
 
   .hero-subtitle {
-    @apply mt-5 max-w-2xl text-xl font-medium text-white/80 sm:text-2xl;
+    @apply mt-5 max-w-2xl text-xl font-medium sm:text-2xl;
+    color: var(--high-contrast-copy);
   }
 
   .stack-line {
@@ -272,7 +331,7 @@ img {
     @apply border-y border-border;
     width: 100%;
     padding-inline: max(16px, calc((100% - 1180px) / 2));
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.018));
+    background: var(--band-gradient);
   }
 
   .section-title {
@@ -312,7 +371,7 @@ img {
 
   .project-card {
     @apply flex min-h-full flex-col gap-5 overflow-hidden shadow-glow;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018));
+    background: var(--card-gradient);
   }
 
   .project-card-top {
@@ -331,11 +390,13 @@ img {
   }
 
   .project-number {
-    @apply rounded-md border border-border bg-black/30 px-3 py-1 font-mono text-xs font-bold text-muted;
+    @apply rounded-md border border-border px-3 py-1 font-mono text-xs font-bold text-muted;
+    background: var(--panel-fill);
   }
 
   .project-summary {
-    @apply text-lg font-semibold text-white/80;
+    @apply text-lg font-semibold;
+    color: var(--high-contrast-copy);
   }
 
   .project-split {
@@ -344,7 +405,8 @@ img {
 
   .project-split div,
   .project-impact {
-    @apply rounded-md border border-border bg-black/25 p-4;
+    @apply rounded-md border border-border p-4;
+    background: var(--panel-fill);
   }
 
   .project-split span,
@@ -365,7 +427,9 @@ img {
   }
 
   .chip {
-    @apply inline-flex min-h-8 items-center rounded-md border border-border bg-white/[0.04] px-3 py-1 font-mono text-xs font-semibold text-white/80;
+    @apply inline-flex min-h-8 items-center rounded-md border border-border px-3 py-1 font-mono text-xs font-semibold;
+    background: var(--soft-fill);
+    color: var(--high-contrast-copy);
   }
 
   .project-actions {
@@ -428,7 +492,8 @@ img {
   }
 
   .timeline-type {
-    @apply inline-flex w-fit rounded-md border border-border bg-black/25 px-3 py-1 font-mono text-xs text-muted;
+    @apply inline-flex w-fit rounded-md border border-border px-3 py-1 font-mono text-xs text-muted;
+    background: var(--panel-fill);
   }
 
   .timeline-card ul,
@@ -479,7 +544,8 @@ img {
   }
 
   .ai-answer {
-    @apply rounded-md border border-border bg-black/25 p-6;
+    @apply rounded-md border border-border p-6;
+    background: var(--panel-fill);
   }
 
   .ai-avatar {
@@ -499,7 +565,8 @@ img {
   }
 
   .ai-answer p:last-child {
-    @apply mt-4 text-lg text-white/80;
+    @apply mt-4 text-lg;
+    color: var(--high-contrast-copy);
   }
 
   .contact-grid {
@@ -520,7 +587,8 @@ img {
 
   .contact-list a,
   .contact-list div {
-    @apply flex items-center gap-4 rounded-md border border-border bg-black/25 p-4 text-muted transition;
+    @apply flex items-center gap-4 rounded-md border border-border p-4 text-muted transition;
+    background: var(--panel-fill);
   }
 
   .contact-list a:hover {

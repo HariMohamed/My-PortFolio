@@ -7,17 +7,17 @@ import Hero from "../components/Hero";
 import Metrics from "../components/Metrics";
 import Skills from "../components/Skills";
 
-export default function Home({ recruiterMode = false }) {
+export default function Home() {
   return (
     <main id="main">
-      <Hero recruiterMode={recruiterMode} />
-      <Metrics recruiterMode={recruiterMode} />
-      <FeaturedProjects recruiterMode={recruiterMode} />
-      <Skills recruiterMode={recruiterMode} />
-      <ExperienceTimeline recruiterMode={recruiterMode} />
-      <CurrentFocus recruiterMode={recruiterMode} />
-      <AIPlayground recruiterMode={recruiterMode} />
-      <Contact recruiterMode={recruiterMode} />
+      <Hero />
+      <Metrics />
+      <FeaturedProjects />
+      <Skills />
+      <ExperienceTimeline />
+      <CurrentFocus />
+      <AIPlayground />
+      <Contact />
     </main>
   );
 }

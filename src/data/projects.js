@@ -12,8 +12,8 @@ export const projects = [
     solution:
       "Designed a multi-portal SaaS concept with AI assistance, WhatsApp-ready workflows, PDF generation, and structured financial analysis for Moroccan property management teams.",
     architecture:
-      "FastAPI API layer, PostgreSQL data model, Streamlit operational prototypes, LangChain-assisted AI flows, Groq LLM integration, and document-generation services.",
-    stack: ["FastAPI", "Python", "PostgreSQL", "Streamlit", "LangChain", "Groq", "PDF"],
+      "React frontend, FastAPI API layer, PostgreSQL data model, LangChain-assisted AI flows, Groq LLM integration, and document-generation services.",
+    stack: ["React", "FastAPI", "Python", "PostgreSQL", "LangChain", "Groq", "PDF"],
     features: [
       "Promoter, syndic, and co-owner portal flows",
       "AI chatbot for first-level information access",
@@ -111,7 +111,7 @@ export const projects = [
   },
   {
     slug: "medical-device-mern-blog",
-    title: "MERN Blog / Medical Device Platform",
+    title: "MERN Blog / Medical Device",
     period: "2025",
     category: "MERN Application",
     summary: "Interactive content and user-management application built during Easy Medical Device work.",

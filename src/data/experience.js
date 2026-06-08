@@ -41,7 +41,7 @@ export const experience = [
   },
   {
     role: "AI Integrator Training",
-    organization: "Tamheen / GIZ",
+    organization: "Tamheen-GIZ-EITIA",
     location: "Rabat",
     period: "2025 - 2026",
     type: "Education",

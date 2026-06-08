@@ -14,7 +14,7 @@ function DetailSection({ title, children }) {
   );
 }
 
-export default function ProjectDetails({ recruiterMode = false }) {
+export default function ProjectDetails() {
   const { slug } = useParams();
   const project = getProjectBySlug(slug);
 
@@ -41,7 +41,7 @@ export default function ProjectDetails({ recruiterMode = false }) {
 
   return (
     <main id="main" className="page-shell">
-      <MotionWrapper disabled={recruiterMode} className="project-detail-hero">
+      <MotionWrapper className="project-detail-hero">
         <Link className="text-link" to="/#projects">
           <ArrowLeft aria-hidden="true" />
           Back to projects
@@ -77,11 +77,11 @@ export default function ProjectDetails({ recruiterMode = false }) {
       </MotionWrapper>
 
       <div className="detail-grid">
-        <MotionWrapper disabled={recruiterMode} className="detail-card">
+        <MotionWrapper className="detail-card">
           <span>Problem</span>
           <p>{project.problem}</p>
         </MotionWrapper>
-        <MotionWrapper disabled={recruiterMode} className="detail-card">
+        <MotionWrapper className="detail-card">
           <span>Solution</span>
           <p>{project.solution}</p>
         </MotionWrapper>
@@ -89,6 +89,16 @@ export default function ProjectDetails({ recruiterMode = false }) {
 
       <DetailSection title="Architecture">
         <p>{project.architecture}</p>
+      </DetailSection>
+
+      <DetailSection title="Tech Stack">
+        <div className="chip-row">
+          {project.stack.map((tech) => (
+            <span className="chip" key={tech}>
+              {tech}
+            </span>
+          ))}
+        </div>
       </DetailSection>
 
       <DetailSection title="Features">
@@ -113,6 +123,23 @@ export default function ProjectDetails({ recruiterMode = false }) {
             <li key={result}>{result}</li>
           ))}
         </ul>
+      </DetailSection>
+
+      <DetailSection title="Links">
+        <div className="project-actions detail-actions">
+          <a className="text-link" href={project.links.github} target="_blank" rel="noreferrer">
+            <Github aria-hidden="true" />
+            GitHub
+          </a>
+          {project.links.live ? (
+            <a className="text-link" href={project.links.live} target="_blank" rel="noreferrer">
+              <ArrowUpRight aria-hidden="true" />
+              Live demo
+            </a>
+          ) : (
+            <span className="text-link text-muted">Live demo URL not added yet</span>
+          )}
+        </div>
       </DetailSection>
     </main>
   );

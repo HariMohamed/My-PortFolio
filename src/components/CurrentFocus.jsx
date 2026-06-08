@@ -5,7 +5,7 @@ import SectionTitle from "./SectionTitle";
 
 const icons = [Bot, Radar, GitBranch, BrainCircuit, Workflow, Rocket];
 
-export default function CurrentFocus({ recruiterMode = false }) {
+export default function CurrentFocus() {
   return (
     <section className="section-shell section-band" aria-labelledby="focus-heading">
       <SectionTitle
@@ -13,7 +13,6 @@ export default function CurrentFocus({ recruiterMode = false }) {
         eyebrow="Current Focus"
         title="Where the portfolio is pointing next."
         description="These are the systems I am actively deepening to build more valuable AI products and automation workflows."
-        recruiterMode={recruiterMode}
       />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {currentFocus.map((item, index) => {
@@ -21,7 +20,6 @@ export default function CurrentFocus({ recruiterMode = false }) {
           return (
             <MotionWrapper
               key={item}
-              disabled={recruiterMode}
               delay={index * 0.04}
               className="focus-card"
             >

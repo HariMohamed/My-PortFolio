@@ -3,7 +3,7 @@ import { experience } from "../data/experience";
 import MotionWrapper from "./MotionWrapper";
 import SectionTitle from "./SectionTitle";
 
-export default function ExperienceTimeline({ recruiterMode = false }) {
+export default function ExperienceTimeline() {
   return (
     <section id="experience" className="section-shell" aria-labelledby="experience-heading">
       <SectionTitle
@@ -11,7 +11,6 @@ export default function ExperienceTimeline({ recruiterMode = false }) {
         eyebrow="Experience"
         title="Recent delivery path from frontend to applied AI."
         description="A concise timeline with the roles, outcomes, and technologies recruiters need to understand quickly."
-        recruiterMode={recruiterMode}
       />
 
       <div className="timeline">
@@ -20,7 +19,6 @@ export default function ExperienceTimeline({ recruiterMode = false }) {
           return (
             <MotionWrapper
               key={`${item.role}-${item.organization}`}
-              disabled={recruiterMode}
               delay={index * 0.05}
               className="timeline-item"
             >

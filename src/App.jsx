@@ -9,7 +9,11 @@ import ProjectDetails from "./pages/ProjectDetails";
 
 export default function App() {
   const [commandOpen, setCommandOpen] = useState(false);
-  const [recruiterMode, setRecruiterMode] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+    if (savedTheme === "light" || savedTheme === "dark") return savedTheme;
+    return window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+  });
   const location = useLocation();
 
   useEffect(() => {
@@ -25,12 +29,16 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (!location.hash) window.scrollTo({ top: 0, behavior: recruiterMode ? "auto" : "smooth" });
-  }, [location.pathname, location.hash, recruiterMode]);
+    if (!location.hash) window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [location.pathname, location.hash]);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("recruiter-mode", recruiterMode);
-  }, [recruiterMode]);
+    document.documentElement.dataset.theme = theme;
+    window.localStorage.setItem("portfolio-theme", theme);
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute("content", theme === "dark" ? "#090909" : "#f6f8f7");
+  }, [theme]);
 
   return (
     <>
@@ -38,18 +46,14 @@ export default function App() {
         Skip to content
       </a>
       <Navbar
-        recruiterMode={recruiterMode}
-        onToggleRecruiterMode={() => setRecruiterMode((value) => !value)}
+        theme={theme}
+        onToggleTheme={() => setTheme((value) => (value === "dark" ? "light" : "dark"))}
         onOpenCommand={() => setCommandOpen(true)}
       />
-      <CommandPalette
-        open={commandOpen}
-        setOpen={setCommandOpen}
-        onRecruiterMode={() => setRecruiterMode((value) => !value)}
-      />
+      <CommandPalette open={commandOpen} setOpen={setCommandOpen} />
       <Routes>
-        <Route path="/" element={<Home recruiterMode={recruiterMode} />} />
-        <Route path="/projects/:slug" element={<ProjectDetails recruiterMode={recruiterMode} />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/projects/:slug" element={<ProjectDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer onOpenCommand={() => setCommandOpen(true)} />

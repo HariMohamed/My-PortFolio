@@ -26,10 +26,8 @@ const questions = [
   },
 ];
 
-export default function AIPlayground({ recruiterMode = false }) {
+export default function AIPlayground() {
   const [activeQuestion, setActiveQuestion] = useState(questions[0]);
-
-  if (recruiterMode) return null;
 
   return (
     <section className="section-shell" aria-labelledby="playground-heading">
