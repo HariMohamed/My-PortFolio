@@ -6,7 +6,14 @@ export default function Hero() {
   return (
     <section id="home" className="hero-section" aria-labelledby="hero-title">
       <div className="hero-photo" aria-hidden="true">
-        <img src={profile.portraitUrl} alt="" width="3456" height="5184" />
+        <img
+          src={profile.portraitUrl}
+          alt=""
+          width="1122"
+          height="1402"
+          decoding="async"
+          fetchPriority="high"
+        />
       </div>
       <div className="hero-overlay" aria-hidden="true" />
 
@@ -67,6 +74,8 @@ export default function Hero() {
                 alt={`Portrait of ${profile.name}`}
                 width="1122"
                 height="1402"
+                decoding="async"
+                fetchPriority="high"
               />
             </div>
             <figcaption>

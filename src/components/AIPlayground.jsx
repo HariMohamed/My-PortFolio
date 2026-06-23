@@ -7,7 +7,7 @@ const questions = [
   {
     question: "What do you build?",
     answer:
-      "Hari builds AI-powered SaaS MVPs, automation workflows, dashboards, APIs, and production-minded web applications. The strongest fit is work that joins React interfaces, backend systems, and useful AI assistance.",
+      "Hari builds AI-powered SaaS MVPs, automation workflows, dashboards, APIs, and maintainable web applications. The strongest fit is work that joins React interfaces, backend systems, and useful AI assistance.",
   },
   {
     question: "What technologies do you use?",

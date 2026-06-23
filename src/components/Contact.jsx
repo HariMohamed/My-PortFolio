@@ -9,14 +9,14 @@ export default function Contact() {
       <SectionTitle
         id="contact-heading"
         eyebrow="Contact"
-        title="Available for AI products, automation, and full-stack builds."
+        title="Available for full-stack, AI integration, and automation projects."
         description="Clear next actions for recruiters, founders, and teams who need a practical builder."
       />
 
       <div className="contact-grid">
         <MotionWrapper className="contact-card contact-card-primary">
           <p className="contact-kicker">Best fit</p>
-          <h3>AI engineering roles, freelance automation systems, and SaaS MVP delivery.</h3>
+          <h3>Junior full-stack roles, freelance automation systems, and SaaS MVP delivery.</h3>
           <p>
             Send a short message with the product, workflow, or role you have in mind. I will reply with the
             clearest next step.

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://my-port-folio-roan-delta.vercel.app/sitemap.xml
