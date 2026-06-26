@@ -1,56 +1,42 @@
 import portraitUrl from "../../assets/img.png";
-import cvEnglishUrl from "../../cv(1).pdf";
-import cvFrenchUrl from "../../hari_cv.pdf";
+import cvUrl from "../../hari-mohamed-rizq-cv-2026.pdf";
 
 export const profile = {
   name: "Hari Mohamed Rizq",
   initials: "HR",
-  role: "AI Systems Engineer",
-  positioning: "AI Systems Engineer / Full-Stack Developer / AI Automation Builder",
-  badge: "Available for AI Engineering Opportunities",
-  headline: "AI Systems Engineer",
-  subtitle: "Building production-ready AI products, automation systems, and SaaS MVPs.",
+  role: "Full-Stack Developer & AI Automation Builder",
+  positioning: "Junior Full-Stack Developer / AI Integrator / AI Automation Builder",
+  badge: "Available for Junior Full-Stack, AI Integration & Automation Projects",
+  headline: "Full-Stack Developer & AI Automation Builder",
+  subtitle: "Building SaaS MVPs, dashboards, AI automations, and API-based systems.",
   coreMessage:
-    "I build production-ready AI products, automation systems, and SaaS MVPs that solve real business problems.",
-  stackLine: "Python · FastAPI · React · LLMs · Docker · n8n",
-  location: "Sale, Morocco",
-  availability: "Open to AI engineering roles, freelance systems, and SaaS MVP builds",
+    "I build practical web products, automation systems, and SaaS MVPs that solve real business problems.",
+  stackLine: "React · FastAPI · Python · Node.js · Docker · n8n",
+  location: "Morocco",
+  availability: "Open to junior full-stack and AI integration projects",
   email: "mohamedhari13@gmail.com",
   phone: "+212 773 104 530",
   portraitUrl,
   cv: {
-    english: cvEnglishUrl,
-    french: cvFrenchUrl,
+    english: cvUrl,
   },
   socials: {
     github: "https://github.com/HariMohamed",
     linkedin: "https://www.linkedin.com/in/mohamed-rizq-hari-4a6416249/",
-    email: "mailto:mohamedhari13@gmail.com?subject=Portfolio%20Contact%20-%20AI%20Engineering",
+    email: "mailto:mohamedhari13@gmail.com?subject=Portfolio%20Contact",
   },
   metrics: [
     {
-      label: "Projects",
-      value: 15,
-      suffix: "+",
-      detail: "Across AI, SaaS, MERN, and frontend delivery",
-    },
-    {
-      label: "Production Apps",
-      value: 5,
-      suffix: "+",
-      detail: "Built or contributed to real application workflows",
-    },
-    {
-      label: "Lines of Code",
-      value: 100,
-      suffix: "K+",
-      detail: "Learning, shipping, refactoring, and integrating systems",
+      label: "Case Studies",
+      value: 4,
+      suffix: "",
+      detail: "Documented across AI, SaaS, MERN, and automation work",
     },
     {
       label: "Years Learning & Building",
       value: 3,
       suffix: "+",
-      detail: "From web foundations to applied AI systems",
+      detail: "From web foundations to applied systems",
     },
   ],
   languages: [

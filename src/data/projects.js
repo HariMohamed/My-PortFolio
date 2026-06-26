@@ -1,4 +1,18 @@
-import { profile } from "./profile";
+const privateRepoStatus = "Private repo — code available on request";
+
+function createPendingEvidence(repositoryStatus = privateRepoStatus) {
+  return {
+    status: "Screenshots to add",
+    cover: null,
+    screenshots: [],
+    architectureDiagram: null,
+    workflowDiagram: null,
+    videoDemo: null,
+    liveDemo: null,
+    repositoryStatus,
+    notes: "Real screenshots will be added after project capture.",
+  };
+}
 
 export const projects = [
   {
@@ -27,12 +41,14 @@ export const projects = [
       "Designing financial data views that non-technical users can scan quickly",
     ],
     results: [
-      "Clarified a real SaaS product direction for condominium operations",
-      "Connected AI assistance to concrete admin and communication tasks",
-      "Created a strong flagship project for AI/full-stack positioning",
+      "Designed and implemented multi-portal front-end and FastAPI backend supporting PDF generation and WhatsApp integration paths",
+      "Implemented AI-assisted chatbot flows and structured financial views for condominium workflows",
+      "Delivered a working prototype and case study demonstrating end-to-end AI/full-stack integration",
     ],
+    evidence: createPendingEvidence(),
     links: {
-      github: profile.socials.github,
+      github: null,
+      githubStatus: privateRepoStatus,
       live: null,
       caseStudy: "/projects/syndicai",
     },
@@ -63,12 +79,14 @@ export const projects = [
       "Preparing the codebase for future production modules",
     ],
     results: [
-      "Turned a service business workflow into a scalable SaaS MVP direction",
-      "Demonstrated full-stack product thinking beyond static landing pages",
-      "Created a foundation for freelance/client acquisition conversations",
+      "Built a route-based dashboard and API scaffolding to support coach/client workflows",
+      "Implemented client records and program organization modules ready for extension",
+      "Produced a deployable frontend scaffold suitable for client demos and iterations",
     ],
+    evidence: createPendingEvidence(),
     links: {
-      github: profile.socials.github,
+      github: null,
+      githubStatus: privateRepoStatus,
       live: null,
       caseStudy: "/projects/gym-coaching-saas",
     },
@@ -99,12 +117,14 @@ export const projects = [
       "Keeping the system explainable for business users",
     ],
     results: [
-      "Built a clear service offer around practical AI automation",
-      "Connected AI capabilities to measurable business workflow problems",
-      "Created reusable patterns for future freelance delivery",
+      "Designed reusable n8n-style workflow templates combining triggers, LLM classification, and structured outputs",
+      "Built prototype webhook endpoints and review gates to keep automation outputs reviewable",
+      "Documented reusable patterns for client delivery and integration",
     ],
+    evidence: createPendingEvidence(),
     links: {
-      github: profile.socials.github,
+      github: null,
+      githubStatus: privateRepoStatus,
       live: null,
       caseStudy: "/projects/ai-automation-workflows",
     },
@@ -135,12 +155,14 @@ export const projects = [
       "Keeping the UI understandable for content administrators",
     ],
     results: [
-      "Delivered practical MERN experience in a professional context",
-      "Strengthened authentication, API, and content workflow skills",
-      "Added credible full-stack evidence for recruiter review",
+      "Delivered an interactive MERN blog with authentication and content management features",
+      "Implemented REST API routes and authentication-ready flows",
+      "Provided a maintainable component structure for editorial workflows",
     ],
+    evidence: createPendingEvidence(),
     links: {
-      github: profile.socials.github,
+      github: null,
+      githubStatus: privateRepoStatus,
       live: null,
       caseStudy: "/projects/medical-device-mern-blog",
     },
