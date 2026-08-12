@@ -310,7 +310,7 @@ img {
 
   .metrics-shell {
     width: min(1180px, calc(100% - 32px));
-    @apply relative z-10 mx-auto -mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4;
+    @apply relative z-10 mx-auto -mt-10 grid gap-4 sm:grid-cols-2;
   }
 
   .metric-card {

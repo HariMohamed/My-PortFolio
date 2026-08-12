@@ -1,39 +1,23 @@
-const privateRepoStatus = "Private repo — code available on request";
-
-function createPendingEvidence(repositoryStatus = privateRepoStatus) {
-  return {
-    status: "Screenshots to add",
-    cover: null,
-    screenshots: [],
-    architectureDiagram: null,
-    workflowDiagram: null,
-    videoDemo: null,
-    liveDemo: null,
-    repositoryStatus,
-    notes: "Real screenshots will be added after project capture.",
-  };
-}
-
 export const projects = [
   {
     slug: "syndicai",
     title: "SyndicAI",
     period: "2026",
-    category: "AI SaaS",
-    summary: "Intelligent condominium management SaaS assisted by AI.",
+    category: "AI-Powered Condominium Management SaaS",
+    summary: "Built a full-stack SaaS platform that centralizes condominium management workflows and integrates AI assistance to help property managers handle information and operations more efficiently.",
     problem:
       "Condominium management often depends on fragmented communication, manual financial follow-up, and slow access to documents for promoters, syndics, and co-owners.",
     solution:
-      "Designed a multi-portal SaaS concept with AI assistance, WhatsApp-ready workflows, PDF generation, and structured financial analysis for Moroccan property management teams.",
+      "Designed a multi-portal SaaS platform with AI assistance, document generation, and structured financial views for Moroccan property management teams.",
     architecture:
-      "React frontend, FastAPI API layer, PostgreSQL data model, LangChain-assisted AI flows, Groq LLM integration, and document-generation services.",
-    stack: ["React", "FastAPI", "Python", "PostgreSQL", "LangChain", "Groq", "PDF"],
+      "React frontend, FastAPI API layer, PostgreSQL data model, LangChain-assisted AI flows, and document-generation services.",
+    stack: ["React", "FastAPI", "Python", "PostgreSQL", "LangChain"],
+    focus: ["AI Integration", "SaaS", "REST APIs", "Full-Stack"],
     features: [
       "Promoter, syndic, and co-owner portal flows",
       "AI chatbot for first-level information access",
       "Financial analysis screens for recurring charges and balances",
       "PDF document generation for administrative workflows",
-      "WhatsApp integration path for resident communication",
     ],
     challenges: [
       "Modeling different user roles without making the product feel complicated",
@@ -41,15 +25,12 @@ export const projects = [
       "Designing financial data views that non-technical users can scan quickly",
     ],
     results: [
-      "Designed and implemented multi-portal front-end and FastAPI backend supporting PDF generation and WhatsApp integration paths",
+      "Designed and implemented multi-portal front-end and FastAPI backend supporting document generation",
       "Implemented AI-assisted chatbot flows and structured financial views for condominium workflows",
-      "Delivered a working prototype and case study demonstrating end-to-end AI/full-stack integration",
+      "Delivered a working prototype demonstrating end-to-end AI and full-stack integration",
     ],
-    evidence: createPendingEvidence(),
     links: {
-      github: null,
-      githubStatus: privateRepoStatus,
-      live: null,
+      live: "https://syndicai-ssp.vercel.app/",
       caseStudy: "/projects/syndicai",
     },
   },
@@ -57,21 +38,22 @@ export const projects = [
     slug: "gym-coaching-saas",
     title: "Gym Coaching SaaS",
     period: "2025",
-    category: "Full-Stack SaaS",
-    summary: "Fitness coach and client management platform for recurring coaching workflows.",
+    category: "SaaS Platform for Fitness Coaches",
+    summary: "Built a full-stack coaching platform that gives fitness professionals a centralized workspace to manage athletes, create personalized training programs, and monitor client progress.",
     problem:
       "Independent fitness coaches need a simple way to manage clients, programs, progress, communication, and recurring service delivery without relying on spreadsheets.",
     solution:
       "Built a SaaS-style platform around coach/client management, role-based workflows, program organization, and a clean dashboard experience for daily operations.",
     architecture:
-      "React frontend with route-based dashboards, API-first backend structure, database-backed client records, authentication, and deployable environment configuration.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "TailwindCSS", "Authentication"],
+      "Next.js frontend with route-based dashboards, role-based authentication, and responsive UI for mobile and desktop usage.",
+    stack: ["React", "Next.js", "Node.js", "Tailwind CSS", "PostgreSQL"],
+    focus: ["SaaS", "Dashboard Architecture", "CRUD Workflows"],
     features: [
       "Coach and client dashboard structure",
-      "Client records and program organization",
-      "Authentication-ready user flows",
-      "Responsive UI for mobile and desktop usage",
-      "Operational sections that can expand into payments, plans, and progress tracking",
+      "Client management and athlete profiles",
+      "Workout builder with sets, reps, and RPE tracking",
+      "Progress tracking and data visualization",
+      "Role-based authentication flows",
     ],
     challenges: [
       "Designing a SaaS workflow that stays simple for non-technical users",
@@ -79,97 +61,54 @@ export const projects = [
       "Preparing the codebase for future production modules",
     ],
     results: [
-      "Built a route-based dashboard and API scaffolding to support coach/client workflows",
-      "Implemented client records and program organization modules ready for extension",
-      "Produced a deployable frontend scaffold suitable for client demos and iterations",
+      "Built a route-based dashboard with authentication to support coach/client workflows",
+      "Implemented client records and program organization modules",
+      "Produced a deployable frontend with workout builder and progress tracking",
     ],
-    evidence: createPendingEvidence(),
     links: {
-      github: null,
-      githubStatus: privateRepoStatus,
-      live: null,
+      github: "https://github.com/HariMohamed/gym-coaching-site",
+      live: "https://gym-coaching-site.vercel.app/",
       caseStudy: "/projects/gym-coaching-saas",
     },
   },
   {
-    slug: "ai-automation-workflows",
-    title: "AI Automation Workflows",
-    period: "2025",
-    category: "AI Automation",
-    summary: "n8n-style automation systems for lead routing, AI replies, and workflow orchestration.",
+    slug: "cfqma-platform",
+    title: "CFQMA Platform",
+    period: "2024",
+    category: "Events & Exhibitions Experience",
+    summary: "Developed and integrated the events and exhibitions experience for the CFQMA platform, focusing on a structured, responsive interface for presenting cultural and professional events.",
     problem:
-      "Many small teams lose time on repetitive admin work: qualifying leads, answering common questions, routing requests, summarizing data, and moving information between tools.",
+      "The training center needed a professional web presence to showcase their programs, events, and exhibitions to prospective students and partners.",
     solution:
-      "Designed automation workflow patterns that combine triggers, LLM-based classification, structured outputs, notifications, and human review points.",
+      "Built responsive React interfaces with structured content for the events and exhibitions sections, ensuring cross-device compatibility and maintainable content architecture.",
     architecture:
-      "Trigger-based workflow orchestration with n8n, webhook endpoints, LLM calls, structured JSON outputs, email/CRM-style handoffs, and observability checkpoints.",
-    stack: ["n8n", "LLMs", "Webhooks", "JavaScript", "JSON", "APIs", "Automation"],
+      "React frontend with component-based architecture, JSON-backed content structure, and responsive layouts for desktop and mobile.",
+    stack: ["React", "JavaScript", "Bootstrap", "CSS3"],
+    focus: ["React", "Frontend Architecture", "Responsive UI", "Component Design"],
     features: [
-      "Lead qualification and routing workflow patterns",
-      "AI-generated response drafts with review gates",
-      "Webhook-first integration approach",
-      "Structured outputs for safer downstream automation",
-      "Reusable workflow templates for client operations",
+      "Events and exhibitions presentation interface",
+      "Responsive design for mobile and desktop",
+      "Structured content architecture for easy maintenance",
+      "Cross-device compatibility",
     ],
     challenges: [
-      "Preventing AI output from becoming too open-ended for automation",
-      "Designing workflows that remain useful even when a human review is required",
-      "Keeping the system explainable for business users",
+      "Building a professional interface within a short engagement period",
+      "Structuring content for non-technical administrators",
+      "Ensuring accessibility and responsive behavior across devices",
     ],
     results: [
-      "Designed reusable n8n-style workflow templates combining triggers, LLM classification, and structured outputs",
-      "Built prototype webhook endpoints and review gates to keep automation outputs reviewable",
-      "Documented reusable patterns for client delivery and integration",
+      "Delivered a responsive events and exhibitions interface for the training center",
+      "Implemented structured JSON-backed content for easier maintenance",
+      "Improved cross-device compatibility and accessibility basics",
     ],
-    evidence: createPendingEvidence(),
     links: {
-      github: null,
-      githubStatus: privateRepoStatus,
-      live: null,
-      caseStudy: "/projects/ai-automation-workflows",
-    },
-  },
-  {
-    slug: "medical-device-mern-blog",
-    title: "MERN Blog / Medical Device",
-    period: "2025",
-    category: "MERN Application",
-    summary: "Interactive content and user-management application built during Easy Medical Device work.",
-    problem:
-      "The product needed dynamic content workflows and user management rather than a static website, with a stack that could support future feature growth.",
-    solution:
-      "Developed MERN application features for an interactive blog, authentication-oriented flows, real-time content updates, and maintainable UI sections.",
-    architecture:
-      "React client, Express/Node backend, MongoDB persistence, REST API routes, authentication flows, and reusable UI components for content management.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "TailwindCSS", "REST APIs"],
-    features: [
-      "Interactive blog experience",
-      "User management workflows",
-      "REST API structure for content operations",
-      "Responsive frontend screens",
-      "Reusable component patterns for future modules",
-    ],
-    challenges: [
-      "Coordinating frontend state with backend content operations",
-      "Building features that could evolve beyond the first blog scope",
-      "Keeping the UI understandable for content administrators",
-    ],
-    results: [
-      "Delivered an interactive MERN blog with authentication and content management features",
-      "Implemented REST API routes and authentication-ready flows",
-      "Provided a maintainable component structure for editorial workflows",
-    ],
-    evidence: createPendingEvidence(),
-    links: {
-      github: null,
-      githubStatus: privateRepoStatus,
-      live: null,
-      caseStudy: "/projects/medical-device-mern-blog",
+      live: "https://cfqma-platform.vercel.app/",
+      caseStudy: "/projects/cfqma-platform",
     },
   },
 ];
 
-export const featuredProjects = projects.slice(0, 4);
+export const featuredProjects = projects.slice(0, 3);
 
 export function getProjectBySlug(slug) {
   return projects.find((project) => project.slug === slug);

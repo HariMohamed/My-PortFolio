@@ -1,27 +1,23 @@
 export const skillGroups = [
   {
     title: "Frontend",
-    skills: ["React", "JavaScript ES6+", "TailwindCSS", "HTML5", "CSS3", "Bootstrap", "Responsive UI"],
+    skills: ["React", "TypeScript", "Tailwind CSS"],
   },
   {
     title: "Backend",
-    skills: ["FastAPI", "Node.js", "Express", "Django", "Flask", "Laravel", "REST APIs", "Authentication"],
-  },
-  {
-    title: "AI & Automation",
-    skills: ["LLM APIs", "AI Agents", "Prompt Engineering", "RAG Concepts", "LangChain", "n8n", "Chatbots"],
+    skills: ["Python", "FastAPI", "Node.js"],
   },
   {
     title: "Database",
-    skills: ["PostgreSQL", "MongoDB", "MySQL", "SQLite", "SQL Server", "Data Modeling"],
+    skills: ["PostgreSQL", "MongoDB"],
+  },
+  {
+    title: "AI & Automation",
+    skills: ["LangChain", "AI APIs", "n8n"],
   },
   {
     title: "DevOps",
-    skills: ["Docker", "CI/CD Basics", "Vercel", "Environment Config", "API Deployment"],
-  },
-  {
-    title: "Tools",
-    skills: ["Git", "GitHub", "Jira", "Trello", "Power BI", "Figma", "Postman"],
+    skills: ["Docker", "Git", "Vercel"],
   },
 ];
 

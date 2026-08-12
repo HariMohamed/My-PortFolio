@@ -1,15 +1,16 @@
 export const experience = [
   {
     role: "AI Integrator",
-    organization: "Learning IT Consulting",
+    organization: "Capital Innov",
     location: "Rabat",
     period: "Oct 2025 - Present",
     type: "Work",
     bullets: [
-      "Contributed to an MVP Chantier focused on construction-site tracking and operational clarity.",
-      "Designed early product workflows for organizing chantier information and user tasks.",
-      "Integrated AI assistance concepts to support users with first-level guidance.",
-      "Collaborated across product and engineering decisions with a practical delivery mindset.",
+      "Contribution au développement d’un ERP dédié au secteur BTP.",
+      "Participation à la conception du module Chantier.",
+      "Élaboration du cahier des charges du module Gestion de la caisse.",
+      "Conception de diagrammes techniques et modélisation des processus métier.",
+      "Développement de fonctionnalités web et intégration de services IA selon les besoins du projet.",
     ],
     technologies: ["AI APIs", "React", "Django", "PostgreSQL", "TailwindCSS"],
   },
@@ -40,9 +41,9 @@ export const experience = [
     technologies: ["React", "CSS3", "Bootstrap", "JavaScript", "JSON"],
   },
   {
-    role: "AI Integrator Training",
-    organization: "Tamheen-GIZ-EITIA",
-    location: "Rabat",
+    role: "Formation Professionnelle Qualifiante en IA",
+    organization: "IDS Salé & GIZ Maroc (Projet Tamheen II)",
+    location: "Mode Dual",
     period: "2025 - 2026",
     type: "Education",
     bullets: [
@@ -50,5 +51,23 @@ export const experience = [
       "Building toward AI agents, RAG systems, workflow automation, and LLM evaluation.",
     ],
     technologies: ["Applied AI", "LLMs", "Automation", "Python"],
+  },
+  {
+    role: "Licence en Ingénierie des Systèmes Informatiques",
+    organization: "SUPMTI",
+    location: "Rabat",
+    period: "2024 - 2025",
+    type: "Education",
+    bullets: [],
+    technologies: [],
+  },
+  {
+    role: "DTS en Développement Web Full-Stack",
+    organization: "ISTA Chmaou",
+    location: "Salé",
+    period: "2022 - 2024",
+    type: "Education",
+    bullets: [],
+    technologies: [],
   },
 ];

@@ -1,25 +1,15 @@
-import { ArrowUpRight, Github, ImageIcon, LockKeyhole, Route, Video } from "lucide-react";
+import { ArrowUpRight, Github, Route } from "lucide-react";
 import { Link } from "react-router-dom";
 import MotionWrapper from "./MotionWrapper";
+import { techLogos } from "../data/logos";
 
 export default function ProjectCard({ project, index = 0 }) {
-  const evidence = project.evidence || {};
-  const screenshots = evidence.screenshots || [];
-  const liveDemoUrl = project.links.live || evidence.liveDemo;
-  const repoStatus = project.links.githubStatus || evidence.repositoryStatus || "Private repo — code available on request";
-  const hasVisualEvidence = Boolean(
-    evidence.cover ||
-      screenshots.length ||
-      evidence.architectureDiagram ||
-      evidence.workflowDiagram,
-  );
-
   return (
     <MotionWrapper delay={index * 0.05} hover className="project-card">
       <div className="project-card-top">
         <div>
           <p className="project-meta">
-            {project.period} - {project.category}
+            {project.period} · {project.category}
           </p>
           <h3>{project.title}</h3>
         </div>
@@ -41,7 +31,10 @@ export default function ProjectCard({ project, index = 0 }) {
 
       <div className="chip-row">
         {project.stack.slice(0, 7).map((tech) => (
-          <span className="chip" key={tech}>
+          <span className="chip gap-2" key={tech}>
+            {techLogos[tech] && (
+              <img src={techLogos[tech]} alt={tech} className="w-4 h-4 object-contain" loading="lazy" decoding="async" />
+            )}
             {tech}
           </span>
         ))}
@@ -52,13 +45,6 @@ export default function ProjectCard({ project, index = 0 }) {
         <p>{project.results[0]}</p>
       </div>
 
-      <div className="evidence-status" aria-label={`${project.title} evidence status`}>
-        <ImageIcon aria-hidden="true" />
-        <span>
-          {hasVisualEvidence ? evidence.status || "Project evidence available" : "Screenshots coming soon"}
-        </span>
-      </div>
-
       <div className="project-actions">
         <Link className="text-link" to={project.links.caseStudy}>
           <Route aria-hidden="true" />
@@ -67,31 +53,15 @@ export default function ProjectCard({ project, index = 0 }) {
         {project.links.github ? (
           <a className="text-link" href={project.links.github} target="_blank" rel="noreferrer">
             <Github aria-hidden="true" />
-            GitHub
-          </a>
-        ) : (
-          <span className="text-link text-muted" aria-disabled="true" title={repoStatus}>
-            <Github aria-hidden="true" />
-            {repoStatus}
-          </span>
-        )}
-        {evidence.videoDemo ? (
-          <a className="text-link" href={evidence.videoDemo} target="_blank" rel="noreferrer">
-            <Video aria-hidden="true" />
-            Video demo
+            Source Code
           </a>
         ) : null}
-        {liveDemoUrl ? (
-          <a className="text-link" href={liveDemoUrl} target="_blank" rel="noreferrer">
+        {project.links.live ? (
+          <a className="text-link" href={project.links.live} target="_blank" rel="noreferrer">
             <ArrowUpRight aria-hidden="true" />
-            Live demo
+            Live Demo
           </a>
-        ) : (
-          <span className="text-link text-muted" aria-disabled="true" title="Live demo not available yet">
-            <LockKeyhole aria-hidden="true" />
-            Screenshots coming soon
-          </span>
-        )}
+        ) : null}
       </div>
     </MotionWrapper>
   );
