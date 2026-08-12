@@ -8,8 +8,8 @@ export default function FeaturedProjects() {
       <SectionTitle
         id="projects-heading"
         eyebrow="Selected Work"
-        title="Project evidence for AI, SaaS, and full-stack delivery."
-        description="Large case-study cards built for recruiter scanning: problem, solution, stack, and concrete impact without inflated claims."
+        title="Selected projects across SaaS, AI integration, and frontend systems."
+        description="Real applications built across SaaS, AI integration, and frontend systems."
       />
       <div className="grid gap-5 lg:grid-cols-2">
         {featuredProjects.map((project, index) => (
