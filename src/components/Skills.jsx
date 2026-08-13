@@ -24,10 +24,11 @@ export default function Skills() {
             <div className="chip-row">
               {group.skills.map((skill) => (
                 <span key={skill} className="chip gap-2 flex items-center">
-                  {techLogos[skill] && (
-                    <img src={techLogos[skill]} alt={skill} className="w-4 h-4 object-contain" loading="lazy" decoding="async" />
+                  {techLogos[skill] ? (
+                    <img src={techLogos[skill]} alt={skill} title={skill} className="w-4 h-4 object-contain" loading="lazy" decoding="async" />
+                  ) : (
+                    skill
                   )}
-                  {skill}
                 </span>
               ))}
             </div>
