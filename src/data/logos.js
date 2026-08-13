@@ -10,7 +10,10 @@ export const techLogos = {
   "Tailwind CSS": "https://cdn.simpleicons.org/tailwindcss",
   "JavaScript": "https://cdn.simpleicons.org/javascript",
   "Bootstrap": "https://cdn.simpleicons.org/bootstrap",
-  "CSS3": "https://cdn.simpleicons.org/css",
+  "CSS3": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+  "CSS": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+  "HTML5": "https://cdn.simpleicons.org/html5",
+  "HTML": "https://cdn.simpleicons.org/html5",
   "Django": "https://cdn.simpleicons.org/django",
   "Express": "https://cdn.simpleicons.org/express",
   "MongoDB": "https://cdn.simpleicons.org/mongodb",
@@ -19,6 +22,14 @@ export const techLogos = {
   "Git": "https://cdn.simpleicons.org/git",
   "Vercel": "https://cdn.simpleicons.org/vercel/f5f5f5",
   "n8n": "https://cdn.simpleicons.org/n8n",
+  "PHP": "https://cdn.simpleicons.org/php",
+  "Laravel": "https://cdn.simpleicons.org/laravel",
+  "MySQL": "https://cdn.simpleicons.org/mysql",
+  "JSON": "https://cdn.simpleicons.org/json",
+  "Java": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+  "Linux": "https://cdn.simpleicons.org/linux",
+  "Windows": "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/windows8/windows8-original.svg",
+  "Power BI": "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg",
 };
 
 export const companyLogos = {

@@ -37,29 +37,29 @@ export default function CommandPalette({ open, setOpen }) {
       <Command.List>
         <Command.Empty>No command found.</Command.Empty>
         <Command.Group heading="Navigate">
-          <Command.Item onSelect={() => scrollTo("projects")}>
+          <Command.Item value="View Projects" onSelect={() => scrollTo("projects")}>
             <BriefcaseBusiness aria-hidden="true" />
             View Projects
           </Command.Item>
-          <Command.Item onSelect={() => scrollTo("skills")}>
+          <Command.Item value="View Skills" onSelect={() => scrollTo("skills")}>
             <Wrench aria-hidden="true" />
             View Skills
           </Command.Item>
         </Command.Group>
         <Command.Group heading="Actions">
-          <Command.Item onSelect={() => runCommand(() => window.open(profile.cv.english, "_self"))}>
+          <Command.Item value="Download CV" onSelect={() => runCommand(() => window.open(profile.cv.english, "_self"))}>
             <Download aria-hidden="true" />
             Download CV
           </Command.Item>
-          <Command.Item onSelect={() => runCommand(() => window.open(profile.socials.github, "_blank"))}>
+          <Command.Item value="Open GitHub" onSelect={() => runCommand(() => window.open(profile.socials.github, "_blank"))}>
             <Github aria-hidden="true" />
             Open GitHub
           </Command.Item>
-          <Command.Item onSelect={() => runCommand(() => window.open(profile.socials.linkedin, "_blank"))}>
+          <Command.Item value="Open LinkedIn" onSelect={() => runCommand(() => window.open(profile.socials.linkedin, "_blank"))}>
             <Linkedin aria-hidden="true" />
             Open LinkedIn
           </Command.Item>
-          <Command.Item onSelect={() => runCommand(() => window.open(profile.socials.email, "_self"))}>
+          <Command.Item value="Contact by Email" onSelect={() => runCommand(() => window.open(profile.socials.email, "_self"))}>
             <Mail aria-hidden="true" />
             Contact by Email
           </Command.Item>

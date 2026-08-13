@@ -28,7 +28,7 @@ export default function Contact() {
             </a>
             <a className="btn btn-secondary" href={profile.cv.english} download>
               <Download aria-hidden="true" />
-              English CV
+              CV
             </a>
           </div>
         </MotionWrapper>

@@ -1,7 +1,7 @@
 export const skillGroups = [
   {
     title: "Frontend",
-    skills: ["React", "TypeScript", "Tailwind CSS"],
+    skills: ["React", "JavaScript", "TypeScript", "Tailwind CSS"],
   },
   {
     title: "Backend",

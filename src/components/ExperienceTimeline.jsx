@@ -30,7 +30,7 @@ export default function ExperienceTimeline() {
             <MotionWrapper
               key={`${item.role}-${item.organization}`}
               delay={index * 0.05}
-              className="timeline-item"
+              className={`timeline-item ${item.type === "Education" ? "timeline-item-edu" : "timeline-item-exp"}`}
             >
               <div className="timeline-marker" aria-hidden="true">
                 <Icon />
@@ -143,10 +143,11 @@ export default function ExperienceTimeline() {
                 <div className="chip-row">
                   {item.technologies.map((tech) => (
                     <span className="chip gap-2" key={tech}>
-                      {techLogos[tech] && (
-                        <img src={techLogos[tech]} alt={tech} className="w-4 h-4 object-contain" loading="lazy" decoding="async" />
+                      {techLogos[tech] ? (
+                        <img src={techLogos[tech]} alt={tech} className="w-4 h-4 object-contain" loading="lazy" decoding="async" title={tech} />
+                      ) : (
+                        tech
                       )}
-                      {tech}
                     </span>
                   ))}
                 </div>

@@ -4,21 +4,21 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: "var(--bg)",
-        surface: "var(--surface)",
-        "surface-2": "var(--surface-2)",
-        text: "var(--text)",
-        muted: "var(--muted)",
-        accent: "var(--accent)",
-        border: "var(--border)",
+        bg: "var(--color-bg)",
+        surface: "var(--color-surface)",
+        "surface-2": "var(--color-surface-strong)",
+        text: "var(--color-text-primary)",
+        muted: "var(--color-text-muted)",
+        accent: "var(--color-primary)",
+        border: "var(--color-border)",
       },
       fontFamily: {
         display: ["Bebas Neue", "sans-serif"],
-        body: ["Outfit", "sans-serif"],
+        body: ["Inter", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
       },
       boxShadow: {
-        glow: "0 0 0 1px rgba(0, 245, 140, 0.18), 0 24px 80px rgba(0, 0, 0, 0.45)",
+        glow: "0 4px 6px -1px rgba(0, 0, 0, 0.2), 0 2px 4px -1px rgba(0, 0, 0, 0.1)",
       },
     },
   },
