@@ -60,7 +60,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 92px;
-  background: var(--bg);
+  background: var(--color-bg);
 }
 
 body {
@@ -118,7 +118,7 @@ img {
 
 @layer components {
   .skip-link {
-    @apply fixed left-4 top-4 z-[80] rounded-md bg-accent px-4 py-2 font-bold text-black transition-transform;
+    @apply fixed left-4 top-4 z-[80] inline-flex min-h-11 items-center rounded-md bg-accent px-4 py-2 font-bold text-black transition-transform;
     transform: translateY(-160%);
   }
 
@@ -140,7 +140,7 @@ img {
   }
 
   .nav-link {
-    @apply rounded-md px-4 py-2 text-sm font-semibold text-muted transition-colors hover:bg-white/5 hover:text-text;
+    @apply inline-flex min-h-11 items-center rounded-md px-4 py-2 text-sm font-semibold text-muted transition-colors hover:bg-white/5 hover:text-text;
   }
 
   .nav-link-active {
@@ -239,7 +239,7 @@ img {
 
   .hero-overlay {
     @apply absolute inset-0 -z-10;
-    background: linear-gradient(to bottom, rgba(14, 29, 33, 0.7) 0%, rgba(14, 29, 33, 0.95) 80%, rgba(14, 29, 33, 1) 100%);
+    background: var(--hero-overlay);
   }
 
   .hero-content {
@@ -306,7 +306,7 @@ img {
   }
 
   .social-row a {
-    @apply inline-flex items-center gap-2 rounded-md border border-border bg-white/[0.04] px-3 py-2 text-sm font-semibold text-muted transition hover:text-accent;
+    @apply inline-flex min-h-11 items-center gap-2 rounded-md border border-border bg-white/[0.04] px-3 py-2 text-sm font-semibold text-muted transition hover:text-accent;
   }
 
   .social-row a:hover {
@@ -462,7 +462,7 @@ img {
   }
 
   .text-link {
-    @apply inline-flex items-center gap-2 text-sm font-bold text-accent transition hover:text-text;
+    @apply inline-flex min-h-11 items-center gap-2 text-sm font-bold text-accent transition hover:text-text;
   }
 
   .text-link svg {
@@ -530,7 +530,44 @@ img {
   }
 
   .timeline-card-head {
-    @apply flex flex-col gap-4 border-b border-border pb-5 sm:flex-row sm:items-start sm:justify-between;
+    @apply flex flex-wrap flex-col gap-4 border-b border-border pb-5 sm:flex-row sm:items-start sm:justify-between;
+  }
+
+  .timeline-card-head > div:first-child {
+    min-width: 0;
+  }
+
+  .timeline-education-meta {
+    display: flex;
+    min-width: 0;
+    flex: 1 1 0%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .timeline-meta-row {
+    display: flex;
+    min-width: 0;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .timeline-meta-copy {
+    min-width: 0;
+    flex: 1 1 0%;
+  }
+
+  .timeline-meta-copy h3,
+  .timeline-card-head h3 {
+    overflow-wrap: anywhere;
+  }
+
+  @media (min-width: 768px) and (max-width: 900px) {
+    .timeline-card-head > div:first-child,
+    .timeline-education-header {
+      flex-direction: column;
+    }
   }
 
   .timeline-card-head p {
@@ -693,7 +730,7 @@ img {
 
   .footer-links a,
   .footer-links button {
-    @apply inline-flex h-10 w-10 items-center justify-center rounded-md border border-border bg-surface text-muted transition hover:text-accent;
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-surface text-muted transition hover:text-accent;
   }
 
   .footer-links a:hover,
@@ -775,11 +812,11 @@ img {
     @apply mx-auto max-w-2xl text-center;
   }
 
-  [cmdk-overlay] {
+  .command-overlay {
     @apply fixed inset-0 z-[90] bg-black/70 backdrop-blur-sm;
   }
 
-  [cmdk-dialog] {
+  .command-dialog {
     width: min(640px, calc(100% - 32px));
     @apply fixed left-1/2 top-24 z-[100] -translate-x-1/2 overflow-hidden rounded-md border border-border bg-surface shadow-xl;
   }
