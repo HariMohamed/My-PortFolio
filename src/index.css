@@ -239,7 +239,7 @@ img {
 
   .hero-overlay {
     @apply absolute inset-0 -z-10;
-    background: linear-gradient(to bottom, rgba(14, 29, 33, 0.7) 0%, rgba(14, 29, 33, 0.95) 80%, rgba(14, 29, 33, 1) 100%);
+    background: var(--hero-overlay);
   }
 
   .hero-content {
