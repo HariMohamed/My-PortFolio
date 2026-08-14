@@ -7,9 +7,10 @@ import {
 import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import MotionWrapper from "../components/MotionWrapper";
+import TechChip from "../components/TechChip";
 import { getProjectBySlug } from "../data/projects";
 import { profile } from "../data/profile";
-import { techLogos } from "../data/logos";
+import { defaultMetadata, setPageMetadata, siteUrl } from "../utils/metadata";
 
 function DetailSection({ title, children }) {
   return (
@@ -25,10 +26,22 @@ export default function ProjectDetails() {
   const project = getProjectBySlug(slug);
 
   useEffect(() => {
-    document.title = project
-      ? `${project.title} | Hari Mohamed Rizq`
-      : "Project Not Found | Hari Mohamed Rizq";
-  }, [project]);
+    if (project) {
+      setPageMetadata({
+        title: `${project.title} | Hari Mohamed Rizq`,
+        description: project.summary,
+        url: `${siteUrl}/projects/${project.slug}`,
+      });
+    } else {
+      setPageMetadata({
+        title: "Project Not Found | Hari Mohamed Rizq",
+        description: "The requested portfolio case study could not be found.",
+        url: `${siteUrl}/projects/${slug || "not-found"}`,
+      });
+    }
+
+    return () => setPageMetadata(defaultMetadata);
+  }, [project, slug]);
 
   if (!project) {
     return (
@@ -59,12 +72,7 @@ export default function ProjectDetails() {
         <p>{project.summary}</p>
         <div className="chip-row">
           {project.stack.map((tech) => (
-            <span className="chip gap-2" key={tech}>
-              {techLogos[tech] && (
-                <img src={techLogos[tech]} alt={tech} className="w-4 h-4 object-contain" loading="lazy" decoding="async" />
-              )}
-              {tech}
-            </span>
+            <TechChip key={tech} tech={tech} />
           ))}
         </div>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -105,12 +113,7 @@ export default function ProjectDetails() {
       <DetailSection title="Tech Stack">
         <div className="chip-row">
           {project.stack.map((tech) => (
-            <span className="chip gap-2" key={tech}>
-              {techLogos[tech] && (
-                <img src={techLogos[tech]} alt={tech} className="w-4 h-4 object-contain" loading="lazy" decoding="async" />
-              )}
-              {tech}
-            </span>
+            <TechChip key={tech} tech={tech} />
           ))}
         </div>
       </DetailSection>

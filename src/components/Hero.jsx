@@ -1,8 +1,10 @@
 import { ArrowDown, Download, Github, Linkedin, Mail, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "../data/profile";
 
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <section id="home" className="hero-section" aria-labelledby="hero-title">
       <div className="hero-photo" aria-hidden="true">
@@ -20,9 +22,9 @@ export default function Hero() {
       <div className="hero-content">
         <div className="hero-layout">
           <motion.div
-            initial={{ opacity: 0, y: 28 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, ease: "easeOut" }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.55, ease: "easeOut" }}
             className="max-w-4xl"
           >
             <p className="hero-badge">
@@ -64,9 +66,9 @@ export default function Hero() {
 
           <motion.figure
             className="hero-portrait-card"
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.55, delay: 0.12, ease: "easeOut" }}
+            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.55, delay: 0.12, ease: "easeOut" }}
           >
             <div className="hero-portrait-media">
               <img

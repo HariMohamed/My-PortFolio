@@ -1,7 +1,7 @@
 import { ArrowUpRight, Github, Route } from "lucide-react";
 import { Link } from "react-router-dom";
 import MotionWrapper from "./MotionWrapper";
-import { techLogos } from "../data/logos";
+import TechChip from "./TechChip";
 
 export default function ProjectCard({ project, index = 0 }) {
   return (
@@ -31,13 +31,7 @@ export default function ProjectCard({ project, index = 0 }) {
 
       <div className="chip-row">
         {project.stack.slice(0, 7).map((tech) => (
-          <span className="chip gap-2" key={tech}>
-            {techLogos[tech] ? (
-              <img src={techLogos[tech]} alt={tech} title={tech} className="w-4 h-4 object-contain" loading="lazy" decoding="async" />
-            ) : (
-              tech
-            )}
-          </span>
+          <TechChip key={tech} tech={tech} />
         ))}
       </div>
 

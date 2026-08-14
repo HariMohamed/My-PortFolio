@@ -13,6 +13,7 @@ import {
   X,
 } from "lucide-react";
 import { profile } from "../data/profile";
+import { scrollToSection as scrollToTarget } from "../utils/scroll";
 
 const navLinks = [
   { label: "Projects", id: "projects" },
@@ -54,18 +55,15 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
   }, [location.pathname]);
 
   function scrollToSection(id) {
-    const scroll = () => {
-      document.getElementById(id)?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    };
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
 
     if (location.pathname !== "/") {
       navigate("/");
-      window.setTimeout(scroll, 60);
+      window.setTimeout(() => scrollToTarget(id), 60);
     } else {
-      scroll();
+      window.setTimeout(() => scrollToTarget(id), 80);
     }
     setMenuOpen(false);
   }

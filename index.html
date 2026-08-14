@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content="Hari Mohamed Rizq — Full-Stack Developer & AI Integration Engineer. Building web applications, SaaS platforms, and AI-powered systems." />
+    <meta name="author" content="Hari Mohamed Rizq" />
     <meta name="theme-color" content="#090909" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://harimohamedrizq.vercel.app/" />
@@ -13,12 +14,14 @@
     <meta property="og:description" content="Building web applications, SaaS platforms, and AI-powered systems." />
     <meta property="og:url" content="https://harimohamedrizq.vercel.app/" />
     <meta property="og:image" content="https://harimohamedrizq.vercel.app/og-image.svg" />
+    <meta property="og:image:alt" content="Hari Mohamed Rizq portfolio preview" />
     <meta property="og:locale" content="en_US" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Hari Mohamed Rizq | Full-Stack Developer & AI Integration Engineer" />
     <meta name="twitter:description" content="Building web applications, SaaS platforms, and AI-powered systems." />
     <meta name="twitter:image" content="https://harimohamedrizq.vercel.app/og-image.svg" />
+    <meta name="twitter:image:alt" content="Hari Mohamed Rizq portfolio preview" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,31 +38,46 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Hari Mohamed Rizq",
-        "jobTitle": "Full-Stack Developer & AI Integration Engineer",
-        "url": "https://harimohamedrizq.vercel.app/",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "Morocco"
-        },
-        "areaServed": "Morocco",
-        "sameAs": [
-          "https://github.com/HariMohamed",
-          "https://www.linkedin.com/in/mohamed-rizq-hari-4a6416249/"
-        ],
-        "knowsAbout": [
-          "React",
-          "FastAPI",
-          "Django",
-          "Node.js",
-          "PostgreSQL",
-          "Docker",
-          "n8n",
-          "AI automation",
-          "SaaS MVPs",
-          "dashboards",
-          "chatbots"
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://harimohamedrizq.vercel.app/#person",
+            "name": "Hari Mohamed Rizq",
+            "jobTitle": "Full-Stack Developer & AI Integration Engineer",
+            "url": "https://harimohamedrizq.vercel.app/",
+            "image": "https://harimohamedrizq.vercel.app/portrait.webp",
+            "address": {
+              "@type": "PostalAddress",
+              "addressCountry": "MA"
+            },
+            "areaServed": "Morocco",
+            "sameAs": [
+              "https://github.com/HariMohamed",
+              "https://www.linkedin.com/in/mohamed-rizq-hari-4a6416249/"
+            ],
+            "knowsAbout": [
+              "React",
+              "FastAPI",
+              "Django",
+              "Node.js",
+              "PostgreSQL",
+              "Docker",
+              "n8n",
+              "AI automation",
+              "SaaS MVPs",
+              "dashboards",
+              "chatbots"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://harimohamedrizq.vercel.app/#website",
+            "name": "Hari Mohamed Rizq Portfolio",
+            "url": "https://harimohamedrizq.vercel.app/",
+            "description": "Portfolio of Hari Mohamed Rizq, a Full-Stack Developer and AI Integration Engineer.",
+            "about": { "@id": "https://harimohamedrizq.vercel.app/#person" },
+            "inLanguage": "en"
+          }
         ]
       }
     </script>

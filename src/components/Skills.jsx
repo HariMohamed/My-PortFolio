@@ -1,8 +1,7 @@
 import { skillGroups } from "../data/skills";
 import MotionWrapper from "./MotionWrapper";
 import SectionTitle from "./SectionTitle";
-
-import { techLogos } from "../data/logos";
+import TechChip from "./TechChip";
 
 export default function Skills() {
   return (
@@ -23,13 +22,7 @@ export default function Skills() {
             <h3>{group.title}</h3>
             <div className="chip-row">
               {group.skills.map((skill) => (
-                <span key={skill} className="chip gap-2 flex items-center">
-                  {techLogos[skill] ? (
-                    <img src={techLogos[skill]} alt={skill} title={skill} className="w-4 h-4 object-contain" loading="lazy" decoding="async" />
-                  ) : (
-                    skill
-                  )}
-                </span>
+                <TechChip key={skill} tech={skill} />
               ))}
             </div>
           </MotionWrapper>

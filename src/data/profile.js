@@ -1,4 +1,3 @@
-import portraitUrl from "../../assets/img.png";
 import cvUrl from "../../hari-mohamed-rizq-cv-2026.pdf";
 
 export const profile = {
@@ -16,7 +15,7 @@ export const profile = {
   availability: "Open to full-stack and AI integration projects",
   email: "mohamedhari13@gmail.com",
   phone: "+212 773 104 530",
-  portraitUrl,
+  portraitUrl: "/portrait.webp",
   cv: {
     english: cvUrl,
   },

@@ -34,8 +34,8 @@ export const techLogos = {
 
 export const companyLogos = {
   // Using null for fallback text/initials for unverified/unavailable logos.
-  "Capital Innov": "/logos/capital-innov.png",
-  "Easy Medical Device": "/logos/easy-medical-device.png",
+  "Capital Innov": { src: "/logos/capital-innov.png", alt: "Capital Innov", size: "large" },
+  "Easy Medical Device": { src: "/logos/easy-medical-device.png", alt: "Easy Medical Device" },
   "CFQMA": null,
 };
 

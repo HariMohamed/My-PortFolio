@@ -2,7 +2,8 @@ import { Cpu, GraduationCap } from "lucide-react";
 import { experience } from "../data/experience";
 import MotionWrapper from "./MotionWrapper";
 import SectionTitle from "./SectionTitle";
-import { techLogos, companyLogos, educationLogos } from "../data/logos";
+import TechChip from "./TechChip";
+import { companyLogos, educationLogos } from "../data/logos";
 
 function getInitials(name) {
   return name
@@ -37,7 +38,7 @@ export default function ExperienceTimeline() {
               </div>
               <div className="timeline-card">
                 {item.type === "Education" ? (
-                  <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-6 mb-6 w-full">
+                  <div className="timeline-education-header flex flex-col md:flex-row md:items-start gap-4 md:gap-6 mb-6 w-full">
                     {(() => {
                       const logoData = educationLogos[item.organization];
                       if (logoData === undefined) return null;
@@ -62,7 +63,8 @@ export default function ExperienceTimeline() {
                               {logoItem ? (
                                 <img
                                   src={typeof logoItem === "string" ? logoItem : logoItem.src}
-                                  alt={typeof logoItem === "string" ? item.organization : logoItem.alt}
+                                  alt=""
+                                  aria-hidden="true"
                                   className="h-full w-full object-contain object-center"
                                   loading="lazy"
                                   decoding="async"
@@ -77,16 +79,16 @@ export default function ExperienceTimeline() {
                         </div>
                       );
                     })()}
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                      <div className="flex justify-between items-start gap-2">
-                        <div>
+                    <div className="timeline-education-meta">
+                      <div className="timeline-meta-row">
+                        <div className="timeline-meta-copy">
                           <p>{item.period}</p>
                           <h3>{item.role}</h3>
                           <span>
                             {item.organization} · {item.location}
                           </span>
                         </div>
-                        <span className="timeline-type shrink-0">{item.type}</span>
+                        <span className="timeline-type">{item.type}</span>
                       </div>
                     </div>
                   </div>
@@ -97,8 +99,7 @@ export default function ExperienceTimeline() {
                         const logoData = companyLogos[item.organization];
                         if (logoData === undefined) return null;
                         const logos = Array.isArray(logoData) ? logoData : [logoData];
-                        const isCapitalInnov = item.organization === "Capital Innov";
-                        const logoClasses = isCapitalInnov
+                        const logoClasses = logos.some((logo) => logo?.size === "large")
                           ? "mt-1 flex shrink-0 items-center justify-center w-[120px] sm:w-[140px] h-[75px] sm:h-[85px]"
                           : "mt-1 flex shrink-0 items-center justify-center w-[64px] sm:w-[88px] h-[56px] sm:h-[72px]";
 
@@ -109,7 +110,8 @@ export default function ExperienceTimeline() {
                                 {logoItem ? (
                                   <img
                                     src={typeof logoItem === "string" ? logoItem : logoItem.src}
-                                    alt={typeof logoItem === "string" ? item.organization : logoItem.alt}
+                                    alt=""
+                                    aria-hidden="true"
                                     className="h-full w-full object-contain object-center"
                                     loading="lazy"
                                     decoding="async"
@@ -132,7 +134,7 @@ export default function ExperienceTimeline() {
                         </span>
                       </div>
                     </div>
-                    <span className="timeline-type shrink-0 ml-4">{item.type}</span>
+                    <span className="timeline-type">{item.type}</span>
                   </div>
                 )}
                 <ul>
@@ -142,13 +144,7 @@ export default function ExperienceTimeline() {
                 </ul>
                 <div className="chip-row">
                   {item.technologies.map((tech) => (
-                    <span className="chip gap-2" key={tech}>
-                      {techLogos[tech] ? (
-                        <img src={techLogos[tech]} alt={tech} className="w-4 h-4 object-contain" loading="lazy" decoding="async" title={tech} />
-                      ) : (
-                        tech
-                      )}
-                    </span>
+                    <TechChip key={tech} tech={tech} />
                   ))}
                 </div>
               </div>
