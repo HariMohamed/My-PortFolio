@@ -9,7 +9,7 @@ export const skillGroups = [
   },
   {
     title: "Database",
-    skills: ["PostgreSQL", "MongoDB"],
+    skills: ["PostgreSQL", "MongoDB", "MySQL"],
   },
   {
     title: "AI & Automation",
