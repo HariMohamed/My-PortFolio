@@ -1,3 +1,8 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "rewrites": [
+    { "source": "/projects/syndicai", "destination": "/projects/syndicai/index.html" },
+    { "source": "/projects/gym-coaching-saas", "destination": "/projects/gym-coaching-saas/index.html" },
+    { "source": "/projects/cfqma-platform", "destination": "/projects/cfqma-platform/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }
