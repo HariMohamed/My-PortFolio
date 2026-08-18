@@ -35,6 +35,42 @@ export const projects = [
     },
   },
   {
+    slug: "elalaoui-labo",
+    title: "El Alaoui Labo",
+    period: "2026",
+    category: "Professional Website",
+    summary: "Professional website for a photography and video studio in Salé, Morocco, focused on presenting services, portfolio work, contact information, and a production-ready digital presence with technical SEO.",
+    problem:
+      "The studio needed a professional web presence to showcase their services, portfolio, and contact information to attract local clients and improve their digital visibility.",
+    solution:
+      "Built a responsive Next.js website with structured content, technical SEO, and clear call-to-actions, ensuring cross-device compatibility and high performance.",
+    architecture:
+      "Next.js frontend with component-based architecture, responsive layout, and metadata API for technical SEO.",
+    stack: ["React", "Next.js", "Tailwind CSS", "Vercel"],
+    focus: ["Frontend Architecture", "Technical SEO", "Responsive UI"],
+    features: [
+      "Production-ready responsive website",
+      "Technical SEO with Open Graph metadata",
+      "XML sitemap and robots.txt configuration",
+      "Structured semantic content",
+    ],
+    challenges: [
+      "Structuring content for professional presentation",
+      "Ensuring accessibility and responsive behavior across devices",
+      "Implementing comprehensive SEO metadata",
+    ],
+    results: [
+      "Delivered a production-ready digital presence for the studio",
+      "Implemented technical SEO and structured metadata",
+      "Deployed on Vercel for high performance and reliability",
+    ],
+    links: {
+      github: "https://github.com/HariMohamed/elalaoui-labo",
+      live: "https://elalaouilabo.vercel.app/",
+      caseStudy: "/projects/elalaoui-labo",
+    },
+  },
+  {
     slug: "gym-coaching-saas",
     title: "Gym Coaching SaaS",
     period: "2025",
@@ -108,7 +144,7 @@ export const projects = [
   },
 ];
 
-export const featuredProjects = projects.slice(0, 3);
+export const featuredProjects = projects.slice(0, 4);
 
 export function getProjectBySlug(slug) {
   return projects.find((project) => project.slug === slug);
