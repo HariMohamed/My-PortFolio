@@ -1,4 +1,5 @@
 import cvUrl from "../../hari-mohamed-rizq-cv-2026.pdf";
+import { projects } from "./projects";
 
 export const profile = {
   name: "Hari Mohamed Rizq",
@@ -27,7 +28,7 @@ export const profile = {
   metrics: [
     {
       label: "Production Projects",
-      value: 4,
+      value: projects.length,
       suffix: "",
       detail: "Shipped systems across SaaS, AI integration, and frontend engineering",
     },
