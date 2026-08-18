@@ -110,13 +110,7 @@ export default function ProjectDetails() {
         <p>{project.architecture}</p>
       </DetailSection>
 
-      <DetailSection title="Tech Stack">
-        <div className="chip-row">
-          {project.stack.map((tech) => (
-            <TechChip key={tech} tech={tech} />
-          ))}
-        </div>
-      </DetailSection>
+
 
       <DetailSection title="Features">
         <ul className="detail-list">

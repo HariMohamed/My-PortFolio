@@ -18,29 +18,19 @@ export default function ProjectCard({ project, index = 0 }) {
 
       <p className="project-summary">{project.summary}</p>
 
-      <div className="project-split">
-        <div>
-          <span>Problem</span>
-          <p>{project.problem}</p>
-        </div>
-        <div>
-          <span>Solution</span>
-          <p>{project.solution}</p>
-        </div>
-      </div>
-
-      <div className="chip-row">
-        {project.stack.slice(0, 7).map((tech) => (
+      <div className="chip-row mt-2">
+        {project.stack.slice(0, 4).map((tech) => (
           <TechChip key={tech} tech={tech} />
         ))}
       </div>
 
-      <div className="project-impact">
-        <span>Impact</span>
-        <p>{project.results[0]}</p>
-      </div>
-
       <div className="project-actions">
+        {project.links.live ? (
+          <a className="text-link font-bold text-text hover:text-accent" href={project.links.live} target="_blank" rel="noreferrer">
+            <ArrowUpRight aria-hidden="true" />
+            Live Demo
+          </a>
+        ) : null}
         <Link className="text-link" to={project.links.caseStudy}>
           <Route aria-hidden="true" />
           Case study
@@ -49,12 +39,6 @@ export default function ProjectCard({ project, index = 0 }) {
           <a className="text-link" href={project.links.github} target="_blank" rel="noreferrer">
             <Github aria-hidden="true" />
             Source Code
-          </a>
-        ) : null}
-        {project.links.live ? (
-          <a className="text-link" href={project.links.live} target="_blank" rel="noreferrer">
-            <ArrowUpRight aria-hidden="true" />
-            Live Demo
           </a>
         ) : null}
       </div>

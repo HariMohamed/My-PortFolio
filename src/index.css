@@ -225,22 +225,7 @@ img {
       var(--hero-grid);
   }
 
-  .hero-photo {
-    @apply absolute inset-0 -z-30 w-full opacity-30 md:opacity-40;
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-  }
 
-  .hero-photo img {
-    @apply h-full w-full object-cover;
-    object-position: center 5%;
-    filter: saturate(0.7) contrast(1.15) brightness(0.6);
-  }
-
-  .hero-overlay {
-    @apply absolute inset-0 -z-10;
-    background: var(--hero-overlay);
-  }
 
   .hero-content {
     width: min(1180px, calc(100% - 32px));
@@ -288,7 +273,7 @@ img {
   }
 
   .hero-title {
-    @apply m-0 font-display text-7xl leading-none text-text sm:text-8xl lg:text-[7rem];
+    @apply m-0 font-display text-4xl leading-none text-text sm:text-5xl lg:text-6xl;
     letter-spacing: 0;
   }
 
@@ -386,9 +371,40 @@ img {
     @apply rounded-md border border-border bg-surface p-6;
   }
 
+  .perspective-container {
+    perspective: 1200px;
+  }
+
+  .hero-depth-bg {
+    @apply absolute inset-0 -z-20 w-full h-full;
+    transform-style: preserve-3d;
+    pointer-events: none;
+  }
+
+  .hero-radial-glow {
+    @apply absolute inset-0;
+    background: radial-gradient(circle at 50% 40%, rgba(68, 230, 169, 0.06) 0%, transparent 70%);
+    transform: translateZ(-40px) scale(1.1);
+  }
+
+  .spatial-card {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .spatial-card:hover {
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.4), 0 0 20px -5px rgba(68, 230, 169, 0.1);
+  }
+
   .project-card {
-    @apply flex min-h-full flex-col gap-5 overflow-hidden shadow-glow;
+    @apply flex min-h-full flex-col gap-5 overflow-hidden shadow-glow transition-all duration-300 ease-out;
     background: var(--card-gradient);
+    transform-style: preserve-3d;
+  }
+
+  .project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(68, 230, 169, 0.15);
+    border-color: rgba(68, 230, 169, 0.3);
   }
 
   .project-card-top {
@@ -470,7 +486,13 @@ img {
   }
 
   .skill-card {
-    @apply min-h-48;
+    @apply min-h-48 transition-all duration-300 ease-out;
+  }
+
+  .skill-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -8px rgba(0, 0, 0, 0.4), 0 0 10px -3px rgba(68, 230, 169, 0.08);
+    border-color: rgba(68, 230, 169, 0.15);
   }
 
   .skill-card h3 {
@@ -484,6 +506,7 @@ img {
   .timeline::before {
     content: "";
     @apply absolute bottom-6 left-5 top-6 w-px bg-border;
+    box-shadow: 0 0 8px 0px rgba(68, 230, 169, 0.15);
   }
 
   @media (min-width: 768px) {
@@ -498,17 +521,26 @@ img {
   }
 
   .timeline-marker {
-    @apply z-10 absolute flex h-11 w-11 items-center justify-center rounded-md border text-accent;
+    @apply z-10 absolute flex h-11 w-11 items-center justify-center rounded-md border text-accent transition-colors duration-300;
     left: 0;
     border-color: rgba(224, 214, 184, 0.16);
     background: var(--panel-fill);
     backdrop-filter: blur(12px);
+    box-shadow: 0 0 12px -2px rgba(68, 230, 169, 0.1);
+  }
+
+  .timeline-item:hover .timeline-marker {
+    border-color: rgba(68, 230, 169, 0.4);
+    box-shadow: 0 0 16px -1px rgba(68, 230, 169, 0.2);
   }
 
   @media (min-width: 768px) {
     .timeline-marker {
       left: 50%;
       transform: translateX(-50%);
+    }
+    .timeline-item:hover .timeline-marker {
+      transform: translateX(-50%) scale(1.05);
     }
   }
 
@@ -517,7 +549,13 @@ img {
   }
 
   .timeline-card {
-    @apply bg-surface rounded-xl border border-border p-5 ml-14 md:ml-0 md:w-[calc(50%-3rem)];
+    @apply bg-surface rounded-xl border border-border p-5 ml-14 md:ml-0 md:w-[calc(50%-3rem)] transition-all duration-300 ease-out;
+  }
+
+  .timeline-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -6px rgba(0, 0, 0, 0.4), 0 0 12px -3px rgba(68, 230, 169, 0.1);
+    border-color: rgba(68, 230, 169, 0.25);
   }
 
   @media (min-width: 768px) {
@@ -560,7 +598,8 @@ img {
 
   .timeline-meta-copy h3,
   .timeline-card-head h3 {
-    overflow-wrap: anywhere;
+    overflow-wrap: break-word;
+    word-break: normal;
   }
 
   @media (min-width: 768px) and (max-width: 900px) {
@@ -748,8 +787,12 @@ img {
   }
 
   .project-detail-hero {
-    @apply shadow-glow;
+    @apply shadow-glow transition-shadow duration-300;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.018));
+  }
+
+  .project-detail-hero:hover {
+    box-shadow: 0 15px 30px -8px rgba(0, 0, 0, 0.3), 0 0 15px -5px rgba(68, 230, 169, 0.08);
   }
 
   .project-detail-hero h1,
@@ -780,8 +823,13 @@ img {
   }
 
   .evidence-media {
-    @apply m-0 overflow-hidden rounded-md bg-surface-2;
+    @apply m-0 overflow-hidden rounded-md bg-surface-2 transition-all duration-300 ease-out;
     aspect-ratio: 16 / 10;
+  }
+
+  .evidence-media:hover {
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.4), 0 0 12px -4px rgba(68, 230, 169, 0.1);
   }
 
   .evidence-media img {
