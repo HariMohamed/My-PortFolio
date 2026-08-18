@@ -35,7 +35,7 @@ export const projects = [
     },
   },
   {
-    slug: "elalaoui-labo",
+    slug: "elalaouilabo",
     title: "El Alaoui Labo",
     period: "2026",
     category: "Professional Website",
@@ -67,7 +67,7 @@ export const projects = [
     links: {
       github: "https://github.com/HariMohamed/elalaouilabo",
       live: "https://elalaouilabo.vercel.app/",
-      caseStudy: "/projects/elalaoui-labo",
+      caseStudy: "/projects/elalaouilabo",
     },
   },
   {
