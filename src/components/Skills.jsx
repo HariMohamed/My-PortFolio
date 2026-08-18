@@ -8,9 +8,9 @@ export default function Skills() {
     <section id="skills" className="section-shell section-band" aria-labelledby="skills-heading">
       <SectionTitle
         id="skills-heading"
-        eyebrow="Capabilities"
-        title="Core technologies I work with."
-        description="Focused on React frontends, Python/FastAPI backends, PostgreSQL, AI integration, and deployment."
+        eyebrow="Engineering Stack"
+        title="Technologies I use to build production systems."
+        description="React frontends, Python/FastAPI backends, PostgreSQL databases, AI integrations, and containerized deployment."
       />
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {skillGroups.map((group, index) => (
