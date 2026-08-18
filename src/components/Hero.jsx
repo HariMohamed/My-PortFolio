@@ -39,7 +39,7 @@ export default function Hero() {
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a className="btn btn-primary" href="#projects">
-                View Projects
+                Explore Projects
                 <ArrowDown aria-hidden="true" />
               </a>
               <a className="btn btn-secondary" href={profile.cv.english} download>

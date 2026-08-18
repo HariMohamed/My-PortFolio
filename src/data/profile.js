@@ -1,4 +1,5 @@
 import cvUrl from "../../hari-mohamed-rizq-cv-2026.pdf";
+import { projects } from "./projects";
 
 export const profile = {
   name: "Hari Mohamed Rizq",
@@ -7,9 +8,9 @@ export const profile = {
   positioning: "Junior Full-Stack Developer / AI Integration Engineer",
   badge: "Available for Full-Stack & AI Integration Projects",
   headline: "Full-Stack Developer & AI Integration Engineer",
-  subtitle: "I build and deploy web applications, SaaS platforms, and AI-powered systems with Python, FastAPI, React, and PostgreSQL.",
+  subtitle: "I design, build, and deploy web applications, SaaS platforms, automation workflows, and AI-powered systems — from backend architecture to production.",
   coreMessage:
-    "I build practical web products, automation systems, and SaaS MVPs that solve real business problems.",
+    "I build production web systems, SaaS platforms, and AI-powered applications that solve practical business problems — from backend APIs to deployment.",
   stackLine: "React · FastAPI · Python · PostgreSQL · Docker · n8n",
   location: "Morocco",
   availability: "Open to full-stack and AI integration projects",
@@ -26,16 +27,16 @@ export const profile = {
   },
   metrics: [
     {
-      label: "Selected Projects",
-      value: 3,
+      label: "Production Projects",
+      value: projects.length,
       suffix: "",
-      detail: "Live and documented work across SaaS, AI integration, and frontend systems",
+      detail: "Shipped systems across SaaS, AI integration, and frontend engineering",
     },
     {
       label: "Years Building",
       value: 3,
       suffix: "+",
-      detail: "From web foundations to applied full-stack and AI-powered systems",
+      detail: "From web foundations to full-stack systems and AI-powered applications",
     },
   ],
   languages: [

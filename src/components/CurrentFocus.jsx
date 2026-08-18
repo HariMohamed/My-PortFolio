@@ -11,8 +11,8 @@ export default function CurrentFocus() {
       <SectionTitle
         id="focus-heading"
         eyebrow="Current Focus"
-        title="Where the portfolio is pointing next."
-        description="These are the systems I am actively deepening to build more valuable AI products and automation workflows."
+        title="Systems and patterns I'm actively building with."
+        description="AI agents, RAG pipelines, workflow automation, and SaaS delivery — the engineering I'm deepening now."
       />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {currentFocus.map((item, index) => {

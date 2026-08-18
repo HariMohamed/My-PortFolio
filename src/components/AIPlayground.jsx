@@ -22,7 +22,7 @@ const questions = [
   {
     question: "What projects prove your skills?",
     answer:
-      "SyndicAI proves AI SaaS and multi-role product thinking, Gym Coaching SaaS proves service-to-product MVP thinking, AI automation workflows prove business process design, and the MERN blog work proves full-stack delivery in a professional context.",
+      "SyndicAI proves AI SaaS and multi-role product thinking, El Alaoui Labo proves production frontend delivery with technical SEO, Gym Coaching SaaS proves service-to-product MVP thinking, and CFQMA proves professional React delivery in a real engagement.",
   },
 ];
 
