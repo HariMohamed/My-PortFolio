@@ -65,7 +65,7 @@ export const projects = [
       "Deployed on Vercel for high performance and reliability",
     ],
     links: {
-      github: "https://github.com/HariMohamed/elalaoui-labo",
+      github: "https://github.com/HariMohamed/elalaouilabo",
       live: "https://elalaouilabo.vercel.app/",
       caseStudy: "/projects/elalaoui-labo",
     },
