@@ -9,7 +9,7 @@ export default defineConfig({
       input: {
         main: resolve("index.html"),
         syndicai: resolve("projects/syndicai/index.html"),
-        elalaouiLabo: resolve("projects/elalaoui-labo/index.html"),
+        elalaouiLabo: resolve("projects/elalaouilabo/index.html"),
         gymCoachingSaas: resolve("projects/gym-coaching-saas/index.html"),
         cfqmaPlatform: resolve("projects/cfqma-platform/index.html"),
       },
