@@ -12,10 +12,10 @@ export default function Footer({ onOpenCommand }) {
         <button type="button" onClick={onOpenCommand} aria-label="Open command palette">
           <Command aria-hidden="true" />
         </button>
-        <a href={profile.socials.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+        <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
           <Github aria-hidden="true" />
         </a>
-        <a href={profile.socials.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+        <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <Linkedin aria-hidden="true" />
         </a>
         <a href={profile.socials.email} aria-label="Email">

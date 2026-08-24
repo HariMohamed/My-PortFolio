@@ -26,7 +26,7 @@ export default function ProjectCard({ project, index = 0 }) {
 
       <div className="project-actions">
         {project.links.live ? (
-          <a className="text-link font-bold text-text hover:text-accent" href={project.links.live} target="_blank" rel="noreferrer">
+          <a className="text-link font-bold text-text hover:text-accent" href={project.links.live} target="_blank" rel="noopener noreferrer">
             <ArrowUpRight aria-hidden="true" />
             Live Demo
           </a>
@@ -36,7 +36,7 @@ export default function ProjectCard({ project, index = 0 }) {
           Case study
         </Link>
         {project.links.github ? (
-          <a className="text-link" href={project.links.github} target="_blank" rel="noreferrer">
+          <a className="text-link" href={project.links.github} target="_blank" rel="noopener noreferrer">
             <Github aria-hidden="true" />
             Source Code
           </a>
