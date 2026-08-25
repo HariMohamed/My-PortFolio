@@ -112,7 +112,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
             className="icon-button hidden sm:inline-flex"
             href={profile.socials.github}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Open GitHub"
           >
             <Github aria-hidden="true" />
@@ -121,7 +121,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
             className="icon-button hidden sm:inline-flex"
             href={profile.socials.linkedin}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             aria-label="Open LinkedIn"
           >
             <Linkedin aria-hidden="true" />
@@ -157,11 +157,11 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
             </button>
           ))}
           <div className="grid grid-cols-2 gap-2">
-            <a className="btn btn-secondary" href={profile.socials.linkedin} target="_blank" rel="noreferrer">
+            <a className="btn btn-secondary" href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer">
               <Linkedin aria-hidden="true" />
               LinkedIn
             </a>
-            <a className="btn btn-secondary" href={profile.socials.github} target="_blank" rel="noreferrer">
+            <a className="btn btn-secondary" href={profile.socials.github} target="_blank" rel="noopener noreferrer">
               <Github aria-hidden="true" />
               GitHub
             </a>

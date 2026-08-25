@@ -77,13 +77,13 @@ export default function ProjectDetails() {
         </div>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           {project.links.live ? (
-            <a className="btn btn-primary" href={project.links.live} target="_blank" rel="noreferrer">
+            <a className="btn btn-primary" href={project.links.live} target="_blank" rel="noopener noreferrer">
               <ArrowUpRight aria-hidden="true" />
               Live Demo
             </a>
           ) : null}
           {project.links.github ? (
-            <a className="btn btn-secondary" href={project.links.github} target="_blank" rel="noreferrer">
+            <a className="btn btn-secondary" href={project.links.github} target="_blank" rel="noopener noreferrer">
               <Github aria-hidden="true" />
               Source Code
             </a>
@@ -110,13 +110,7 @@ export default function ProjectDetails() {
         <p>{project.architecture}</p>
       </DetailSection>
 
-      <DetailSection title="Tech Stack">
-        <div className="chip-row">
-          {project.stack.map((tech) => (
-            <TechChip key={tech} tech={tech} />
-          ))}
-        </div>
-      </DetailSection>
+
 
       <DetailSection title="Features">
         <ul className="detail-list">
@@ -172,13 +166,13 @@ export default function ProjectDetails() {
       <DetailSection title="Links">
         <div className="project-actions detail-actions">
           {project.links.github ? (
-            <a className="text-link" href={project.links.github} target="_blank" rel="noreferrer">
+            <a className="text-link" href={project.links.github} target="_blank" rel="noopener noreferrer">
               <Github aria-hidden="true" />
               Source Code
             </a>
           ) : null}
           {project.links.live ? (
-            <a className="text-link" href={project.links.live} target="_blank" rel="noreferrer">
+            <a className="text-link" href={project.links.live} target="_blank" rel="noopener noreferrer">
               <ArrowUpRight aria-hidden="true" />
               Live Demo
             </a>

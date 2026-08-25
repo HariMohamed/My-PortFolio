@@ -1,7 +1,7 @@
 import { skillGroups } from "../data/skills";
 import MotionWrapper from "./MotionWrapper";
 import SectionTitle from "./SectionTitle";
-import TechChip from "./TechChip";
+
 
 export default function Skills() {
   return (
@@ -20,11 +20,14 @@ export default function Skills() {
             className="skill-card"
           >
             <h3>{group.title}</h3>
-            <div className="chip-row">
+            <ul className="mt-4 flex flex-col gap-2 text-muted">
               {group.skills.map((skill) => (
-                <TechChip key={skill} tech={skill} />
+                <li key={skill} className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-accent/50" aria-hidden="true" />
+                  <span className="font-medium text-text">{skill}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </MotionWrapper>
         ))}
       </div>

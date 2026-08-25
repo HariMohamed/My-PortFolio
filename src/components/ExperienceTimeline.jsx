@@ -46,19 +46,15 @@ export default function ExperienceTimeline() {
                       const isDual = logos.length > 1;
 
                       const containerClasses = isDual
-                        ? "flex shrink-0 items-center justify-center gap-0 w-[210px] h-[55px] sm:h-[80px]"
-                        : "flex shrink-0 items-center justify-center w-auto min-w-[160px] max-w-[200px] h-[90px] sm:h-[140px]";
+                        ? "flex shrink-0 items-center justify-center gap-2 w-full max-w-[14rem] h-14 sm:h-20"
+                        : "flex shrink-0 items-center justify-center w-full max-w-[10rem] h-16 sm:h-24";
 
                       return (
                         <div className={containerClasses}>
                           {logos.map((logoItem, idx) => (
                             <div
                               key={idx}
-                              className={`flex h-full min-w-0 items-center justify-center ${
-                                idx === 0
-                                  ? "flex-[0_0_45%] -translate-x-1"
-                                  : "flex-[0_0_55%]"
-                              }`}
+                              className="flex h-full flex-1 min-w-0 items-center justify-center"
                             >
                               {logoItem ? (
                                 <img
@@ -100,8 +96,8 @@ export default function ExperienceTimeline() {
                         if (logoData === undefined) return null;
                         const logos = Array.isArray(logoData) ? logoData : [logoData];
                         const logoClasses = logos.some((logo) => logo?.size === "large")
-                          ? "mt-1 flex shrink-0 items-center justify-center w-[120px] sm:w-[140px] h-[75px] sm:h-[85px]"
-                          : "mt-1 flex shrink-0 items-center justify-center w-[64px] sm:w-[88px] h-[56px] sm:h-[72px]";
+                          ? "mt-1 flex shrink-0 items-center justify-center max-w-[8rem] sm:max-w-[9rem] w-full h-[75px] sm:h-[85px]"
+                          : "mt-1 flex shrink-0 items-center justify-center max-w-[4rem] sm:max-w-[5.5rem] w-full h-[56px] sm:h-[72px]";
 
                         return (
                           <div className="flex gap-4">

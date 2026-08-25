@@ -49,14 +49,14 @@ export default function Contact() {
                 <strong>{profile.phone}</strong>
               </span>
             </a>
-            <a href={profile.socials.linkedin} target="_blank" rel="noreferrer">
+            <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer">
               <Linkedin aria-hidden="true" />
               <span>
                 LinkedIn
                 <strong>mohamed-rizq-hari</strong>
               </span>
             </a>
-            <a href={profile.socials.github} target="_blank" rel="noreferrer">
+            <a href={profile.socials.github} target="_blank" rel="noopener noreferrer">
               <Github aria-hidden="true" />
               <span>
                 GitHub
