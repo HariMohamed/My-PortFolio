@@ -17,10 +17,10 @@
 
   --body-glow: rgba(68, 230, 169, 0.02);
   --grid-line: rgba(224, 214, 184, 0.02);
-  --hero-gradient: linear-gradient(120deg, var(--color-bg) 0%, rgba(14, 29, 33, 0.96) 42%, rgba(14, 29, 33, 0.68) 100%);
+  --hero-gradient: linear-gradient(120deg, rgba(14, 29, 33, 0.85) 0%, rgba(14, 29, 33, 0.45) 50%, rgba(14, 29, 33, 0.15) 100%);
   --hero-grid: repeating-linear-gradient(0deg, rgba(224, 214, 184, 0.02) 0 1px, transparent 1px 96px);
-  --hero-overlay: linear-gradient(90deg, var(--color-bg) 0%, rgba(14, 29, 33, 0.92) 42%, rgba(14, 29, 33, 0.42) 100%),
-    linear-gradient(180deg, transparent 0%, rgba(14, 29, 33, 0.72) 100%);
+  --hero-overlay: linear-gradient(90deg, rgba(14, 29, 33, 0.75) 0%, rgba(14, 29, 33, 0.25) 50%, transparent 100%),
+    linear-gradient(180deg, transparent 0%, rgba(14, 29, 33, 0.65) 100%);
   --band-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
   --card-gradient: transparent;
   --panel-fill: rgba(0, 0, 0, 0.2);
@@ -212,14 +212,40 @@ img {
     @apply h-4 w-4 text-accent;
   }
 
-  .hero-section {
-    min-height: 88svh;
-    @apply relative isolate flex items-center overflow-hidden border-b border-border pt-24;
-  }
+  .hero {
+  position: relative;
+  overflow: hidden;
+}
 
+  .hero-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url("/portrait.webp");
+    background-size: cover;
+    background-position: center 25%;
+    opacity: 0.28;
+    filter: grayscale(100%);
+    transform: scale(1.03);
+  }
+  
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: var(--hero-overlay);
+  }
+  
+  .hero-section {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+  
   .hero-section::before {
     content: "";
-    @apply absolute inset-0 -z-20;
+    @apply absolute inset-0;
+    z-index: 2;
     background:
       var(--hero-gradient),
       var(--hero-grid);
@@ -402,7 +428,8 @@ img {
   }
 
   .hero-depth-bg {
-    @apply absolute inset-0 -z-20 w-full h-full;
+    @apply absolute inset-0 w-full h-full;
+    z-index: 3;
     transform-style: preserve-3d;
     pointer-events: none;
   }

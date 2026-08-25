@@ -52,6 +52,8 @@ export default function Hero() {
 
   return (
     <section id="home" className="hero-section perspective-container" aria-labelledby="hero-title">
+      <div className="hero-background" aria-hidden="true" />
+      <div className="hero-overlay" aria-hidden="true" />
 
       <motion.div
         className="hero-depth-bg"
