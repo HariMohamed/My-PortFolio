@@ -1,5 +1,4 @@
 import { Cpu, GraduationCap } from "lucide-react";
-import { experience } from "../data/experience";
 import MotionWrapper from "./MotionWrapper";
 import SectionTitle from "./SectionTitle";
 import TechChip from "./TechChip";
@@ -14,18 +13,18 @@ function getInitials(name) {
     .toUpperCase();
 }
 
-export default function ExperienceTimeline() {
+export default function Timeline({ id, eyebrow, title, description, items }) {
   return (
-    <section id="experience" className="section-shell" aria-labelledby="experience-heading">
+    <section id={id} className="section-shell" aria-labelledby={`${id}-heading`}>
       <SectionTitle
-        id="experience-heading"
-        eyebrow="Experience"
-        title="From frontend development to applied AI."
-        description="Roles and training focused on full-stack delivery and AI integration."
+        id={`${id}-heading`}
+        eyebrow={eyebrow}
+        title={title}
+        description={description}
       />
 
       <div className="timeline">
-        {experience.map((item, index) => {
+        {items.map((item, index) => {
           const Icon = item.type === "Education" ? GraduationCap : Cpu;
           return (
             <MotionWrapper

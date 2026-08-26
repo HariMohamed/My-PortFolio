@@ -30,7 +30,6 @@ export const projects = [
       "Successfully modeled complex multi-role authorization and data boundaries.",
     ],
     links: {
-      github: "https://github.com/HariMohamed/syndicai",
       live: "https://syndicai-ssp.vercel.app/",
       caseStudy: "/projects/syndicai",
     },
@@ -64,7 +63,6 @@ export const projects = [
       "Achieved optimal technical SEO infrastructure for local search discovery.",
     ],
     links: {
-      github: "https://github.com/HariMohamed/elalaouilabo",
       live: "https://elalaouilabo.vercel.app/",
       caseStudy: "/projects/elalaouilabo",
     },
@@ -98,7 +96,6 @@ export const projects = [
       "Successfully integrated third-party authentication and payment services into a Next.js architecture.",
     ],
     links: {
-      github: "https://github.com/HariMohamed/gym-coaching-site",
       live: "https://gym-coaching-site.vercel.app/",
       caseStudy: "/projects/gym-coaching-saas",
     },
@@ -133,7 +130,6 @@ export const projects = [
       "Delivered end-to-end full-stack implementation from API design to responsive UI.",
     ],
     links: {
-      github: "https://github.com/HariMohamed/cfqma-platform",
       live: "https://cfqma-platform.vercel.app/",
       caseStudy: "/projects/cfqma-platform",
     },

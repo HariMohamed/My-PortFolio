@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Route } from "lucide-react";
+import { ArrowUpRight, Route } from "lucide-react";
 import { Link } from "react-router-dom";
 import MotionWrapper from "./MotionWrapper";
 import TechChip from "./TechChip";
@@ -35,12 +35,6 @@ export default function ProjectCard({ project, index = 0 }) {
           <Route aria-hidden="true" />
           Case study
         </Link>
-        {project.links.github ? (
-          <a className="text-link" href={project.links.github} target="_blank" rel="noopener noreferrer">
-            <Github aria-hidden="true" />
-            Source Code
-          </a>
-        ) : null}
       </div>
     </MotionWrapper>
   );

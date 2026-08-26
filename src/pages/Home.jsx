@@ -1,11 +1,12 @@
 import AIPlayground from "../components/AIPlayground";
 import Contact from "../components/Contact";
 import CurrentFocus from "../components/CurrentFocus";
-import ExperienceTimeline from "../components/ExperienceTimeline";
 import FeaturedProjects from "../components/FeaturedProjects";
 import Hero from "../components/Hero";
 import Metrics from "../components/Metrics";
 import Skills from "../components/Skills";
+import Timeline from "../components/Timeline";
+import { professionalExperience, academicEducation } from "../data/experience";
 
 export default function Home() {
   return (
@@ -13,8 +14,21 @@ export default function Home() {
       <Hero />
       <Metrics />
       <FeaturedProjects />
+      <Timeline
+        id="experience"
+        eyebrow="Experience"
+        title="Professional Experience"
+        description="Paid and freelance work focused on full-stack delivery and AI integration."
+        items={professionalExperience}
+      />
       <Skills />
-      <ExperienceTimeline />
+      <Timeline
+        id="education"
+        eyebrow="Education"
+        title="Academic Foundation"
+        description="Formal degrees and professional training in systems engineering and AI."
+        items={academicEducation}
+      />
       <CurrentFocus />
       <AIPlayground />
       <Contact />

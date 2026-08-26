@@ -1,4 +1,4 @@
-export const experience = [
+export const professionalExperience = [
   {
     role: "AI Integrator",
     organization: "Capital Innov",
@@ -14,6 +14,35 @@ export const experience = [
     ],
     technologies: ["AI APIs", "React", "Django", "PostgreSQL", "TailwindCSS"],
   },
+  {
+    role: "Full Stack Developer",
+    organization: "Easy Medical Device",
+    location: "Rabat",
+    period: "May 2025 - Aug 2025",
+    type: "Experience",
+    bullets: [
+      "Developed MERN features for an interactive blog and content workflow experience.",
+      "Implemented user-management and dynamic content structures.",
+      "Worked with reusable frontend components and backend API patterns.",
+    ],
+    technologies: ["React", "Node.js", "Express", "MongoDB", "REST APIs"],
+  },
+  {
+    role: "Frontend Developer",
+    organization: "CFQMA",
+    location: "Salé",
+    period: "Apr 2024 - May 2024",
+    type: "Experience",
+    bullets: [
+      "Built responsive React interfaces for a company website.",
+      "Improved cross-device compatibility and accessibility basics.",
+      "Structured JSON-backed content for easier maintenance.",
+    ],
+    technologies: ["React", "CSS3", "Bootstrap", "JavaScript", "JSON"],
+  }
+];
+
+export const academicEducation = [
   {
     role: "Formation Professionnelle Qualifiante en IA",
     organization: "IDS Salé & GIZ Maroc (Projet Tamheen II)",
@@ -34,19 +63,6 @@ export const experience = [
       "n8n"
     ],
     technologies: ["Python", "AI", "Generative AI / LLMs", "n8n", "Automation", "Data", "Power BI"],
-  },
-  {
-    role: "Full Stack Developer",
-    organization: "Easy Medical Device",
-    location: "Rabat",
-    period: "May 2025 - Aug 2025",
-    type: "Experience",
-    bullets: [
-      "Developed MERN features for an interactive blog and content workflow experience.",
-      "Implemented user-management and dynamic content structures.",
-      "Worked with reusable frontend components and backend API patterns.",
-    ],
-    technologies: ["React", "Node.js", "Express", "MongoDB", "REST APIs"],
   },
   {
     role: "Licence — Ingénierie des Systèmes Informatiques",
@@ -72,19 +88,6 @@ export const experience = [
     technologies: ["Java", "Python", "SQL", "PostgreSQL", "Linux", "Windows", "AI", "Databases", "Networking"],
   },
   {
-    role: "Frontend Developer",
-    organization: "CFQMA",
-    location: "Sale",
-    period: "Apr 2024 - May 2024",
-    type: "Experience",
-    bullets: [
-      "Built responsive React interfaces for a company website.",
-      "Improved cross-device compatibility and accessibility basics.",
-      "Structured JSON-backed content for easier maintenance.",
-    ],
-    technologies: ["React", "CSS3", "Bootstrap", "JavaScript", "JSON"],
-  },
-  {
     role: "DTS — Développement Digital / Web Full-Stack",
     organization: "ISTA Chmaou",
     location: "Salé",
@@ -97,5 +100,5 @@ export const experience = [
       "Other: Cloud | Algorithms | Information Systems Security"
     ],
     technologies: ["HTML5", "CSS3", "JavaScript", "React", "PHP", "Laravel", "Python", "SQL", "MySQL", "MongoDB", "NoSQL", "Cloud", "Docker", "Algorithms", "Information Systems Security"],
-  },
+  }
 ];
