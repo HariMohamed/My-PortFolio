@@ -65,7 +65,7 @@ export default function Timeline({ id, eyebrow, title, description, items }) {
                                   decoding="async"
                                 />
                               ) : (
-                                <div className="flex h-12 w-12 items-center justify-center rounded-md border border-border bg-surface">
+                                <div className="flex h-12 w-12 items-center justify-center rounded-md shadow-[var(--inset-border)] bg-surface">
                                   <span className="font-mono text-sm font-bold text-muted">{getInitials(item.organization)}</span>
                                 </div>
                               )}
@@ -112,7 +112,7 @@ export default function Timeline({ id, eyebrow, title, description, items }) {
                                     decoding="async"
                                   />
                                 ) : (
-                                  <div className="flex h-full w-full items-center justify-center rounded-md border border-border bg-surface">
+                                  <div className="flex h-full w-full items-center justify-center rounded-md shadow-[var(--inset-border)] bg-surface">
                                     <span className="font-mono text-base font-bold text-muted">{getInitials(item.organization)}</span>
                                   </div>
                                 )}

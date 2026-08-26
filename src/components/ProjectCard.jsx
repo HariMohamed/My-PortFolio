@@ -25,7 +25,7 @@ export default function ProjectCard({ project, index = 0 }) {
       whileInView="visible"
       viewport={{ once: true, margin: "-50px" }}
       variants={cardVariants}
-      className="group relative flex flex-col overflow-hidden rounded-2xl shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-surface transition-all duration-300 hover:bg-white/[0.04]"
+      className="group relative flex flex-col overflow-hidden rounded-2xl shadow-[var(--inset-border)] bg-surface transition-all duration-300 hover:bg-white/[0.04]"
     >
       <figure className="relative aspect-[16/10] w-full overflow-hidden bg-[#09090b] shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.05)] border-b border-transparent">
         {project.videoPreviewUrl ? (
@@ -54,11 +54,8 @@ export default function ProjectCard({ project, index = 0 }) {
           </div>
         )}
 
-        {/* Subtle overlay gradient to ensure text readability if we put labels on the image */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#09090b]/80 via-transparent to-transparent opacity-60" aria-hidden="true" />
-
         {/* Project Number Badge (moved onto media block for cinematic feel) */}
-        <div className="absolute top-4 left-4 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-black/40 px-3 py-1 font-mono text-xs font-bold text-white">
+        <div className="absolute top-4 left-4 rounded-md shadow-[var(--inset-border)] bg-black/40 px-3 py-1 font-mono text-xs font-bold text-white">
           {String(index + 1).padStart(2, "0")}
         </div>
       </figure>
@@ -81,7 +78,7 @@ export default function ProjectCard({ project, index = 0 }) {
             <TechChip key={tech} tech={tech} />
           ))}
           {project.stack.length > 4 && (
-            <span className="inline-flex min-h-8 items-center rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent px-3 py-1 font-mono text-xs font-semibold text-muted bg-white/[0.02]">
+            <span className="inline-flex min-h-8 items-center rounded-md shadow-[var(--inset-border)] px-3 py-1 font-mono text-xs font-semibold text-muted bg-white/[0.02]">
               +{project.stack.length - 4}
             </span>
           )}
@@ -100,7 +97,7 @@ export default function ProjectCard({ project, index = 0 }) {
             </a>
           )}
           <Link
-            className="inline-flex h-10 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.03] px-4 text-sm font-semibold text-text transition-colors hover:bg-white/[0.08]"
+            className="inline-flex h-10 items-center gap-2 rounded-md shadow-[var(--inset-border)] bg-white/[0.03] px-4 text-sm font-semibold text-text transition-colors hover:bg-white/[0.08]"
             to={project.links.caseStudy}
           >
             <Route className="w-4 h-4" aria-hidden="true" />
