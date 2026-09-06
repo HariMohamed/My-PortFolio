@@ -16,10 +16,14 @@ test.describe("Portfolio refinement", () => {
     await expect(page.locator(".timeline-item-right")).not.toHaveCount(0);
   });
 
-  test("answers typed questions with evidence-safe navigation and context", async ({ page }) => {
+  test("floating assistant answers typed questions with evidence-safe navigation and context", async ({ page }) => {
     await page.goto("/");
-    const assistant = page.locator(".ai-panel").last();
+    const trigger = page.getByRole("button", { name: "Ask about my work" });
+    await expect(trigger).toBeVisible();
+    await trigger.click();
+    const assistant = page.locator("[data-testid=\"floating-assistant\"]");
     const input = page.locator("#portfolio-question");
+    await expect(input).toBeFocused();
 
     await input.fill("Tell me about SyndicAI.");
     await input.press("Enter");
@@ -35,5 +39,20 @@ test.describe("Portfolio refinement", () => {
     await input.press("Enter");
     await expect(assistant).toContainText("repositories are private");
     await expect(assistant).not.toContainText("93 tables");
+
+    await page.keyboard.press("Escape");
+    await expect(page.locator("#assistant-dialog")).toHaveCount(0);
+    await expect(trigger).toHaveAttribute("aria-expanded", "false");
+    await expect(trigger).toBeFocused();
+  });
+
+  test("uses project context in the floating assistant", async ({ page }) => {
+    await page.goto("/projects/syndicai");
+    await page.getByRole("button", { name: "Ask about my work" }).click();
+    const assistant = page.locator("[data-testid=\"floating-assistant\"]");
+    await expect(assistant).toContainText("You're viewing SyndicAI");
+    await assistant.locator("#portfolio-question").fill("What technologies were used?");
+    await assistant.locator("#portfolio-question").press("Enter");
+    await expect(assistant).toContainText("SyndicAI uses");
   });
 });

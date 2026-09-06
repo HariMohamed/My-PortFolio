@@ -1,4 +1,3 @@
-import AIPlayground from "../components/AIPlayground";
 import Contact from "../components/Contact";
 import CurrentFocus from "../components/CurrentFocus";
 import FeaturedProjects from "../components/FeaturedProjects";
@@ -30,7 +29,6 @@ export default function Home() {
         items={academicEducation}
       />
       <CurrentFocus />
-      <AIPlayground />
       <Contact />
     </main>
   );
