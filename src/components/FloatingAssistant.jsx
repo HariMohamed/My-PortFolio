@@ -1,0 +1,102 @@
+import { useEffect, useRef, useState } from "react";
+import { Bot, MessageSquareText, Send, Sparkles, X } from "lucide-react";
+import { useLocation } from "react-router-dom";
+import { resolvePortfolioQuestion } from "../data/portfolioKnowledge";
+import { createConversationContext, getContextualIntroduction, getPageContext } from "../assistant/context/conversationContext";
+
+const defaultQuestions = ["Who is Hari?", "What technologies do you use?", "Tell me about SyndicAI.", "How can I contact you?"];
+
+function starterQuestions(pageContext) {
+  if (pageContext.project) return ["What was Hari's role?", "What technologies were used?", "What evidence is available?"];
+  if (pageContext.section === "experience") return ["What experience does Hari have?", "Which technologies has he used professionally?"];
+  return defaultQuestions;
+}
+
+export default function FloatingAssistant() {
+  const location = useLocation();
+  const triggerRef = useRef(null);
+  const inputRef = useRef(null);
+  const panelRef = useRef(null);
+  const pageContext = getPageContext(location);
+  const [open, setOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [contextProject, setContextProject] = useState(pageContext.project);
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    setContextProject(pageContext.project);
+    setMessages([]);
+  }, [location.pathname, location.hash]);
+
+  useEffect(() => {
+    if (!open) {
+      triggerRef.current?.focus();
+      return undefined;
+    }
+    inputRef.current?.focus();
+    function onKeyDown(event) {
+      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Tab" && panelRef.current) {
+        const focusable = panelRef.current.querySelectorAll("button, input, a");
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
+
+  function ask(question) {
+    const trimmed = question.trim();
+    if (!trimmed) return;
+    const result = resolvePortfolioQuestion(trimmed, contextProject, pageContext);
+    if (!result) return;
+    setMessages((current) => [...current, { role: "user", text: trimmed }, { role: "assistant", result }]);
+    setContextProject(result.contextProject || contextProject);
+    setInput("");
+  }
+
+  function close() { setOpen(false); }
+  const intro = getContextualIntroduction(pageContext);
+  const suggestions = starterQuestions(pageContext);
+
+  return (
+    <div className="floating-assistant" data-testid="floating-assistant">
+      {open ? (
+        <section id="assistant-dialog" className="assistant-panel" ref={panelRef} role="dialog" aria-modal="false" aria-labelledby="assistant-title">
+          <header className="assistant-header">
+            <div className="assistant-heading">
+              <span className="assistant-icon" aria-hidden="true"><Bot /></span>
+              <div><h2 id="assistant-title">Hari's Portfolio Assistant</h2><p>Projects, experience, skills, and AI work.</p></div>
+            </div>
+            <button type="button" className="assistant-close" onClick={close} aria-label="Close portfolio assistant"><X aria-hidden="true" /></button>
+          </header>
+          <div className="assistant-conversation" aria-live="polite">
+            <div className="assistant-message assistant-message-bot"><Sparkles aria-hidden="true" /><span>{intro}</span></div>
+            {messages.map((message, index) => message.role === "user" ? (
+              <div className="assistant-message assistant-message-user" key={`${message.text}-${index}`}>{message.text}</div>
+            ) : (
+              <div className="assistant-response" key={`${message.result.answer}-${index}`}>
+                <p>{message.result.answer}</p>
+                <a className="assistant-destination" href={message.result.destination.href}>{message.result.destination.label}</a>
+                <div className="assistant-follow-ups" aria-label="Suggested follow-up questions">
+                  {message.result.suggestions.slice(0, 3).map((suggestion) => suggestion.href ? <a key={suggestion.label} href={suggestion.href}>{suggestion.label}</a> : <button key={suggestion.label} type="button" onClick={() => ask(suggestion.query)}>{suggestion.label}</button>)}
+                </div>
+              </div>
+            ))}
+          </div>
+          {messages.length === 0 ? <div className="assistant-starters" aria-label="Suggested portfolio questions">{suggestions.map((question) => <button key={question} type="button" onClick={() => ask(question)}><MessageSquareText aria-hidden="true" />{question}</button>)}</div> : null}
+          <form className="assistant-form" onSubmit={(event) => { event.preventDefault(); ask(input); }}>
+            <label className="sr-only" htmlFor="portfolio-question">Ask about the portfolio</label>
+            <input ref={inputRef} id="portfolio-question" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Hari's work" autoComplete="off" />
+            <button type="submit" aria-label="Ask portfolio assistant"><Send aria-hidden="true" /></button>
+          </form>
+        </section>
+      ) : null}
+      <button ref={triggerRef} type="button" className="assistant-trigger" aria-label="Ask about my work" aria-expanded={open} aria-controls="assistant-dialog" title="Ask about my work" onClick={() => setOpen((value) => !value)}><Bot aria-hidden="true" /></button>
+    </div>
+  );
+}

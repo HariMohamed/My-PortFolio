@@ -21,6 +21,7 @@ export default function Timeline({ id, eyebrow, title, description, items }) {
         eyebrow={eyebrow}
         title={title}
         description={description}
+        align="center"
       />
 
       <div className="timeline">
@@ -30,7 +31,7 @@ export default function Timeline({ id, eyebrow, title, description, items }) {
             <MotionWrapper
               key={`${item.role}-${item.organization}`}
               delay={index * 0.05}
-              className={`timeline-item ${item.type === "Education" ? "timeline-item-edu" : "timeline-item-exp"}`}
+              className={`timeline-item ${index % 2 === 0 ? "timeline-item-left" : "timeline-item-right"}`}
             >
               <div className="timeline-marker" aria-hidden="true">
                 <Icon />

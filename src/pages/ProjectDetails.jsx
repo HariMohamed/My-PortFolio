@@ -65,7 +65,7 @@ export default function ProjectDetails() {
           Back to projects
         </Link>
         <p className="project-meta">
-          {project.period} · {project.category}
+          {project.period} · {project.maturity} · {project.category}
         </p>
         <h1>{project.title}</h1>
         <p>{project.summary}</p>
@@ -96,6 +96,12 @@ export default function ProjectDetails() {
         <MotionWrapper className="detail-card">
           <span>Solution</span>
           <p>{project.solution}</p>
+        </MotionWrapper>
+        <MotionWrapper className="detail-card">
+          <span>My contribution</span>
+          <ul className="detail-list">
+            {project.contribution.map((item) => <li key={item}>{item}</li>)}
+          </ul>
         </MotionWrapper>
       </div>
 
@@ -164,6 +170,7 @@ export default function ProjectDetails() {
               Live Demo
             </a>
           ) : null}
+          {project.evidence?.includes("Private Repository") ? <span className="evidence-status">Private Repository</span> : null}
         </div>
       </DetailSection>
     </main>

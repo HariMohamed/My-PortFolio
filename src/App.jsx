@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import CommandPalette from "./components/CommandPalette";
+import FloatingAssistant from "./components/FloatingAssistant";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -56,6 +57,7 @@ export default function App() {
         <Route path="/projects/:slug" element={<ProjectDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <FloatingAssistant />
       <Footer onOpenCommand={() => setCommandOpen(true)} />
     </>
   );

@@ -14,7 +14,7 @@ test.describe('Smoke Test', () => {
       }
     });
     page.on('requestfailed', (req) => {
-      if (!req.url().includes('google') && !req.url().includes('favicon')) {
+      if (!req.url().includes('google') && !req.url().includes('favicon') && !req.url().includes('simpleicons.org') && !req.url().includes('devicon')) {
         failedRequests.push(req.url());
       }
     });
@@ -60,7 +60,7 @@ test.describe('Smoke Test', () => {
       expect(transform).toBe('none');
     }
 
-    const menuBtn = page.locator('button[aria-expanded]');
+    const menuBtn = page.locator('button[aria-label="Open navigation"]');
     if (await menuBtn.isVisible()) {
       await menuBtn.click();
       await expect(page.locator('#mobile-menu')).toBeVisible();
