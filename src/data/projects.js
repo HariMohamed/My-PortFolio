@@ -23,7 +23,7 @@ export const projects = [
       "RBAC authorization for promoters, syndics, and co-owners",
     ],
     challenges: [
-      "Enforcing strict multi-tenant data isolation across 93 database tables using PostgreSQL RLS.",
+      "Enforcing strict multi-tenant data isolation using PostgreSQL RLS.",
       "Integrating LangChain workflows securely with business data.",
       "Managing asynchronous PDF report generation without blocking the main API thread.",
     ],

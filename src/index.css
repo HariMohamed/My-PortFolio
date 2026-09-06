@@ -599,6 +599,14 @@ img {
     @apply relative flex flex-col gap-4 md:flex-row md:items-center w-full;
   }
 
+  .timeline-item-left {
+    @apply md:justify-start;
+  }
+
+  .timeline-item-right {
+    @apply md:justify-end;
+  }
+
   .timeline-marker {
     @apply z-10 absolute flex h-11 w-11 items-center justify-center rounded-md border text-accent transition-colors duration-300;
     left: 0;
@@ -635,15 +643,6 @@ img {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px -6px rgba(0, 0, 0, 0.4), 0 0 12px -3px rgba(68, 230, 169, 0.1);
     border-color: rgba(68, 230, 169, 0.25);
-  }
-
-  @media (min-width: 768px) {
-    .timeline-item-edu {
-      @apply justify-start;
-    }
-    .timeline-item-exp {
-      @apply justify-end;
-    }
   }
 
   .timeline-card-head {
@@ -731,6 +730,34 @@ img {
     @apply grid gap-3;
   }
 
+  .ai-query-form {
+    @apply mb-4 grid gap-2;
+  }
+
+  .ai-query-form label {
+    @apply font-mono text-xs font-bold uppercase text-accent;
+  }
+
+  .ai-query-row {
+    @apply flex gap-2;
+  }
+
+  .ai-query-input {
+    @apply min-h-12 min-w-0 flex-1 rounded-md shadow-[var(--inset-border)] bg-white/[0.04] px-4 text-sm text-text outline-none placeholder:text-muted focus:border-accent;
+  }
+
+  .ai-query-submit {
+    @apply inline-flex min-h-12 min-w-12 items-center justify-center rounded-md bg-accent text-black transition;
+  }
+
+  .ai-query-submit:hover {
+    opacity: 0.8;
+  }
+
+  .ai-query-submit svg {
+    @apply h-4 w-4;
+  }
+
   .ai-question-list button {
     @apply inline-flex min-h-14 items-center gap-3 rounded-md shadow-[var(--inset-border)] bg-white/[0.04] px-4 text-left font-bold text-muted transition hover:text-text;
   }
@@ -769,9 +796,21 @@ img {
     @apply h-4 w-4;
   }
 
-  .ai-answer p:last-child {
+  .ai-answer > p:not(.ai-label) {
     @apply mt-4 text-lg;
     color: var(--high-contrast-copy);
+  }
+
+  .ai-answer-actions {
+    @apply mt-6 grid gap-4;
+  }
+
+  .ai-follow-ups {
+    @apply flex flex-wrap gap-x-4 gap-y-2;
+  }
+
+  .ai-follow-ups button {
+    @apply cursor-pointer border-0 bg-transparent p-0;
   }
 
   .contact-grid {

@@ -1,33 +1,33 @@
 import { useState } from "react";
-import { Bot, MessageSquareText, Sparkles } from "lucide-react";
+import { Bot, MessageSquareText, Send, Sparkles } from "lucide-react";
 import MotionWrapper from "./MotionWrapper";
 import SectionTitle from "./SectionTitle";
+import { resolvePortfolioQuestion } from "../data/portfolioKnowledge";
 
-const questions = [
-  {
-    question: "What can I build?",
-    answer:
-      "Hari builds AI-powered SaaS MVPs, automation workflows, dashboards, APIs, and maintainable web applications. The strongest fit is work that joins React interfaces, backend systems, and useful AI assistance.",
-  },
-  {
-    question: "What did I personally contribute?",
-    answer:
-      "The case studies describe contributions across FastAPI and PostgreSQL backend work, React and Next.js interfaces, REST APIs, authentication flows, AI integrations, and automation.",
-  },
-  {
-    question: "Which project best demonstrates backend engineering?",
-    answer:
-      "SyndicAI is the clearest backend-focused case study, describing FastAPI, PostgreSQL, Redis, Celery, multi-tenant boundaries, and AI integration.",
-  },
-  {
-    question: "What evidence can I review?",
-    answer:
-      "Each project has a deployed application and a portfolio case study. The repositories are private, so the public evidence is the live deployment, technical overview, and project-specific explanation.",
-  },
+const starterQuestions = [
+  "Who is Hari?",
+  "What technologies do you use?",
+  "Tell me about SyndicAI.",
+  "How can I contact you?",
 ];
 
 export default function AIPlayground() {
-  const [activeQuestion, setActiveQuestion] = useState(questions[0]);
+  const [input, setInput] = useState("");
+  const [contextProject, setContextProject] = useState(null);
+  const [result, setResult] = useState(() => resolvePortfolioQuestion(starterQuestions[0]));
+
+  function ask(question) {
+    const nextResult = resolvePortfolioQuestion(question, contextProject);
+    if (!nextResult) return;
+    setResult(nextResult);
+    setContextProject(nextResult.contextProject || null);
+    setInput("");
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    ask(input);
+  }
 
   return (
     <section className="section-shell" aria-labelledby="playground-heading">
@@ -35,22 +35,35 @@ export default function AIPlayground() {
         id="playground-heading"
         eyebrow="Portfolio Discovery"
         title="Explore the work by question."
-        description="A lightweight, local Q&A section with predefined answers about projects, contributions, evidence, and role fit."
+        description="Ask about projects, contributions, skills, evidence, experience, education, or contact details. Answers are local, deterministic, and linked to the relevant destination."
       />
 
       <MotionWrapper className="ai-panel">
-        <div className="ai-question-list" aria-label="Portfolio questions">
-          {questions.map((item) => (
-            <button
-              key={item.question}
-              type="button"
-              className={item.question === activeQuestion.question ? "is-active" : ""}
-              onClick={() => setActiveQuestion(item)}
-            >
-              <MessageSquareText aria-hidden="true" />
-              {item.question}
-            </button>
-          ))}
+        <div>
+          <form className="ai-query-form" onSubmit={handleSubmit}>
+            <label htmlFor="portfolio-question">Ask about the portfolio</label>
+            <div className="ai-query-row">
+              <input
+                id="portfolio-question"
+                className="ai-query-input"
+                value={input}
+                onChange={(event) => setInput(event.target.value)}
+                placeholder="e.g. Which project shows backend work?"
+              />
+              <button type="submit" className="ai-query-submit" aria-label="Ask portfolio assistant">
+                <Send aria-hidden="true" />
+              </button>
+            </div>
+          </form>
+
+          <div className="ai-question-list" aria-label="Suggested portfolio questions">
+            {starterQuestions.map((question) => (
+              <button key={question} type="button" onClick={() => ask(question)}>
+                <MessageSquareText aria-hidden="true" />
+                {question}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="ai-answer" aria-live="polite">
@@ -59,10 +72,21 @@ export default function AIPlayground() {
           </div>
           <p className="ai-label">
             <Sparkles aria-hidden="true" />
-            Portfolio Assistant
+            Portfolio Knowledge Assistant
           </p>
-          <h3>{activeQuestion.question}</h3>
-          <p>{activeQuestion.answer}</p>
+          <p>{result.answer}</p>
+          <div className="ai-answer-actions">
+            <a className="btn btn-primary" href={result.destination.href}>{result.destination.label}</a>
+            <div className="ai-follow-ups" aria-label="Suggested follow-up questions">
+              {result.suggestions.slice(0, 3).map((suggestion) => (
+                suggestion.href ? (
+                  <a key={suggestion.label} className="text-link" href={suggestion.href}>{suggestion.label}</a>
+                ) : (
+                  <button key={suggestion.label} type="button" className="text-link" onClick={() => ask(suggestion.query)}>{suggestion.label}</button>
+                )
+              ))}
+            </div>
+          </div>
         </div>
       </MotionWrapper>
     </section>

@@ -7,7 +7,7 @@ const icons = [Bot, Radar, GitBranch, BrainCircuit, Workflow, Rocket];
 
 export default function CurrentFocus() {
   return (
-    <section className="section-shell section-band" aria-labelledby="focus-heading">
+    <section id="focus" className="section-shell section-band" aria-labelledby="focus-heading">
       <SectionTitle
         id="focus-heading"
         eyebrow="Current Focus"
