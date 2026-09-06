@@ -6,11 +6,9 @@ export const professionalExperience = [
     period: "Oct 2025 - Feb 2026",
     type: "Experience",
     bullets: [
-      "Contributed to ERP development for the construction sector (BTP).",
-      "Participated in designing the Site Management module.",
-      "Drafted technical specifications for the Cash Management module.",
-      "Designed technical diagrams and modeled business processes.",
-      "Developed web features and integrated AI services based on project requirements.",
+      "Contributed to ERP development for construction-sector workflows.",
+      "Designed technical diagrams, modeled business processes, and drafted module specifications.",
+      "Implemented web features and integrated AI services against project requirements.",
     ],
     technologies: ["AI APIs", "React", "Django", "PostgreSQL", "TailwindCSS"],
   },
@@ -21,9 +19,9 @@ export const professionalExperience = [
     period: "May 2025 - Aug 2025",
     type: "Experience",
     bullets: [
-      "Developed MERN features for an interactive blog and content workflow experience.",
-      "Implemented user-management and dynamic content structures.",
-      "Worked with reusable frontend components and backend API patterns.",
+      "Implemented MERN features for an interactive blog and content workflow.",
+      "Structured user-management and dynamic content flows.",
+      "Integrated reusable frontend components with backend API patterns.",
     ],
     technologies: ["React", "Node.js", "Express", "MongoDB", "REST APIs"],
   },
@@ -34,9 +32,9 @@ export const professionalExperience = [
     period: "Apr 2024 - May 2024",
     type: "Experience",
     bullets: [
-      "Built responsive React interfaces for a company website.",
+      "Implemented responsive React interfaces for a company website.",
       "Improved cross-device compatibility and accessibility basics.",
-      "Structured JSON-backed content for easier maintenance.",
+      "Structured JSON-backed content for maintainable updates.",
     ],
     technologies: ["React", "CSS3", "Bootstrap", "JavaScript", "JSON"],
   }
@@ -50,19 +48,11 @@ export const academicEducation = [
     period: "2025 - 2026",
     type: "Education",
     bullets: [
-      "Python for AI",
-      "Prompt Engineering & Generative AI",
-      "AI Applications Coding & Development",
-      "Process Automation & AI Integration",
-      "AI UX Design & Web Development",
-      "Data & Visualization",
-      "Intelligent Chatbot Creation",
-      "Autonomous AI Agents Creation",
-      "Soft Skills, Ethics & GDPR",
-      "AI Project Management",
-      "n8n"
+      "Python and AI application development",
+      "Generative AI, prompt engineering, and AI integration",
+      "Process automation, data visualization, and chatbot workflows"
     ],
-    technologies: ["Python", "AI", "Generative AI / LLMs", "n8n", "Automation", "Data", "Power BI"],
+    technologies: ["Python", "Generative AI", "n8n", "Automation"],
   },
   {
     role: "Licence — Ingénierie des Systèmes Informatiques",
@@ -71,21 +61,11 @@ export const academicEducation = [
     period: "2025",
     type: "Education",
     bullets: [
-      "Software Engineering",
-      "Databases",
-      "UNIX Administration",
-      "Windows Administration",
-      "UML: Analysis and Design",
-      "Object-Oriented Programming / Java",
-      "TCP/IP",
-      "Network Programming",
-      "Data Analysis",
-      "Artificial Intelligence",
-      "Database Administration",
-      "OOP with Python",
-      "Python for Data Science"
+      "Software engineering and systems analysis",
+      "Databases, administration, and data analysis",
+      "Object-oriented programming, networks, and artificial intelligence"
     ],
-    technologies: ["Java", "Python", "SQL", "PostgreSQL", "Linux", "Windows", "AI", "Databases", "Networking"],
+    technologies: ["Java", "Python", "SQL", "PostgreSQL"],
   },
   {
     role: "DTS — Développement Digital / Web Full-Stack",
@@ -94,11 +74,10 @@ export const academicEducation = [
     period: "2022 - 2024",
     type: "Education",
     bullets: [
-      "Frontend: HTML | CSS | JavaScript | React",
-      "Backend: PHP | Laravel | Python",
-      "Databases: SQL | MySQL | NoSQL | MongoDB",
-      "Other: Cloud | Algorithms | Information Systems Security"
+      "Full-stack web development with HTML, CSS, JavaScript, React, PHP, and Laravel",
+      "SQL, MySQL, MongoDB, cloud fundamentals, and algorithms",
+      "Information systems security and backend application development"
     ],
-    technologies: ["HTML5", "CSS3", "JavaScript", "React", "PHP", "Laravel", "Python", "SQL", "MySQL", "MongoDB", "NoSQL", "Cloud", "Docker", "Algorithms", "Information Systems Security"],
+    technologies: ["React", "PHP", "Laravel", "SQL", "MongoDB"],
   }
 ];

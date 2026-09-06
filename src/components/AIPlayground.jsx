@@ -5,24 +5,24 @@ import SectionTitle from "./SectionTitle";
 
 const questions = [
   {
-    question: "What do you build?",
+    question: "What can I build?",
     answer:
       "Hari builds AI-powered SaaS MVPs, automation workflows, dashboards, APIs, and maintainable web applications. The strongest fit is work that joins React interfaces, backend systems, and useful AI assistance.",
   },
   {
-    question: "What technologies do you use?",
+    question: "What did I personally contribute?",
     answer:
-      "The core stack is Python, FastAPI, React, Node.js, PostgreSQL, MongoDB, LLM APIs, Docker, and n8n. He also has practical experience with Django, Express, TailwindCSS, LangChain, and REST API design.",
+      "The case studies describe contributions across FastAPI and PostgreSQL backend work, React and Next.js interfaces, REST APIs, authentication flows, AI integrations, and automation.",
   },
   {
-    question: "Are you available for freelance?",
+    question: "Which project best demonstrates backend engineering?",
     answer:
-      "Yes. The best freelance fit is an AI automation, workflow tool, internal dashboard, or SaaS MVP where the first version needs to be clear, useful, and maintainable instead of over-engineered.",
+      "SyndicAI is the clearest backend-focused case study, describing FastAPI, PostgreSQL, Redis, Celery, multi-tenant boundaries, and AI integration.",
   },
   {
-    question: "What projects prove your skills?",
+    question: "What evidence can I review?",
     answer:
-      "SyndicAI proves AI SaaS and multi-role product thinking, El Alaoui Labo proves production frontend delivery with technical SEO, Gym Coaching SaaS proves service-to-product MVP thinking, and CFQMA proves professional React delivery in a real engagement.",
+      "Each project has a deployed application and a portfolio case study. The repositories are private, so the public evidence is the live deployment, technical overview, and project-specific explanation.",
   },
 ];
 
@@ -33,9 +33,9 @@ export default function AIPlayground() {
     <section className="section-shell" aria-labelledby="playground-heading">
       <SectionTitle
         id="playground-heading"
-        eyebrow="Local AI Playground"
-        title="Ask the portfolio assistant."
-        description="A lightweight, local Q&A section with predefined answers. No external API, no hidden data collection."
+        eyebrow="Portfolio Discovery"
+        title="Explore the work by question."
+        description="A lightweight, local Q&A section with predefined answers about projects, contributions, evidence, and role fit."
       />
 
       <MotionWrapper className="ai-panel">

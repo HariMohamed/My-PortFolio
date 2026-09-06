@@ -3,6 +3,7 @@ export const projects = [
     slug: "syndicai",
     title: "SyndicAI",
     period: "2026",
+    maturity: "Deployed SaaS MVP",
     category: "AI-Powered Condominium Management SaaS",
     summary: "Backend integration and architecture for a multi-portal SaaS platform managing condominium operations, integrating LLM workflows and multi-tenant data isolation.",
     problem:
@@ -10,8 +11,10 @@ export const projects = [
     solution:
       "Implemented the core FastAPI backend and AI integration layer for a multi-portal SaaS, supporting automated PDF generation and LLM-assisted data retrieval.",
     architecture:
-      "FastAPI backend with PostgreSQL (93 tables), Redis, and Celery for background tasks. Multi-tenant isolation using Row-Level Security (RLS). LangChain/Groq for AI workflows. Deployed via Kubernetes (k3s).",
-    stack: ["FastAPI", "Python", "PostgreSQL", "Celery", "Redis", "LangChain", "Kubernetes"],
+      "FastAPI backend with PostgreSQL, Redis, and Celery for background tasks. Multi-tenant isolation using Row-Level Security (RLS). LangChain/Groq for AI workflows.",
+    stack: ["FastAPI", "Python", "PostgreSQL", "Celery", "Redis", "LangChain"],
+    contribution: ["Implemented the FastAPI backend and AI integration layer", "Designed multi-tenant data boundaries with PostgreSQL RLS", "Integrated asynchronous PDF generation with Celery"],
+    evidence: ["Live Demo", "Case Study", "Private Repository"],
     focus: ["Backend Architecture", "Multi-Tenant SaaS", "AI Integration", "API Design"],
     features: [
       "Row-Level Security (RLS) for multi-tenant data isolation",
@@ -25,9 +28,8 @@ export const projects = [
       "Managing asynchronous PDF report generation without blocking the main API thread.",
     ],
     results: [
-      "Built and integrated the FastAPI backend and AI layer for a production-ready SaaS.",
-      "Achieved 54% test coverage with automated CI/CD deployment to a Kubernetes cluster.",
-      "Successfully modeled complex multi-role authorization and data boundaries.",
+      "Implemented and integrated the FastAPI backend and AI layer for a deployed SaaS MVP.",
+      "Modeled multi-role authorization and data boundaries for the application workflows.",
     ],
     links: {
       live: "https://syndicai-ssp.vercel.app/",
@@ -38,8 +40,9 @@ export const projects = [
     slug: "elalaouilabo",
     title: "El Alaoui Labo",
     period: "2026",
+    maturity: "Deployed Professional Website",
     category: "Professional Website",
-    summary: "Production frontend for a photography studio focusing on technical SEO, performance, and WhatsApp-first conversion workflows.",
+    summary: "Deployed frontend for a photography studio focusing on technical SEO, performance, and WhatsApp-first conversion workflows.",
     problem:
       "The studio needed a digital presence optimized for local search visibility and direct client conversion via WhatsApp, without relying on complex backend infrastructure.",
     solution:
@@ -59,18 +62,21 @@ export const projects = [
       "Maintaining a strict design aesthetic while keeping DOM complexity low.",
     ],
     results: [
-      "Delivered a production-ready, highly responsive frontend deployed on Vercel.",
-      "Achieved optimal technical SEO infrastructure for local search discovery.",
+      "Delivered a highly responsive frontend deployed on Vercel.",
+      "Implemented technical SEO infrastructure for local search discovery.",
     ],
     links: {
       live: "https://elalaouilabo.vercel.app/",
       caseStudy: "/projects/elalaouilabo",
     },
+    contribution: ["Implemented the responsive Next.js frontend", "Structured technical SEO and metadata", "Integrated the WhatsApp-first contact workflow"],
+    evidence: ["Live Demo", "Case Study", "Private Repository"],
   },
   {
     slug: "gym-coaching-saas",
     title: "Gym Coaching SaaS",
     period: "2025",
+    maturity: "Deployed MVP",
     category: "SaaS Platform for Fitness Coaches",
     summary: "A full-stack SaaS MVP built with Next.js and Supabase, providing fitness coaches with a centralized workspace to manage athletes and training programs.",
     problem:
@@ -99,11 +105,14 @@ export const projects = [
       live: "https://gym-coaching-site.vercel.app/",
       caseStudy: "/projects/gym-coaching-saas",
     },
+    contribution: ["Implemented the coach and athlete workflow UI", "Integrated Supabase authentication and data access", "Added validation and subscription workflow integrations"],
+    evidence: ["Live Demo", "Case Study", "Private Repository"],
   },
   {
     slug: "cfqma-platform",
     title: "CFQMA Platform",
     period: "2024",
+    maturity: "Deployed Full-Stack Platform",
     category: "Full-Stack Educational Platform",
     summary: "A full-stack MERN platform built for a training center, featuring public content presentation, student pre-registration, and an administrative content management system.",
     problem:
@@ -133,6 +142,8 @@ export const projects = [
       live: "https://cfqma-platform.vercel.app/",
       caseStudy: "/projects/cfqma-platform",
     },
+    contribution: ["Implemented the React frontend and content presentation", "Integrated the REST API and MongoDB-backed content", "Built the administrative content workflow"],
+    evidence: ["Live Demo", "Case Study", "Private Repository"],
   },
 ];
 

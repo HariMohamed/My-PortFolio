@@ -16,7 +16,7 @@ export default function Contact() {
       <div className="contact-grid">
         <MotionWrapper className="contact-card contact-card-primary">
           <p className="contact-kicker">Best fit</p>
-          <h3>Junior full-stack roles, freelance automation systems, and SaaS MVP delivery.</h3>
+          <h3>{profile.availability}.</h3>
           <p>
             Send a short message with the product, workflow, or role you have in mind. I will reply with the
             clearest next step.

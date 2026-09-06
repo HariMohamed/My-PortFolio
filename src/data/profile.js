@@ -8,12 +8,12 @@ export const profile = {
   positioning: "Junior Full-Stack Developer / AI Integration Engineer",
   badge: "Available for Full-Stack & AI Integration Projects",
   headline: "Full-Stack Developer & AI Integration Engineer",
-  subtitle: "I design, build, and deploy web applications, SaaS platforms, automation workflows, and AI-powered systems — from backend architecture to production.",
+  subtitle: "I design, build, and deploy web applications, SaaS platforms, automation workflows, and AI-powered systems — from backend architecture to deployment.",
   coreMessage:
-    "I build production web systems, SaaS platforms, and AI-powered applications that solve practical business problems — from backend APIs to deployment.",
+    "I build web systems, SaaS platforms, and AI-powered applications that solve practical business problems — from backend APIs to deployment.",
   stackLine: "React · FastAPI · Python · PostgreSQL · Docker · n8n",
   location: "Morocco",
-  availability: "Open to full-stack and AI integration projects",
+  availability: "Open to junior software engineering, AI integration, and freelance opportunities",
   email: "mohamedhari13@gmail.com",
   phone: "+212 773 104 530",
   portraitUrl: "/portrait.webp",
@@ -27,10 +27,10 @@ export const profile = {
   },
   metrics: [
     {
-      label: "Production Projects",
+      label: "Deployed Projects",
       value: projects.length,
       suffix: "",
-      detail: "Shipped systems across SaaS, AI integration, and frontend engineering",
+      detail: "Deployed systems across SaaS, AI integration, and frontend engineering",
     },
     {
       label: "Years Building",

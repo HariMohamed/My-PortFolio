@@ -68,9 +68,21 @@ export default function ProjectCard({ project, index = 0 }) {
           <h3 className="font-display text-3xl font-extrabold text-text tracking-tight mb-2">
             {project.title}
           </h3>
+          <p className="project-status">{project.maturity}</p>
           <p className="text-muted leading-relaxed">
             {project.summary}
           </p>
+        </div>
+
+        <div className="project-contribution">
+          <span>My contribution</span>
+          <ul>
+            {project.contribution.slice(0, 3).map((item) => <li key={item}>{item}</li>)}
+          </ul>
+        </div>
+
+        <div className="project-evidence" aria-label="Project evidence">
+          {project.evidence.map((item) => <span key={item}>{item}</span>)}
         </div>
 
         <div className="mb-6 flex flex-wrap gap-2">

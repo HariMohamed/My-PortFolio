@@ -9,7 +9,7 @@ export default function Skills() {
       <SectionTitle
         id="skills-heading"
         eyebrow="Engineering Stack"
-        title="Technologies I use to build production systems."
+        title="Technologies I use to build web applications."
         description="React frontends, Python/FastAPI backends, PostgreSQL databases, AI integrations, and containerized deployment."
       />
       <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
