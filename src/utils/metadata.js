@@ -37,9 +37,12 @@ export function setPageMetadata({ title, description, url }) {
   setMeta("property", "og:title", title);
   setMeta("property", "og:description", description);
   setMeta("property", "og:url", url);
+  setMeta("property", "og:image", `${siteUrl}/og-image.jpg`);
   setMeta("property", "og:image:alt", `${title} preview`);
+  setMeta("name", "twitter:card", "summary_large_image");
   setMeta("name", "twitter:title", title);
   setMeta("name", "twitter:description", description);
+  setMeta("name", "twitter:image", `${siteUrl}/og-image.jpg`);
   setMeta("name", "twitter:image:alt", `${title} preview`);
   setCanonical(url);
 }
