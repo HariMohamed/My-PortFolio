@@ -1,7 +1,6 @@
 import {
   ArrowLeft,
   ArrowUpRight,
-  Github,
   Mail,
 } from "lucide-react";
 import { useEffect } from "react";
@@ -82,12 +81,6 @@ export default function ProjectDetails() {
               Live Demo
             </a>
           ) : null}
-          {project.links.github ? (
-            <a className="btn btn-secondary" href={project.links.github} target="_blank" rel="noopener noreferrer">
-              <Github aria-hidden="true" />
-              Source Code
-            </a>
-          ) : null}
           <a className="btn btn-secondary" href={profile.socials.email}>
             <Mail aria-hidden="true" />
             Discuss similar work
@@ -165,12 +158,6 @@ export default function ProjectDetails() {
 
       <DetailSection title="Links">
         <div className="project-actions detail-actions">
-          {project.links.github ? (
-            <a className="text-link" href={project.links.github} target="_blank" rel="noopener noreferrer">
-              <Github aria-hidden="true" />
-              Source Code
-            </a>
-          ) : null}
           {project.links.live ? (
             <a className="text-link" href={project.links.live} target="_blank" rel="noopener noreferrer">
               <ArrowUpRight aria-hidden="true" />

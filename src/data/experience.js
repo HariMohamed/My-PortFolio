@@ -1,4 +1,4 @@
-export const experience = [
+export const professionalExperience = [
   {
     role: "AI Integrator",
     organization: "Capital Innov",
@@ -6,34 +6,13 @@ export const experience = [
     period: "Oct 2025 - Feb 2026",
     type: "Experience",
     bullets: [
-      "Contribution au développement d’un ERP dédié au secteur BTP.",
-      "Participation à la conception du module Chantier.",
-      "Élaboration du cahier des charges du module Gestion de la caisse.",
-      "Conception de diagrammes techniques et modélisation des processus métier.",
-      "Développement de fonctionnalités web et intégration de services IA selon les besoins du projet.",
+      "Contributed to ERP development for the construction sector (BTP).",
+      "Participated in designing the Site Management module.",
+      "Drafted technical specifications for the Cash Management module.",
+      "Designed technical diagrams and modeled business processes.",
+      "Developed web features and integrated AI services based on project requirements.",
     ],
     technologies: ["AI APIs", "React", "Django", "PostgreSQL", "TailwindCSS"],
-  },
-  {
-    role: "Formation Professionnelle Qualifiante en IA",
-    organization: "IDS Salé & GIZ Maroc (Projet Tamheen II)",
-    location: "Mode Dual",
-    period: "2025 - 2026",
-    type: "Education",
-    bullets: [
-      "Python pour l’IA",
-      "Ingénierie du Prompt & IA Générative",
-      "Coding & Développement d’Applications IA",
-      "Automatisation des Processus & Intégration IA",
-      "UX Design IA & création de sites WEB",
-      "Data & Visualisation",
-      "Création de Chatbots Intelligents",
-      "Création d’Agents Autonomes IA",
-      "Soft Skills et Éthique & RGPD",
-      "Gestion de projet IA",
-      "n8n"
-    ],
-    technologies: ["Python", "AI", "Generative AI / LLMs", "n8n", "Automation", "Data", "Power BI"],
   },
   {
     role: "Full Stack Developer",
@@ -49,32 +28,9 @@ export const experience = [
     technologies: ["React", "Node.js", "Express", "MongoDB", "REST APIs"],
   },
   {
-    role: "Licence — Ingénierie des Systèmes Informatiques",
-    organization: "SUPMTI",
-    location: "Rabat",
-    period: "2025",
-    type: "Education",
-    bullets: [
-      "Génie Logiciel",
-      "Bases de Données",
-      "Administration UNIX",
-      "Administration Windows",
-      "UML : Analyse et conception",
-      "Programmation objet / Java",
-      "TCP/IP",
-      "Programmation Réseaux",
-      "Analyse de données",
-      "Intelligence Artificielle",
-      "Administration des bases de données",
-      "POO sous Python",
-      "Python for Data Science"
-    ],
-    technologies: ["Java", "Python", "SQL", "PostgreSQL", "Linux", "Windows", "AI", "Databases", "Networking"],
-  },
-  {
     role: "Frontend Developer",
     organization: "CFQMA",
-    location: "Sale",
+    location: "Salé",
     period: "Apr 2024 - May 2024",
     type: "Experience",
     bullets: [
@@ -83,6 +39,53 @@ export const experience = [
       "Structured JSON-backed content for easier maintenance.",
     ],
     technologies: ["React", "CSS3", "Bootstrap", "JavaScript", "JSON"],
+  }
+];
+
+export const academicEducation = [
+  {
+    role: "Formation Professionnelle Qualifiante en IA",
+    organization: "IDS Salé & GIZ Maroc (Projet Tamheen II)",
+    location: "Mode Dual",
+    period: "2025 - 2026",
+    type: "Education",
+    bullets: [
+      "Python for AI",
+      "Prompt Engineering & Generative AI",
+      "AI Applications Coding & Development",
+      "Process Automation & AI Integration",
+      "AI UX Design & Web Development",
+      "Data & Visualization",
+      "Intelligent Chatbot Creation",
+      "Autonomous AI Agents Creation",
+      "Soft Skills, Ethics & GDPR",
+      "AI Project Management",
+      "n8n"
+    ],
+    technologies: ["Python", "AI", "Generative AI / LLMs", "n8n", "Automation", "Data", "Power BI"],
+  },
+  {
+    role: "Licence — Ingénierie des Systèmes Informatiques",
+    organization: "SUPMTI",
+    location: "Rabat",
+    period: "2025",
+    type: "Education",
+    bullets: [
+      "Software Engineering",
+      "Databases",
+      "UNIX Administration",
+      "Windows Administration",
+      "UML: Analysis and Design",
+      "Object-Oriented Programming / Java",
+      "TCP/IP",
+      "Network Programming",
+      "Data Analysis",
+      "Artificial Intelligence",
+      "Database Administration",
+      "OOP with Python",
+      "Python for Data Science"
+    ],
+    technologies: ["Java", "Python", "SQL", "PostgreSQL", "Linux", "Windows", "AI", "Databases", "Networking"],
   },
   {
     role: "DTS — Développement Digital / Web Full-Stack",
@@ -91,12 +94,11 @@ export const experience = [
     period: "2022 - 2024",
     type: "Education",
     bullets: [
-      "Frontend: HTML · CSS · JavaScript · React",
-      "Backend: PHP · Laravel · Python",
-      "Databases: SQL · MySQL · NoSQL · MongoDB",
-      "Other: Cloud · Algorithmique · Sécurité des systèmes d'information"
+      "Frontend: HTML | CSS | JavaScript | React",
+      "Backend: PHP | Laravel | Python",
+      "Databases: SQL | MySQL | NoSQL | MongoDB",
+      "Other: Cloud | Algorithms | Information Systems Security"
     ],
     technologies: ["HTML5", "CSS3", "JavaScript", "React", "PHP", "Laravel", "Python", "SQL", "MySQL", "MongoDB", "NoSQL", "Cloud", "Docker", "Algorithms", "Information Systems Security"],
-  },
+  }
 ];
-

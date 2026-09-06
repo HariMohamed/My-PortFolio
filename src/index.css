@@ -1,31 +1,31 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   color-scheme: dark;
-  --color-bg: #0E1D21;
-  --color-bg-deep: #00002A;
-  --color-surface: #122E34;
-  --color-surface-strong: #163840;
-  --color-text-primary: #E0D6B8;
-  --color-text-secondary: #ABAFB5;
-  --color-text-muted: #677E8A;
+  --color-bg: #09090b;
+  --color-bg-deep: #000000;
+  --color-surface: rgba(255, 255, 255, 0.03);
+  --color-surface-strong: rgba(255, 255, 255, 0.05);
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
   --color-primary: #44E6A9;
-  --color-primary-strong: #44EA4C;
-  --color-border: rgba(224, 214, 184, 0.10);
+  --color-primary-strong: #22d3ee;
+  --color-border: transparent; /* Remove solid borders globally */
+  --inset-border: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 
-  --body-glow: rgba(68, 230, 169, 0.02);
-  --grid-line: rgba(224, 214, 184, 0.02);
-  --hero-gradient: linear-gradient(120deg, rgba(14, 29, 33, 0.85) 0%, rgba(14, 29, 33, 0.45) 50%, rgba(14, 29, 33, 0.15) 100%);
-  --hero-grid: repeating-linear-gradient(0deg, rgba(224, 214, 184, 0.02) 0 1px, transparent 1px 96px);
-  --hero-overlay: linear-gradient(90deg, rgba(14, 29, 33, 0.75) 0%, rgba(14, 29, 33, 0.25) 50%, transparent 100%),
-    linear-gradient(180deg, transparent 0%, rgba(14, 29, 33, 0.65) 100%);
-  --band-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent);
+  --body-glow: rgba(68, 230, 169, 0.015);
+  --grid-line: rgba(255, 255, 255, 0.02);
+  --hero-gradient: radial-gradient(circle at 50% -20%, rgba(68, 230, 169, 0.08) 0%, transparent 60%);
+  --hero-grid: transparent;
+  --hero-overlay: transparent;
+  --band-gradient: transparent;
   --card-gradient: transparent;
-  --panel-fill: rgba(0, 0, 0, 0.2);
+  --panel-fill: rgba(255, 255, 255, 0.02);
   --soft-fill: rgba(68, 230, 169, 0.05);
-  --high-contrast-copy: #E0D6B8;
+  --high-contrast-copy: #ffffff;
 }
 
 :root[data-theme="light"] {
@@ -69,7 +69,7 @@ body {
   background: var(--color-bg);
   color: var(--color-text-primary);
   font-family: "Inter", system-ui, sans-serif;
-  line-height: 1.6;
+  line-height: 1.7;
   letter-spacing: 0;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
@@ -136,7 +136,7 @@ img {
   }
 
   .brand-mark {
-    @apply grid h-11 w-11 place-items-center rounded-md border border-border bg-surface-2 font-mono text-sm font-bold text-accent shadow-glow;
+    @apply grid h-11 w-11 place-items-center rounded-md shadow-[var(--inset-border)] bg-surface-2 font-mono text-sm font-bold text-accent shadow-glow;
   }
 
   .nav-link {
@@ -149,7 +149,7 @@ img {
   }
 
   .icon-button {
-    @apply inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-surface text-muted transition hover:text-accent;
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-md shadow-[var(--inset-border)] bg-surface text-muted transition hover:text-accent;
   }
 
   .icon-button svg {
@@ -201,7 +201,7 @@ img {
 
   .mobile-menu {
     width: min(520px, calc(100% - 32px));
-    @apply mx-auto mb-4 grid gap-3 rounded-md border border-border bg-surface p-3 shadow-glow;
+    @apply mx-auto mb-4 grid gap-3 rounded-md shadow-[var(--inset-border)] bg-surface p-3 shadow-glow;
   }
 
   .mobile-menu-link {
@@ -263,7 +263,7 @@ img {
   }
 
   .hero-portrait-card {
-    @apply mx-auto w-full max-w-[300px] overflow-hidden rounded-xl border border-border bg-surface p-3 shadow-glow lg:mx-0 lg:max-w-none;
+    @apply mx-auto w-full max-w-[300px] overflow-hidden rounded-xl shadow-[var(--inset-border)] bg-surface p-3 shadow-glow lg:mx-0 lg:max-w-none;
   }
 
   .portrait-3d-scene {
@@ -273,7 +273,7 @@ img {
   }
 
   .portrait-glass-plate {
-    @apply absolute inset-0 rounded-2xl border border-border;
+    @apply absolute inset-0 rounded-2xl shadow-[var(--inset-border)];
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
     backdrop-filter: blur(12px);
     box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6);
@@ -343,7 +343,7 @@ img {
   }
 
   .social-row a {
-    @apply inline-flex min-h-11 items-center gap-2 rounded-md border border-border bg-white/[0.04] px-3 py-2 text-sm font-semibold text-muted transition hover:text-accent;
+    @apply inline-flex min-h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] bg-white/[0.04] px-3 py-2 text-sm font-semibold text-muted transition hover:text-accent;
   }
 
   .social-row a:hover {
@@ -360,7 +360,7 @@ img {
   }
 
   .metric-card {
-    @apply rounded-md border border-border bg-surface p-5 shadow-glow;
+    @apply rounded-md shadow-[var(--inset-border)] bg-surface p-5 shadow-glow;
   }
 
   .metric-card strong {
@@ -420,7 +420,7 @@ img {
   .detail-section,
   .project-detail-hero,
   .empty-state {
-    @apply rounded-md border border-border bg-surface p-6;
+    @apply rounded-md shadow-[var(--inset-border)] bg-surface p-6;
   }
 
   .perspective-container {
@@ -476,7 +476,7 @@ img {
   }
 
   .project-number {
-    @apply rounded-md border border-border px-3 py-1 font-mono text-xs font-bold text-muted;
+    @apply rounded-md shadow-[var(--inset-border)] px-3 py-1 font-mono text-xs font-bold text-muted;
     background: var(--panel-fill);
   }
 
@@ -491,7 +491,7 @@ img {
 
   .project-split div,
   .project-impact {
-    @apply rounded-md border border-border p-4;
+    @apply rounded-md shadow-[var(--inset-border)] p-4;
     background: var(--panel-fill);
   }
 
@@ -521,13 +521,13 @@ img {
   }
 
   .chip {
-    @apply inline-flex min-h-8 items-center rounded-md border border-border px-3 py-1 font-mono text-xs font-semibold;
+    @apply inline-flex min-h-8 items-center rounded-md shadow-[var(--inset-border)] px-3 py-1 font-mono text-xs font-semibold;
     background: var(--soft-fill);
     color: var(--high-contrast-copy);
   }
 
   .project-actions {
-    @apply mt-auto flex flex-wrap gap-3 border-t border-border pt-4;
+    @apply mt-auto flex flex-wrap gap-3 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] border-t border-transparent pt-4;
   }
 
   .text-link {
@@ -602,7 +602,7 @@ img {
   }
 
   .timeline-card {
-    @apply bg-surface rounded-xl border border-border p-5 ml-14 md:ml-0 md:w-[calc(50%-3rem)] transition-all duration-300 ease-out;
+    @apply bg-surface rounded-xl shadow-[var(--inset-border)] p-5 ml-14 md:ml-0 md:w-[calc(50%-3rem)] transition-all duration-300 ease-out;
   }
 
   .timeline-card:hover {
@@ -621,7 +621,7 @@ img {
   }
 
   .timeline-card-head {
-    @apply flex flex-wrap flex-col gap-4 border-b border-border pb-5 sm:flex-row sm:items-start sm:justify-between;
+    @apply flex flex-wrap flex-col gap-4 shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.05)] border-b border-transparent pb-5 sm:flex-row sm:items-start sm:justify-between;
   }
 
   .timeline-card-head > div:first-child {
@@ -671,7 +671,7 @@ img {
   }
 
   .timeline-type {
-    @apply inline-flex w-fit rounded-md border border-border px-3 py-1 font-mono text-xs text-muted;
+    @apply inline-flex w-fit rounded-md shadow-[var(--inset-border)] px-3 py-1 font-mono text-xs text-muted;
     background: var(--panel-fill);
   }
 
@@ -706,7 +706,7 @@ img {
   }
 
   .ai-question-list button {
-    @apply inline-flex min-h-14 items-center gap-3 rounded-md border border-border bg-white/[0.04] px-4 text-left font-bold text-muted transition hover:text-text;
+    @apply inline-flex min-h-14 items-center gap-3 rounded-md shadow-[var(--inset-border)] bg-white/[0.04] px-4 text-left font-bold text-muted transition hover:text-text;
   }
 
   .ai-question-list button:hover {
@@ -723,7 +723,7 @@ img {
   }
 
   .ai-answer {
-    @apply rounded-md border border-border p-6;
+    @apply rounded-md shadow-[var(--inset-border)] p-6;
     background: var(--panel-fill);
   }
 
@@ -766,7 +766,7 @@ img {
 
   .contact-list a,
   .contact-list div {
-    @apply flex items-center gap-4 rounded-md border border-border p-4 text-muted transition;
+    @apply flex items-center gap-4 rounded-md shadow-[var(--inset-border)] p-4 text-muted transition;
     background: var(--panel-fill);
   }
 
@@ -792,7 +792,7 @@ img {
   }
 
   .language-grid div {
-    @apply rounded-md border border-border bg-white/[0.04] p-3;
+    @apply rounded-md shadow-[var(--inset-border)] bg-white/[0.04] p-3;
   }
 
   .language-grid span {
@@ -805,7 +805,7 @@ img {
 
   .footer-shell {
     width: min(1180px, calc(100% - 32px));
-    @apply mx-auto flex flex-col gap-5 border-t border-border py-10 text-muted sm:flex-row sm:items-center sm:justify-between;
+    @apply mx-auto flex flex-col gap-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] border-t border-transparent py-10 text-muted sm:flex-row sm:items-center sm:justify-between;
   }
 
   .footer-shell strong {
@@ -822,7 +822,7 @@ img {
 
   .footer-links a,
   .footer-links button {
-    @apply inline-flex h-11 w-11 items-center justify-center rounded-md border border-border bg-surface text-muted transition hover:text-accent;
+    @apply inline-flex h-11 w-11 items-center justify-center rounded-md shadow-[var(--inset-border)] bg-surface text-muted transition hover:text-accent;
   }
 
   .footer-links a:hover,
@@ -919,11 +919,11 @@ img {
 
   .command-dialog {
     width: min(640px, calc(100% - 32px));
-    @apply fixed left-1/2 top-24 z-[100] -translate-x-1/2 overflow-hidden rounded-md border border-border bg-surface shadow-xl;
+    @apply fixed left-1/2 top-24 z-[100] -translate-x-1/2 overflow-hidden rounded-md shadow-[var(--inset-border)] bg-surface shadow-xl;
   }
 
   [cmdk-input] {
-    @apply h-14 w-full border-0 border-b border-border bg-transparent px-5 text-lg text-text outline-none placeholder:text-muted;
+    @apply h-14 w-full border-0 shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.05)] border-b border-transparent bg-transparent px-5 text-lg text-text outline-none placeholder:text-muted;
   }
 
   [cmdk-list] {

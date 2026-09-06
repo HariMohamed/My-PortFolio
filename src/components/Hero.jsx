@@ -1,159 +1,106 @@
-import { useEffect } from "react";
 import { ArrowDown, Download, Github, Linkedin, Mail, Sparkles } from "lucide-react";
-import { motion, useReducedMotion, useMotionValue, useTransform, useSpring } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { profile } from "../data/profile";
 
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
-  const disableTracking = prefersReducedMotion || (typeof window !== "undefined" && !window.matchMedia("(pointer: fine)").matches);
 
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { damping: 40, stiffness: 150, mass: 1 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
-
-  useEffect(() => {
-    if (disableTracking) return;
-
-    const handleMouseMove = (e) => {
-      const { innerWidth, innerHeight } = window;
-      const x = (e.clientX / innerWidth) * 2 - 1;
-      const y = (e.clientY / innerHeight) * 2 - 1;
-      mouseX.set(x);
-      mouseY.set(y);
-    };
-
-    const handleMouseLeave = () => {
-      mouseX.set(0);
-      mouseY.set(0);
-    };
-
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    window.addEventListener("mouseleave", handleMouseLeave, { passive: true });
-    
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, [mouseX, mouseY, disableTracking]);
-
-  const fgX = useTransform(smoothX, [-1, 1], [-2, 2]);
-  const fgY = useTransform(smoothY, [-1, 1], [-2, 2]);
-
-  const cardX = useTransform(smoothX, [-1, 1], [8, -8]);
-  const cardY = useTransform(smoothY, [-1, 1], [8, -8]);
-  const cardRotateX = useTransform(smoothY, [-1, 1], [2, -2]);
-  const cardRotateY = useTransform(smoothX, [-1, 1], [-2, 2]);
-
-  const bgX = useTransform(smoothX, [-1, 1], [-3, 3]);
-  const bgY = useTransform(smoothY, [-1, 1], [-3, 3]);
+  // Unified animation variant for staggered reveals
+  const revealVariants = {
+    hidden: { opacity: 0, y: prefersReducedMotion ? 0 : 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+    }
+  };
 
   return (
-    <section id="home" className="hero-section perspective-container" aria-labelledby="hero-title">
-      <div className="hero-background" aria-hidden="true" />
-      <div className="hero-overlay" aria-hidden="true" />
+    <section id="home" className="relative min-h-[90svh] w-full flex items-center justify-center overflow-hidden border-b shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.05)] border-transparent" aria-labelledby="hero-title">
 
-      <motion.div
-        className="hero-depth-bg"
-        aria-hidden="true"
-        style={{ x: disableTracking ? 0 : bgX, y: disableTracking ? 0 : bgY }}
-      >
-        <div className="hero-radial-glow" />
-      </motion.div>
+      {/*
+        MEDIA LAYER PLACEHOLDER
+        This is where the future WebM cinematic texture will be injected.
+        Currently a dark radial gradient acts as the fallback.
+      */}
+      <div className="absolute inset-0 z-0 bg-[#09090b]">
+        {/* <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen" poster="..." src="..." /> */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,rgba(68,230,169,0.15),transparent_60%)]" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#09090b] opacity-90" aria-hidden="true" />
+      </div>
 
-      <div className="hero-content relative z-10">
-        <div className="hero-layout">
-          <motion.div
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.55, ease: "easeOut" }}
-            style={{ x: disableTracking ? 0 : fgX, y: disableTracking ? 0 : fgY }}
-            className="max-w-4xl"
-          >
-            <p className="hero-badge">
-              <Sparkles aria-hidden="true" />
+      <div className="relative z-10 w-full max-w-6xl px-6 mx-auto flex flex-col items-center text-center mt-12">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: { transition: { staggerChildren: 0.15 } }
+          }}
+          className="flex flex-col items-center max-w-4xl"
+        >
+          <motion.div variants={revealVariants}>
+            <p className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] font-mono text-xs font-bold uppercase tracking-widest text-accent">
+              <Sparkles className="w-4 h-4" aria-hidden="true" />
               {profile.badge}
             </p>
-            <h1 id="hero-title" className="hero-title">
-              {profile.headline}
-            </h1>
-            <p className="hero-subtitle">{profile.subtitle}</p>
-            <p className="stack-line">{profile.stackLine}</p>
+          </motion.div>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <a className="btn btn-primary" href="#projects">
-                Explore Projects
-                <ArrowDown aria-hidden="true" />
-              </a>
-              <a className="btn btn-secondary" href={profile.cv.english} download>
-                <Download aria-hidden="true" />
-                Download CV
-              </a>
-            </div>
+          <motion.h1
+            id="hero-title"
+            variants={revealVariants}
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold text-text tracking-[-0.04em] leading-[1.05] mb-6"
+          >
+            {profile.headline}
+          </motion.h1>
 
-            <div className="social-row" aria-label="Social links">
-              <a href={profile.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <Github aria-hidden="true" />
-                GitHub
-              </a>
-              <a href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <Linkedin aria-hidden="true" />
-                LinkedIn
-              </a>
-              <a href={profile.socials.email} aria-label="Email">
-                <Mail aria-hidden="true" />
-                Email
-              </a>
-            </div>
+          <motion.p
+            variants={revealVariants}
+            className="text-lg sm:text-xl md:text-2xl text-muted max-w-2xl leading-relaxed mb-4"
+          >
+            {profile.subtitle}
+          </motion.p>
+
+          <motion.p
+            variants={revealVariants}
+            className="text-sm sm:text-base font-mono text-accent/80 mb-10"
+          >
+            {profile.stackLine}
+          </motion.p>
+
+          <motion.div
+            variants={revealVariants}
+            className="flex flex-col sm:flex-row items-center gap-4 mb-12"
+          >
+            <a className="inline-flex h-12 items-center justify-center gap-2 rounded-md bg-accent px-6 font-bold text-black transition-transform hover:scale-105 active:scale-95" href="#projects">
+              Explore Projects
+              <ArrowDown className="w-5 h-5" aria-hidden="true" />
+            </a>
+            <a className="inline-flex h-12 items-center justify-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.04] px-6 font-bold text-text transition-colors hover:bg-white/[0.08]" href={profile.cv.english} download>
+              <Download className="w-5 h-5" aria-hidden="true" />
+              Download CV
+            </a>
           </motion.div>
 
           <motion.div
-            className="portrait-3d-wrapper mx-auto w-full max-w-[300px] lg:mx-0 lg:max-w-none"
-            style={{ perspective: 1200, transformStyle: "preserve-3d" }}
-            animate={prefersReducedMotion ? {} : { y: [-6, 6, -6] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            variants={revealVariants}
+            className="flex flex-wrap items-center justify-center gap-3"
+            aria-label="Social links"
           >
-            <motion.div
-              className="portrait-3d-scene relative w-full h-full"
-              style={{
-                x: disableTracking ? 0 : cardX,
-                y: disableTracking ? 0 : cardY,
-                rotateX: disableTracking ? 0 : cardRotateX,
-                rotateY: disableTracking ? 0 : cardRotateY,
-                transformStyle: "preserve-3d"
-              }}
-            >
-              <div className="portrait-glass-plate" aria-hidden="true" style={{ transform: disableTracking ? "none" : "translateZ(-30px)" }} />
-              <div className="portrait-glow-layer" aria-hidden="true" style={{ transform: disableTracking ? "none" : "translateZ(-15px)" }} />
-
-              <motion.figure
-                className="hero-portrait-card spatial-card relative z-10 w-full"
-                initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={prefersReducedMotion ? { duration: 0 } : { duration: 0.55, delay: 0.12, ease: "easeOut" }}
-                style={{ transformStyle: "preserve-3d" }}
-              >
-                <div className="hero-portrait-media relative" style={{ transform: disableTracking ? "none" : "translateZ(16px)" }}>
-                  <img
-                    src={profile.portraitUrl}
-                    alt={`Portrait of ${profile.name}`}
-                    width="1122"
-                    height="1402"
-                    decoding="async"
-                    fetchPriority="high"
-                  />
-                  <div className="portrait-inner-highlight" aria-hidden="true" />
-                </div>
-                <figcaption style={{ transform: disableTracking ? "none" : "translateZ(28px)" }}>
-                  <strong>{profile.name}</strong>
-                  <span>{profile.positioning}</span>
-                </figcaption>
-              </motion.figure>
-            </motion.div>
+            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent hover:bg-white/[0.05]" href={profile.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+              <Github className="w-4 h-4" aria-hidden="true" />
+              GitHub
+            </a>
+            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent hover:bg-white/[0.05]" href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <Linkedin className="w-4 h-4" aria-hidden="true" />
+              LinkedIn
+            </a>
+            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent hover:bg-white/[0.05]" href={profile.socials.email} aria-label="Email">
+              <Mail className="w-4 h-4" aria-hidden="true" />
+              Email
+            </a>
           </motion.div>
-        </div>
+
+        </motion.div>
       </div>
     </section>
   );
