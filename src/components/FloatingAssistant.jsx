@@ -108,7 +108,7 @@ export default function FloatingAssistant() {
   return (
     <div className="floating-assistant" data-testid="floating-assistant">
       {open ? (
-        <section id="assistant-dialog" className="assistant-panel" ref={panelRef} role="dialog" aria-modal="false" aria-labelledby="assistant-title">
+        <section id="assistant-dialog" className="assistant-panel" ref={panelRef} role="dialog" aria-modal="true" aria-labelledby="assistant-title">
           <header className="assistant-header">
             <div className="assistant-heading">
               <span className="assistant-icon" aria-hidden="true"><Bot /></span>

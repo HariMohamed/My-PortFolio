@@ -14,7 +14,6 @@ export default async function handler(req, res) {
   const ip = req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown';
   const now = Date.now();
   const reqData = ipRequests.get(ip) || { count: 0, startTime: now };
-  
   if (now - reqData.startTime > RATE_LIMIT_WINDOW_MS) {
     reqData.count = 1;
     reqData.startTime = now;
@@ -78,11 +77,10 @@ ${contextText}`;
 
   // Enforce Max 3 Conversation Turns (6 messages total)
   const recentHistory = Array.isArray(history) ? history.slice(-6) : [];
-  
   const messages = [
     { role: 'system', content: systemPrompt },
-    ...recentHistory.map(m => ({ 
-      role: m.role === 'user' ? 'user' : 'assistant', 
+    ...recentHistory.map(m => ({
+      role: m.role === 'user' ? 'user' : 'assistant',
       content: String(m.content).substring(0, 1000)
     })),
     { role: 'user', content: query }
@@ -111,7 +109,6 @@ ${contextText}`;
 
     const data = await groqRes.json();
     const answer = data.choices?.[0]?.message?.content || 'I am unable to answer right now.';
-    
     return res.status(200).json({ answer });
   } catch (error) {
     console.error('Network or parsing error calling Groq.');
