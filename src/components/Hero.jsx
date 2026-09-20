@@ -23,10 +23,10 @@ export default function Hero() {
         This is where the future WebM cinematic texture will be injected.
         Currently a dark radial gradient acts as the fallback.
       */}
-      <div className="absolute inset-0 z-0 bg-[#09090b]">
+      <div className="absolute inset-0 z-0 bg-bg">
         {/* <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen" poster="..." src="..." /> */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_center,rgba(68,230,169,0.15),transparent_60%)]" aria-hidden="true" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#09090b] opacity-90" aria-hidden="true" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-bg opacity-90" aria-hidden="true" />
       </div>
 
       <div className="relative z-10 w-full max-w-6xl px-6 mx-auto flex flex-col items-center text-center mt-12">
@@ -48,21 +48,21 @@ export default function Hero() {
           <motion.h1
             id="hero-title"
             variants={revealVariants}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold text-text tracking-[-0.04em] leading-[1.05] mb-6"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold text-text tracking-tight leading-[1.05] mb-6"
           >
             {profile.headline}
           </motion.h1>
 
           <motion.p
             variants={revealVariants}
-            className="text-lg sm:text-xl md:text-2xl text-muted max-w-2xl leading-relaxed mb-4"
+            className="text-lg sm:text-xl md:text-2xl text-[color:var(--high-contrast-copy)] max-w-2xl leading-relaxed mb-4"
           >
             {profile.subtitle}
           </motion.p>
 
           <motion.p
             variants={revealVariants}
-            className="text-sm sm:text-base font-mono text-accent/80 mb-10"
+            className="text-sm sm:text-base font-mono text-accent mb-10"
           >
             {profile.stackLine}
           </motion.p>
