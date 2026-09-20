@@ -47,7 +47,7 @@ export const projects = [
     period: "2026",
     maturity: "Deployed Professional Website",
     category: "Professional Website",
-    summary: "Deployed frontend for a photography studio focusing on technical SEO, performance, and WhatsApp-first conversion workflows.",
+    summary: "A statically generated Next.js frontend for a photography studio, optimized for local SEO, performance, and direct WhatsApp client bookings.",
     problem:
       "The studio needed a digital presence optimized for local search visibility and direct client conversion via WhatsApp, without relying on complex backend infrastructure.",
     solution:
@@ -60,7 +60,7 @@ export const projects = [
       "Statically generated routes (SSG) for optimized page loads",
       "Dynamic sitemap.xml and robots.txt generation",
       "Comprehensive JSON-LD structured data (LocalBusiness/WebSite)",
-      "WhatsApp-first conversion event integration",
+      "WhatsApp integration for client bookings",
     ],
     challenges: [
       "Implementing robust technical SEO and metadata hierarchies within the Next.js App Router.",
