@@ -29,7 +29,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-bg opacity-90" aria-hidden="true" />
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl px-6 mx-auto flex flex-col items-center text-center mt-12">
+      <div className="relative z-10 w-full max-w-6xl px-6 mx-auto flex flex-col items-center text-center mt-12 pb-24 sm:pb-32">
         <motion.div
           initial="hidden"
           animate="visible"
