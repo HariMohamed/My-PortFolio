@@ -102,8 +102,9 @@ ${contextText}`;
     });
 
     if (!groqRes.ok) {
+      const errText = await groqRes.text();
       // Do not expose stack traces or raw API errors to the client
-      console.error('Groq API Error:', groqRes.status);
+      console.error('Groq API Error:', groqRes.status, errText);
       return res.status(502).json({ error: 'The AI assistant is temporarily unavailable.' });
     }
 

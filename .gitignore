@@ -6,3 +6,6 @@ dist/
 
 test-results/
 test.css
+test-chat.mjs
+test-handler.mjs
+test.mjs
