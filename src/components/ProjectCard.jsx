@@ -1,4 +1,4 @@
-import { ArrowUpRight, Play, Route, Image as ImageIcon } from "lucide-react";
+import { Play, Route } from "lucide-react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
 import TechChip from "./TechChip";
@@ -28,33 +28,21 @@ export default function ProjectCard({ project, index = 0 }) {
       className="group relative flex flex-col overflow-hidden rounded-2xl shadow-[var(--inset-border)] bg-surface transition-all duration-300 hover:bg-white/[0.04]"
     >
       <figure className="relative aspect-[16/10] w-full overflow-hidden bg-[#09090b] shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.05)] border-b border-transparent">
-        {project.videoPreviewUrl ? (
-          <video
-            src={project.videoPreviewUrl}
-            poster={project.posterUrl}
-            className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
-            muted
-            playsInline
-            loop
-            preload="none"
-            aria-label={`Video preview of ${project.title}`}
-          />
-        ) : project.posterUrl ? (
+        {project.screenshot ? (
           <img
-            src={project.posterUrl}
+            src={project.screenshot}
             alt={`Screenshot of ${project.title}`}
             className="absolute inset-0 w-full h-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-105"
             loading="lazy"
+            decoding="async"
           />
         ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-muted font-mono text-sm opacity-50 transition-opacity duration-300 group-hover:opacity-80">
-            <ImageIcon className="w-8 h-8 mb-3 opacity-40" aria-hidden="true" />
-            <span>Media Pending Integration</span>
-            <span className="text-xs opacity-50 mt-1">[{project.slug}]</span>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-muted font-mono text-sm opacity-50">
+            <span>Preview unavailable</span>
           </div>
         )}
 
-        {/* Project Number Badge (moved onto media block for cinematic feel) */}
+        {/* Project Number Badge */}
         <div className="absolute top-4 left-4 rounded-md shadow-[var(--inset-border)] bg-black/40 px-3 py-1 font-mono text-xs font-bold text-white">
           {String(index + 1).padStart(2, "0")}
         </div>
@@ -79,10 +67,6 @@ export default function ProjectCard({ project, index = 0 }) {
           <ul>
             {project.contribution.slice(0, 3).map((item) => <li key={item}>{item}</li>)}
           </ul>
-        </div>
-
-        <div className="project-evidence" aria-label="Project evidence">
-          {project.evidence.map((item) => <span key={item}>{item}</span>)}
         </div>
 
         <div className="mb-6 flex flex-wrap gap-2">

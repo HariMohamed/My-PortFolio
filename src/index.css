@@ -1,4 +1,4 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
 
@@ -502,44 +502,22 @@ img {
     @apply mt-3 grid gap-2 pl-5 text-sm text-muted;
   }
 
-  .project-evidence {
-    @apply mb-5 flex flex-wrap gap-2;
-  }
-
-  .project-evidence span {
-    @apply rounded-md shadow-[var(--inset-border)] px-3 py-1 font-mono text-xs font-semibold text-muted;
-    background: var(--soft-fill);
-  }
-
-  .project-split {
-    @apply grid gap-4 md:grid-cols-2;
-  }
-
-  .project-split div,
-  .project-impact {
-    @apply rounded-md shadow-[var(--inset-border)] p-4;
-    background: var(--panel-fill);
-  }
-
-  .project-split span,
-  .project-impact span,
   .detail-card span,
   .contact-kicker {
     @apply font-mono text-xs font-bold uppercase text-accent;
   }
 
-  .project-split p,
-  .project-impact p,
   .detail-card p {
     @apply mt-2 text-sm text-muted;
   }
 
-  .evidence-status {
-    @apply inline-flex w-fit items-center gap-2 rounded-md font-mono text-xs font-bold uppercase text-muted;
+  .detail-screenshot {
+    @apply my-6 overflow-hidden rounded-md shadow-[var(--inset-border)];
+    aspect-ratio: 16 / 10;
   }
 
-  .evidence-status svg {
-    @apply h-4 w-4 text-accent;
+  .detail-screenshot img {
+    @apply h-full w-full object-cover;
   }
 
   .chip-row {
@@ -934,44 +912,6 @@ img {
 
   .detail-section p {
     @apply mt-4 text-lg text-muted;
-  }
-
-  .evidence-media-grid {
-    @apply mt-6 grid gap-4 md:grid-cols-2;
-  }
-
-  .evidence-media {
-    @apply m-0 overflow-hidden rounded-md bg-surface-2 transition-all duration-300 ease-out;
-    aspect-ratio: 16 / 10;
-  }
-
-  .evidence-media:hover {
-    transform: translateY(-4px) scale(1.01);
-    box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.4), 0 0 12px -4px rgba(68, 230, 169, 0.1);
-  }
-
-  .evidence-media img {
-    @apply h-full w-full object-cover;
-  }
-
-  .evidence-placeholder {
-    @apply mt-6 grid gap-3 py-6 text-muted;
-  }
-
-  .evidence-placeholder svg {
-    @apply h-8 w-8 text-accent;
-  }
-
-  .evidence-placeholder strong {
-    @apply text-lg text-text;
-  }
-
-  .evidence-placeholder p {
-    @apply m-0 max-w-2xl text-base;
-  }
-
-  .evidence-links {
-    @apply mt-5 flex flex-wrap gap-3;
   }
 
   .empty-state {

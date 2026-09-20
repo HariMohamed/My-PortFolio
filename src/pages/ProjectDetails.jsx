@@ -88,6 +88,18 @@ export default function ProjectDetails() {
         </div>
       </MotionWrapper>
 
+      {/* Screenshot */}
+      {project.screenshot && (
+        <MotionWrapper className="detail-screenshot">
+          <img
+            src={project.screenshot}
+            alt={`Screenshot of ${project.title}`}
+            loading="lazy"
+            decoding="async"
+          />
+        </MotionWrapper>
+      )}
+
       <div className="detail-grid">
         <MotionWrapper className="detail-card">
           <span>Problem</span>
@@ -108,8 +120,6 @@ export default function ProjectDetails() {
       <DetailSection title="Architecture">
         <p>{project.architecture}</p>
       </DetailSection>
-
-
 
       <DetailSection title="Features">
         <ul className="detail-list">
@@ -135,44 +145,16 @@ export default function ProjectDetails() {
         </ul>
       </DetailSection>
 
-      {project.evidence && (project.evidence.cover || project.evidence.architectureDiagram || project.evidence.workflowDiagram || (project.evidence.screenshots && project.evidence.screenshots.length > 0)) && (
-        <DetailSection title="Evidence">
-          <div className="evidence-media-grid">
-            {project.evidence.cover && (
-              <figure className="evidence-media">
-                <img src={project.evidence.cover} alt={`${project.title} Cover`} loading="lazy" decoding="async" />
-              </figure>
-            )}
-            {project.evidence.architectureDiagram && (
-              <figure className="evidence-media">
-                <img src={project.evidence.architectureDiagram} alt={`${project.title} Architecture`} loading="lazy" decoding="async" />
-              </figure>
-            )}
-            {project.evidence.workflowDiagram && (
-              <figure className="evidence-media">
-                <img src={project.evidence.workflowDiagram} alt={`${project.title} Workflow`} loading="lazy" decoding="async" />
-              </figure>
-            )}
-            {project.evidence.screenshots && project.evidence.screenshots.map((shot, idx) => (
-              <figure className="evidence-media" key={idx}>
-                <img src={shot} alt={`${project.title} Screenshot ${idx + 1}`} loading="lazy" decoding="async" />
-              </figure>
-            ))}
-          </div>
-        </DetailSection>
-      )}
-
-      <DetailSection title="Links">
-        <div className="project-actions detail-actions">
-          {project.links.live ? (
+      {project.links.live && (
+        <DetailSection title="Links">
+          <div className="project-actions detail-actions">
             <a className="text-link" href={project.links.live} target="_blank" rel="noopener noreferrer">
               <ArrowUpRight aria-hidden="true" />
               Live Demo
             </a>
-          ) : null}
-          {project.evidence?.includes("Private Repository") ? <span className="evidence-status">Private Repository</span> : null}
-        </div>
-      </DetailSection>
+          </div>
+        </DetailSection>
+      )}
     </main>
   );
 }

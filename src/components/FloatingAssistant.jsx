@@ -49,14 +49,56 @@ export default function FloatingAssistant() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open]);
 
-  function ask(question) {
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function ask(question) {
     const trimmed = question.trim();
-    if (!trimmed) return;
-    const result = resolvePortfolioQuestion(trimmed, contextProject, pageContext);
-    if (!result) return;
-    setMessages((current) => [...current, { role: "user", text: trimmed }, { role: "assistant", result }]);
-    setContextProject(result.contextProject || contextProject);
+    if (!trimmed || isLoading) return;
+
+    const newMessages = [...messages, { role: "user", text: trimmed }];
+    setMessages(newMessages);
     setInput("");
+
+    const result = resolvePortfolioQuestion(trimmed, contextProject, pageContext);
+
+    if (result && !result.needsLLM) {
+      setMessages([...newMessages, { role: "assistant", result }]);
+      setContextProject(result.contextProject || contextProject);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const history = newMessages.slice(-6).map(m => ({
+        role: m.role,
+        content: m.text || m.result?.answer || ""
+      }));
+
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: trimmed, history })
+      });
+
+      if (!res.ok) throw new Error('API Error');
+      const data = await res.json();
+
+      const llmResult = {
+        answer: data.answer,
+        destination: { href: "#", label: "Portfolio" },
+        suggestions: []
+      };
+      setMessages([...newMessages, { role: "assistant", result: llmResult }]);
+    } catch(err) {
+      const fallbackResult = {
+        answer: "The AI assistant is temporarily unavailable. Please try exploring the portfolio directly.",
+        destination: { href: "#contact", label: "Get in touch" },
+        suggestions: []
+      };
+      setMessages([...newMessages, { role: "assistant", result: fallbackResult }]);
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   function close() { setOpen(false); }
@@ -83,16 +125,17 @@ export default function FloatingAssistant() {
                 <p>{message.result.answer}</p>
                 <a className="assistant-destination" href={message.result.destination.href}>{message.result.destination.label}</a>
                 <div className="assistant-follow-ups" aria-label="Suggested follow-up questions">
-                  {message.result.suggestions.slice(0, 3).map((suggestion) => suggestion.href ? <a key={suggestion.label} href={suggestion.href}>{suggestion.label}</a> : <button key={suggestion.label} type="button" onClick={() => ask(suggestion.query)}>{suggestion.label}</button>)}
+                  {message.result.suggestions.slice(0, 3).map((suggestion) => suggestion.href ? <a key={suggestion.label} href={suggestion.href}>{suggestion.label}</a> : <button key={suggestion.label} type="button" onClick={() => ask(suggestion.query)} disabled={isLoading}>{suggestion.label}</button>)}
                 </div>
               </div>
             ))}
+            {isLoading && <div className="assistant-message assistant-message-bot"><Sparkles aria-hidden="true" /><span>Thinking...</span></div>}
           </div>
-          {messages.length === 0 ? <div className="assistant-starters" aria-label="Suggested portfolio questions">{suggestions.map((question) => <button key={question} type="button" onClick={() => ask(question)}><MessageSquareText aria-hidden="true" />{question}</button>)}</div> : null}
+          {messages.length === 0 ? <div className="assistant-starters" aria-label="Suggested portfolio questions">{suggestions.map((question) => <button key={question} type="button" onClick={() => ask(question)} disabled={isLoading}><MessageSquareText aria-hidden="true" />{question}</button>)}</div> : null}
           <form className="assistant-form" onSubmit={(event) => { event.preventDefault(); ask(input); }}>
             <label className="sr-only" htmlFor="portfolio-question">Ask about the portfolio</label>
-            <input ref={inputRef} id="portfolio-question" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Hari's work" autoComplete="off" />
-            <button type="submit" aria-label="Ask portfolio assistant"><Send aria-hidden="true" /></button>
+            <input ref={inputRef} id="portfolio-question" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Hari's work" autoComplete="off" disabled={isLoading} />
+            <button type="submit" aria-label="Ask portfolio assistant" disabled={isLoading}><Send aria-hidden="true" /></button>
           </form>
         </section>
       ) : null}

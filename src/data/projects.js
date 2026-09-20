@@ -1,3 +1,8 @@
+import syndicaiImg from "../../projects/syndicai/syndicai.png";
+import elalaouilaboImg from "../../projects/elalaouilabo/elalaouilabo.png";
+import gymImg from "../../projects/gym-coaching-saas/gym.png";
+import cfqmaImg from "../../projects/cfqma-platform/cfqma.png";
+
 export const projects = [
   {
     slug: "syndicai",
@@ -14,7 +19,6 @@ export const projects = [
       "FastAPI backend with PostgreSQL, Redis, and Celery for background tasks. Multi-tenant isolation using Row-Level Security (RLS). LangChain/Groq for AI workflows.",
     stack: ["FastAPI", "Python", "PostgreSQL", "Celery", "Redis", "LangChain"],
     contribution: ["Implemented the FastAPI backend and AI integration layer", "Designed multi-tenant data boundaries with PostgreSQL RLS", "Integrated asynchronous PDF generation with Celery"],
-    evidence: ["Live Demo", "Case Study", "Private Repository"],
     focus: ["Backend Architecture", "Multi-Tenant SaaS", "AI Integration", "API Design"],
     features: [
       "Row-Level Security (RLS) for multi-tenant data isolation",
@@ -28,9 +32,10 @@ export const projects = [
       "Managing asynchronous PDF report generation without blocking the main API thread.",
     ],
     results: [
-      "Implemented and integrated the FastAPI backend and AI layer for a deployed SaaS MVP.",
-      "Modeled multi-role authorization and data boundaries for the application workflows.",
+      "Delivered a working FastAPI backend and AI integration layer for a deployed SaaS MVP.",
+      "Implemented multi-role authorization and tenant-scoped data boundaries across the application.",
     ],
+    screenshot: syndicaiImg,
     links: {
       live: "https://syndicai-ssp.vercel.app/",
       caseStudy: "/projects/syndicai",
@@ -46,9 +51,9 @@ export const projects = [
     problem:
       "The studio needed a digital presence optimized for local search visibility and direct client conversion via WhatsApp, without relying on complex backend infrastructure.",
     solution:
-      "Built a highly performant, statically generated Next.js application with strict semantic markup and comprehensive LocalBusiness JSON-LD structured data.",
+      "Built a statically generated Next.js application with strict semantic markup and comprehensive LocalBusiness JSON-LD structured data.",
     architecture:
-      "Next.js 16 (App Router) frontend utilizing Static Site Generation (SSG) for optimal load times, styled with Tailwind CSS v4.",
+      "Next.js (App Router) frontend utilizing Static Site Generation (SSG) for optimal load times, styled with Tailwind CSS.",
     stack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     focus: ["Frontend Architecture", "Technical SEO", "Performance Optimization"],
     features: [
@@ -62,15 +67,15 @@ export const projects = [
       "Maintaining a strict design aesthetic while keeping DOM complexity low.",
     ],
     results: [
-      "Delivered a highly responsive frontend deployed on Vercel.",
+      "Delivered a responsive, statically generated frontend deployed on Vercel.",
       "Implemented technical SEO infrastructure for local search discovery.",
     ],
+    screenshot: elalaouilaboImg,
+    contribution: ["Implemented the responsive Next.js frontend", "Structured technical SEO and metadata", "Integrated the WhatsApp-first contact workflow"],
     links: {
       live: "https://elalaouilabo.vercel.app/",
       caseStudy: "/projects/elalaouilabo",
     },
-    contribution: ["Implemented the responsive Next.js frontend", "Structured technical SEO and metadata", "Integrated the WhatsApp-first contact workflow"],
-    evidence: ["Live Demo", "Case Study", "Private Repository"],
   },
   {
     slug: "gym-coaching-saas",
@@ -82,7 +87,7 @@ export const projects = [
     problem:
       "Independent fitness coaches lacked a unified platform to handle client onboarding, secure authentication, and recurring service delivery workflows.",
     solution:
-      "Developed a role-based dashboard application leveraging Supabase for authentication and database management, with Stripe integration for subscriptions.",
+      "Developed a role-based dashboard application leveraging Supabase for authentication and database management, with Stripe integration for subscription workflows.",
     architecture:
       "Next.js frontend integrated directly with Supabase Auth and PostgreSQL, utilizing React Hook Form and Zod for strict client-side validation.",
     stack: ["Next.js", "React", "Supabase", "Stripe", "Tailwind CSS", "Zod"],
@@ -98,15 +103,15 @@ export const projects = [
       "Securing API routes and database access based on user roles.",
     ],
     results: [
-      "Delivered a functional SaaS MVP demonstrating end-to-end user workflows.",
-      "Successfully integrated third-party authentication and payment services into a Next.js architecture.",
+      "Delivered a functional SaaS MVP with end-to-end coach and athlete workflows.",
+      "Integrated third-party authentication and payment services into a Next.js architecture.",
     ],
+    screenshot: gymImg,
+    contribution: ["Implemented the coach and athlete workflow UI", "Integrated Supabase authentication and data access", "Added validation and subscription workflow integrations"],
     links: {
       live: "https://gym-coaching-site.vercel.app/",
       caseStudy: "/projects/gym-coaching-saas",
     },
-    contribution: ["Implemented the coach and athlete workflow UI", "Integrated Supabase authentication and data access", "Added validation and subscription workflow integrations"],
-    evidence: ["Live Demo", "Case Study", "Private Repository"],
   },
   {
     slug: "cfqma-platform",
@@ -130,7 +135,7 @@ export const projects = [
       "Rate-limiting and security headers (Helmet) implementation",
     ],
     challenges: [
-      "Migrating and structuring legacy JSON data into a relational MongoDB schema.",
+      "Migrating and structuring legacy JSON data into a MongoDB schema.",
       "Designing a clean, intuitive admin interface for non-technical users.",
       "Managing frontend routing and protected API endpoints securely.",
     ],
@@ -138,12 +143,12 @@ export const projects = [
       "Replaced a static site with a fully dynamic, database-driven platform.",
       "Delivered end-to-end full-stack implementation from API design to responsive UI.",
     ],
+    screenshot: cfqmaImg,
+    contribution: ["Implemented the React frontend and content presentation", "Integrated the REST API and MongoDB-backed content", "Built the administrative content workflow"],
     links: {
       live: "https://cfqma-platform.vercel.app/",
       caseStudy: "/projects/cfqma-platform",
     },
-    contribution: ["Implemented the React frontend and content presentation", "Integrated the REST API and MongoDB-backed content", "Built the administrative content workflow"],
-    evidence: ["Live Demo", "Case Study", "Private Repository"],
   },
 ];
 
