@@ -2,6 +2,7 @@ import syndicaiImg from "../../projects/syndicai/syndicai.png";
 import elalaouilaboImg from "../../projects/elalaouilabo/elalaouilabo.png";
 import gymImg from "../../projects/gym-coaching-saas/gym.png";
 import cfqmaImg from "../../projects/cfqma-platform/cfqma.png";
+import orabellaImg from "../../projects/orabella/orabella.png";
 
 export const projects = [
   {
@@ -36,6 +37,10 @@ export const projects = [
       "Implemented multi-role authorization and tenant-scoped data boundaries across the application.",
     ],
     screenshot: syndicaiImg,
+    repository: {
+      url: null,
+      isPublic: false,
+    },
     links: {
       live: "https://syndicai-ssp.vercel.app/",
       caseStudy: "/projects/syndicai",
@@ -72,6 +77,10 @@ export const projects = [
     ],
     screenshot: elalaouilaboImg,
     contribution: ["Implemented the responsive Next.js frontend", "Structured technical SEO and metadata", "Integrated the WhatsApp-first contact workflow"],
+    repository: {
+      url: null,
+      isPublic: false,
+    },
     links: {
       live: "https://elalaouilabo.vercel.app/",
       caseStudy: "/projects/elalaouilabo",
@@ -108,6 +117,10 @@ export const projects = [
     ],
     screenshot: gymImg,
     contribution: ["Implemented the coach and athlete workflow UI", "Integrated Supabase authentication and data access", "Added validation and subscription workflow integrations"],
+    repository: {
+      url: null,
+      isPublic: false,
+    },
     links: {
       live: "https://gym-coaching-site.vercel.app/",
       caseStudy: "/projects/gym-coaching-saas",
@@ -145,14 +158,63 @@ export const projects = [
     ],
     screenshot: cfqmaImg,
     contribution: ["Implemented the React frontend and content presentation", "Integrated the REST API and MongoDB-backed content", "Built the administrative content workflow"],
+    repository: {
+      url: null,
+      isPublic: false,
+    },
     links: {
       live: "https://cfqma-platform.vercel.app/",
       caseStudy: "/projects/cfqma-platform",
     },
   },
+  {
+    slug: "orabella",
+    title: "OraBella",
+    period: "2026",
+    maturity: "Deployed E-commerce",
+    category: "Moroccan Watch E-commerce",
+    summary: "A modern Moroccan watch e-commerce web application featuring product discovery, categorization, and a Cash on Delivery checkout flow.",
+    problem:
+      "The Moroccan market requires an e-commerce experience tailored to local purchasing habits, emphasizing product discovery and seamless Cash on Delivery (COD) workflows.",
+    solution:
+      "Built a full-stack e-commerce web application with a responsive product catalog, category browsing, cart management, and a streamlined COD checkout integrated with WhatsApp for customer support.",
+    architecture:
+      "Next.js frontend with Tailwind CSS and shadcn/ui for responsive design, backed by Supabase for product data, categories, and admin management.",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "shadcn/ui"],
+    focus: ["E-commerce Architecture", "Product Data Management", "Checkout Flow"],
+    features: [
+      "Responsive product catalog and category browsing",
+      "Cart management and Cash on Delivery checkout flow",
+      "WhatsApp customer support integration",
+      "Supabase-backed admin and product management",
+    ],
+    challenges: [
+      "Designing a frictionless Cash on Delivery checkout flow.",
+      "Structuring the product and category schema in Supabase for efficient querying.",
+      "Optimizing the responsive UI for mobile-first product discovery.",
+    ],
+    results: [
+      "Deployed a fully functional e-commerce platform tailored to the Moroccan watch market.",
+      "Delivered an intuitive admin workflow for ongoing product and order management.",
+    ],
+    screenshot: orabellaImg,
+    contribution: [
+      "Developed the e-commerce architecture and product discovery UI",
+      "Implemented the cart, checkout, and Cash on Delivery workflows",
+      "Integrated Supabase for backend data and admin management",
+    ],
+    repository: {
+      url: null,
+      isPublic: false,
+    },
+    links: {
+      live: "https://orabellam.vercel.app/",
+      caseStudy: "/projects/orabella",
+    },
+  },
 ];
 
-export const featuredProjects = projects.slice(0, 4);
+export const featuredProjects = projects.slice(0, 5);
 
 export function getProjectBySlug(slug) {
   return projects.find((project) => project.slug === slug);
