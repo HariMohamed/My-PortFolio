@@ -27,7 +27,7 @@ export default function ProjectDetails() {
   useEffect(() => {
     if (project) {
       setPageMetadata({
-        title: `${project.title} | Hari Mohamed Rizq`,
+        title: `Building ${project.title} — ${project.category} | Hari Mohamed Rizq`,
         description: project.summary,
         url: `${siteUrl}/projects/${project.slug}`,
       });
@@ -39,7 +39,9 @@ export default function ProjectDetails() {
       });
     }
 
-    return () => setPageMetadata(defaultMetadata);
+    return () => {
+      setPageMetadata(defaultMetadata);
+    };
   }, [project, slug]);
 
   if (!project) {
@@ -78,7 +80,7 @@ export default function ProjectDetails() {
           {project.links.live ? (
             <a className="btn btn-primary" href={project.links.live} target="_blank" rel="noopener noreferrer">
               <ArrowUpRight aria-hidden="true" />
-              Live Demo
+              View {project.title} Live
             </a>
           ) : null}
           <a className="btn btn-secondary" href={profile.socials.email}>
@@ -93,7 +95,7 @@ export default function ProjectDetails() {
         <MotionWrapper className="detail-screenshot">
           <img
             src={project.screenshot}
-            alt={`Screenshot of ${project.title}`}
+            alt={`Screenshot of ${project.title} web application`}
             loading="lazy"
             decoding="async"
           />
@@ -102,15 +104,15 @@ export default function ProjectDetails() {
 
       <div className="detail-grid">
         <MotionWrapper className="detail-card">
-          <span>Problem</span>
+          <h2 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-70">What problem does {project.title} solve?</h2>
           <p>{project.problem}</p>
         </MotionWrapper>
         <MotionWrapper className="detail-card">
-          <span>Solution</span>
+          <h2 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-70">What did I build?</h2>
           <p>{project.solution}</p>
         </MotionWrapper>
         <MotionWrapper className="detail-card">
-          <span>My contribution</span>
+          <h2 className="text-sm font-bold uppercase tracking-wider mb-2 opacity-70">What was my role?</h2>
           <ul className="detail-list">
             {project.contribution.map((item) => <li key={item}>{item}</li>)}
           </ul>
@@ -118,10 +120,12 @@ export default function ProjectDetails() {
       </div>
 
       <DetailSection title="Architecture">
+        <h3 className="sr-only">What technologies power {project.title}?</h3>
         <p>{project.architecture}</p>
       </DetailSection>
 
       <DetailSection title="Features">
+        <h3 className="sr-only">What are the main features?</h3>
         <ul className="detail-list">
           {project.features.map((feature) => (
             <li key={feature}>{feature}</li>
@@ -145,13 +149,17 @@ export default function ProjectDetails() {
         </ul>
       </DetailSection>
 
-      {project.links.live && (
-        <DetailSection title="Links">
-          <div className="project-actions detail-actions">
-            <a className="text-link" href={project.links.live} target="_blank" rel="noopener noreferrer">
-              <ArrowUpRight aria-hidden="true" />
-              Live Demo
-            </a>
+      {project.links && (
+        <DetailSection title="Project Links">
+          <h3 className="sr-only">Where can {project.title} be viewed?</h3>
+          <div className="project-actions detail-actions flex flex-col gap-4 items-start">
+            {project.links.live && (
+              <a className="text-link" href={project.links.live} target="_blank" rel="noopener noreferrer">
+                <ArrowUpRight aria-hidden="true" />
+                Live Product ↓<br/>
+                <span className="text-sm opacity-70">{project.links.live}</span>
+              </a>
+            )}
           </div>
         </DetailSection>
       )}

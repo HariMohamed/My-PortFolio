@@ -1,23 +1,10 @@
 {
-
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "rewrites": [
     {
-      "source": "/projects/syndicai",
-      "destination": "/projects/syndicai/index.html"
-    },
-    {
-      "source": "/projects/gym-coaching-saas",
-      "destination": "/projects/gym-coaching-saas/index.html"
-    },
-    {
-      "source": "/projects/elalaouilabo",
-      "destination": "/projects/elalaouilabo/index.html"
-    },
-    {
-      "source": "/projects/cfqma-platform",
-      "destination": "/projects/cfqma-platform/index.html"
+      "source": "/projects/:slug",
+      "destination": "/projects/:slug/index.html"
     },
     {
       "source": "/(.*)",
