@@ -1,5 +1,5 @@
 const intentTerms = {
-  project: ["project", "built", "developed", "case study", "syndicai", "labo", "coaching", "cfqma"],
+  project: ["project", "built", "developed", "case study", "syndicai", "labo", "coaching", "cfqma", "orabella", "watch", "e-commerce"],
   skills: ["skill", "stack", "technology", "technologies", "frontend", "backend", "react", "python", "database", "api", "server", "ui", "interface"],
   experience: ["experience", "worked", "work history", "company", "job", "role", "professional"],
   education: ["education", "study", "studied", "degree", "academic", "school", "training"],

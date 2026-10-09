@@ -5,6 +5,7 @@ export const projectAliases = {
   elalaouilabo: ["el alaoui", "alaoui", "labo", "photography"],
   "gym-coaching-saas": ["gym coaching", "gym", "coaching"],
   "cfqma-platform": ["cfqma", "training center", "educational platform"],
+  orabella: ["orabella", "ora bella", "watch", "watches", "e-commerce", "ecommerce"],
 };
 
 export function normalize(value = "") {

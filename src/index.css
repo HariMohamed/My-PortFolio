@@ -556,6 +556,22 @@ img {
     @apply mb-5 text-xl font-bold text-text;
   }
 
+  /* Neutral tile keeps brand-coloured marks legible in both themes. */
+  .stack-logo {
+    @apply inline-flex h-7 w-7 flex-none items-center justify-center rounded-md;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 0 0 1px rgba(12, 24, 18, 0.1);
+  }
+
+  .stack-logo img {
+    @apply h-4 w-4 object-contain;
+  }
+
+  .stack-logo-fallback {
+    @apply h-1.5 w-1.5 rounded-full;
+    background: var(--color-primary);
+  }
+
   .timeline {
     @apply relative flex flex-col gap-6 md:gap-12 py-10;
   }

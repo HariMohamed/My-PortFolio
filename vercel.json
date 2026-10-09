@@ -5,10 +5,6 @@
     {
       "source": "/projects/:slug",
       "destination": "/projects/:slug/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
     }
   ],
   "headers": [

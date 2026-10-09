@@ -6,6 +6,23 @@ import { normalize, detectEntities } from "../intents/detectEntities";
 import { getNavigationTarget, sectionTargets } from "../navigation/getNavigationTarget";
 
 const has = (query, terms) => terms.some((term) => query.includes(term));
+
+// Technology lookups are derived from the project and skills data, never hard-coded.
+const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function findTechnology(query) {
+  const names = [...new Set([...projects.flatMap((item) => item.stack), ...skillGroups.flatMap((group) => group.skills)])];
+  return names
+    .filter((name) => new RegExp(`(^| )${escapeRegExp(normalize(name))}( |$)`).test(query))
+    .sort((a, b) => b.length - a.length)[0] || null;
+}
+function technologyAnswer(technology) {
+  const matches = projects.filter((item) => item.stack.some((entry) => normalize(entry) === normalize(technology)));
+  if (!matches.length) {
+    return { answer: `${technology} is listed in the engineering stack, but none of the documented project case studies list it in their stack.`, destination: sectionTargets.skills, suggestions: [{ label: "Explore all projects", href: "/#projects" }], contextProject: null };
+  }
+  const list = matches.map((item) => `${item.title} (${item.maturity})`).join("; ");
+  return { answer: `${technology} appears in the stack of ${matches.length === 1 ? "this documented project" : `${matches.length} documented projects`}: ${list}.`, destination: matches.length === 1 ? getNavigationTarget("project", matches[0]) : sectionTargets.projects, suggestions: matches.length === 1 ? [{ label: "Explore all projects", href: "/#projects" }] : matches.slice(0, 3).map((item) => ({ label: `Explore ${item.title}`, href: item.links.caseStudy })), contextProject: matches.length === 1 ? matches[0] : null };
+}
 const projectAnswer = (project) => `${project.title} is a ${project.maturity.toLowerCase()} focused on ${project.summary.replace(/\.$/, "")}. Hari's contribution included ${project.contribution.join(", ")}. Relevant technologies include ${project.stack.join(", ")}. The public evidence is the live deployment and case study; the repository is private.`;
 const projectSuggestions = (project) => [
   { label: "Ask about backend work", query: "Which project demonstrates backend engineering?" },
@@ -20,6 +37,10 @@ export function generateDeterministicResponse({ query, retrieval, contextProject
   if (has(normalized, ["other project", "another project", "next project"]) && contextProject) {
     const next = projects.find((item) => item.slug !== contextProject.slug) || projects[0];
     return { answer: projectAnswer(next), destination: getNavigationTarget("project", next), suggestions: projectSuggestions(next), contextProject: next };
+  }
+  if (has(normalized, ["which project", "what project", "projects use", "projects using", "projects built with", "project use", "project using", "used in"])) {
+    const technology = findTechnology(normalized);
+    if (technology) { const result = technologyAnswer(technology); return { ...result, contextProject: result.contextProject || contextProject }; }
   }
   if (project && has(normalized, ["tell me", "about", "status", "maturity", "contribute", "built", "project"])) return { answer: projectAnswer(project), destination: getNavigationTarget("project", project), suggestions: projectSuggestions(project), contextProject: project };
   if (contextProject && has(normalized, ["technology", "technologies", "stack", "use", "used", "contribution"])) return { answer: `${contextProject.title} uses ${contextProject.stack.join(", ")}. Hari's documented contribution includes ${contextProject.contribution.join(", ")}.`, destination: getNavigationTarget("project", contextProject), suggestions: projectSuggestions(contextProject), contextProject };

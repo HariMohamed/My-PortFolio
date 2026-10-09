@@ -1,10 +1,9 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "node:path";
-import fs from "fs";
+import { loadProjects } from "./scripts/load-projects.mjs";
 
-const projectsFile = fs.readFileSync(resolve("src/data/projects.js"), "utf8");
-const slugs = [...projectsFile.matchAll(/slug: "(.*?)"/g)].map(m => m[1]);
+const slugs = (await loadProjects()).map((project) => project.slug);
 
 const projectInputs = {};
 slugs.forEach((slug) => {

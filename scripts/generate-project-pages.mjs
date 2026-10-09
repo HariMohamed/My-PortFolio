@@ -1,21 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { loadProjects } from './load-projects.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.join(__dirname, '..');
 
-// Read and sanitize projects.js to bypass image imports
-const projectsJsPath = path.join(rootDir, 'src', 'data', 'projects.js');
-const tempJsPath = path.join(rootDir, 'src', 'data', 'projects-temp.js');
-const content = fs.readFileSync(projectsJsPath, 'utf8');
-const sanitized = content
-  .replace(/import.*?\.png";/g, '')
-  .replace(/screenshot: [a-zA-Z]+/g, 'screenshot: null');
-fs.writeFileSync(tempJsPath, sanitized);
-
-const { projects } = await import('../src/data/projects-temp.js');
+const projects = await loadProjects();
 
 const siteUrl = "https://harimohamedrizq.vercel.app";
 
@@ -136,8 +128,3 @@ projects.forEach((project, index) => {
 
 fs.writeFileSync(llmsPath, llmsContent.trim() + '\n', 'utf8');
 console.log('✓ Generated llms.txt');
-
-// Cleanup
-if (fs.existsSync(tempJsPath)) {
-  fs.unlinkSync(tempJsPath);
-}

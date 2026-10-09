@@ -32,6 +32,10 @@ export const techLogos = {
   "Power BI": "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg",
 };
 
+// Engineering Stack tiles are light, so the white Vercel mark used on dark chips is replaced.
+// Skills without a genuine brand mark (e.g. "AI APIs") intentionally have no entry and use a plain dot.
+export const stackLogos = { ...techLogos, Vercel: "https://cdn.simpleicons.org/vercel" };
+
 export const companyLogos = {
   // Using null for fallback text/initials for unverified/unavailable logos.
   "Capital Innov": { src: "/logos/capital-innov.png", alt: "Capital Innov", size: "large" },

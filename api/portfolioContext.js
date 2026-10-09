@@ -28,7 +28,7 @@ const profile = {
   metrics: [
     {
       label: "Deployed Projects",
-      value: 4,
+      value: 5,
       suffix: "",
       detail: "Deployed systems across SaaS, AI integration, and frontend engineering",
     },
@@ -198,9 +198,50 @@ const projects = [
       caseStudy: "/projects/cfqma-platform",
     },
   },
+  {
+    slug: "orabella",
+    title: "OraBella",
+    period: "2026",
+    maturity: "Deployed E-commerce",
+    category: "Moroccan Watch E-commerce",
+    summary: "A modern Moroccan watch e-commerce web application featuring product discovery, categorization, and a Cash on Delivery checkout flow.",
+    problem:
+      "The Moroccan market requires an e-commerce experience tailored to local purchasing habits, emphasizing product discovery and seamless Cash on Delivery (COD) workflows.",
+    solution:
+      "Built a full-stack e-commerce web application with a responsive product catalog, category browsing, cart management, and a streamlined COD checkout integrated with WhatsApp for customer support.",
+    architecture:
+      "Next.js frontend with Tailwind CSS and shadcn/ui for responsive design, backed by Supabase for product data, categories, and admin management.",
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Supabase", "shadcn/ui"],
+    focus: ["E-commerce Architecture", "Product Data Management", "Checkout Flow"],
+    features: [
+      "Responsive product catalog and category browsing",
+      "Cart management and Cash on Delivery checkout flow",
+      "WhatsApp customer support integration",
+      "Supabase-backed admin and product management",
+    ],
+    challenges: [
+      "Designing a frictionless Cash on Delivery checkout flow.",
+      "Structuring the product and category schema in Supabase for efficient querying.",
+      "Optimizing the responsive UI for mobile-first product discovery.",
+    ],
+    results: [
+      "Deployed a fully functional e-commerce platform tailored to the Moroccan watch market.",
+      "Delivered an intuitive admin workflow for ongoing product and order management.",
+    ],
+    screenshot: null,
+    contribution: [
+      "Developed the e-commerce architecture and product discovery UI",
+      "Implemented the cart, checkout, and Cash on Delivery workflows",
+      "Integrated Supabase for backend data and admin management",
+    ],
+    links: {
+      live: "https://orabellam.vercel.app/",
+      caseStudy: "/projects/orabella",
+    },
+  },
 ];
 
-const featuredProjects = projects.slice(0, 4);
+const featuredProjects = projects.slice(0, 5);
 
 export function getProjectBySlug(slug) {
   return projects.find((project) => project.slug === slug);

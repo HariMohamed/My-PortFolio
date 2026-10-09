@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom";
 import { resolvePortfolioQuestion } from "../data/portfolioKnowledge";
 import { createConversationContext, getContextualIntroduction, getPageContext } from "../assistant/context/conversationContext";
 
-const defaultQuestions = ["Who is Hari?", "What technologies do you use?", "Tell me about SyndicAI.", "How can I contact you?"];
+const defaultQuestions = ["Who is Hari?", "Which projects use FastAPI?", "Tell me about OraBella.", "How can I contact you?"];
+const REQUEST_TIMEOUT_MS = 20000;
 
 function starterQuestions(pageContext) {
   if (pageContext.project) return ["What was Hari's role?", "What technologies were used?", "What evidence is available?"];
@@ -68,6 +69,8 @@ export default function FloatingAssistant() {
     }
 
     setIsLoading(true);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
     try {
       const history = newMessages.slice(-6).map(m => ({
         role: m.role,
@@ -77,26 +80,34 @@ export default function FloatingAssistant() {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query: trimmed, history })
+        body: JSON.stringify({ query: trimmed, history }),
+        signal: controller.signal
       });
 
+      if (res.status === 429) throw new Error('RATE_LIMITED');
       if (!res.ok) throw new Error('API Error');
       const data = await res.json();
 
       const llmResult = {
         answer: data.answer,
-        destination: { href: "#", label: "Portfolio" },
+        destination: null,
         suggestions: []
       };
       setMessages([...newMessages, { role: "assistant", result: llmResult }]);
     } catch(err) {
+      const answer = err.name === "AbortError"
+        ? "The assistant took too long to respond. Please try again, or explore the portfolio directly."
+        : err.message === "RATE_LIMITED"
+          ? "You're sending questions quickly. Please wait a moment and try again."
+          : "The AI assistant is temporarily unavailable. Please try exploring the portfolio directly.";
       const fallbackResult = {
-        answer: "The AI assistant is temporarily unavailable. Please try exploring the portfolio directly.",
+        answer,
         destination: { href: "#contact", label: "Get in touch" },
         suggestions: []
       };
       setMessages([...newMessages, { role: "assistant", result: fallbackResult }]);
     } finally {
+      clearTimeout(timeout);
       setIsLoading(false);
     }
   }
@@ -116,14 +127,14 @@ export default function FloatingAssistant() {
             </div>
             <button type="button" className="assistant-close" onClick={close} aria-label="Close portfolio assistant"><X aria-hidden="true" /></button>
           </header>
-          <div className="assistant-conversation" aria-live="polite">
+          <div className="assistant-conversation" aria-live="polite" aria-busy={isLoading}>
             <div className="assistant-message assistant-message-bot"><Sparkles aria-hidden="true" /><span>{intro}</span></div>
             {messages.map((message, index) => message.role === "user" ? (
               <div className="assistant-message assistant-message-user" key={`${message.text}-${index}`}>{message.text}</div>
             ) : (
               <div className="assistant-response" key={`${message.result.answer}-${index}`}>
                 <p>{message.result.answer}</p>
-                <a className="assistant-destination" href={message.result.destination.href}>{message.result.destination.label}</a>
+                {message.result.destination ? <a className="assistant-destination" href={message.result.destination.href}>{message.result.destination.label}</a> : null}
                 <div className="assistant-follow-ups" aria-label="Suggested follow-up questions">
                   {message.result.suggestions.slice(0, 3).map((suggestion) => suggestion.href ? <a key={suggestion.label} href={suggestion.href}>{suggestion.label}</a> : <button key={suggestion.label} type="button" onClick={() => ask(suggestion.query)} disabled={isLoading}>{suggestion.label}</button>)}
                 </div>
@@ -134,7 +145,7 @@ export default function FloatingAssistant() {
           {messages.length === 0 ? <div className="assistant-starters" aria-label="Suggested portfolio questions">{suggestions.map((question) => <button key={question} type="button" onClick={() => ask(question)} disabled={isLoading}><MessageSquareText aria-hidden="true" />{question}</button>)}</div> : null}
           <form className="assistant-form" onSubmit={(event) => { event.preventDefault(); ask(input); }}>
             <label className="sr-only" htmlFor="portfolio-question">Ask about the portfolio</label>
-            <input ref={inputRef} id="portfolio-question" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Hari's work" autoComplete="off" disabled={isLoading} />
+            <input ref={inputRef} id="portfolio-question" value={input} onChange={(event) => setInput(event.target.value)} placeholder="Ask about Hari's work" maxLength={500} autoComplete="off" disabled={isLoading} />
             <button type="submit" aria-label="Ask portfolio assistant" disabled={isLoading}><Send aria-hidden="true" /></button>
           </form>
         </section>

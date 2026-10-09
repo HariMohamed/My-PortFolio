@@ -1,7 +1,24 @@
+import { useState } from "react";
+import { stackLogos } from "../data/logos";
 import { skillGroups } from "../data/skills";
 import MotionWrapper from "./MotionWrapper";
 import SectionTitle from "./SectionTitle";
 
+// Decorative: the skill name is always rendered next to the mark.
+function StackLogo({ skill }) {
+  const [failed, setFailed] = useState(false);
+  const src = stackLogos[skill];
+
+  return (
+    <span className="stack-logo" aria-hidden="true">
+      {src && !failed ? (
+        <img src={src} alt="" width="16" height="16" loading="lazy" decoding="async" onError={() => setFailed(true)} />
+      ) : (
+        <span className="stack-logo-fallback" />
+      )}
+    </span>
+  );
+}
 
 export default function Skills() {
   return (
@@ -20,10 +37,10 @@ export default function Skills() {
             className="skill-card"
           >
             <h3>{group.title}</h3>
-            <ul className="mt-4 flex flex-col gap-2 text-muted">
+            <ul className="mt-4 flex flex-col gap-2.5 text-muted">
               {group.skills.map((skill) => (
-                <li key={skill} className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent/50" aria-hidden="true" />
+                <li key={skill} className="flex items-center gap-3">
+                  <StackLogo skill={skill} />
                   <span className="font-medium text-text">{skill}</span>
                 </li>
               ))}
