@@ -16,7 +16,7 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-[90svh] w-full flex items-center justify-center overflow-hidden border-b shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.05)] border-transparent" aria-labelledby="hero-title">
+    <section id="home" className="relative min-h-[90svh] w-full flex items-center justify-center overflow-hidden pt-24 border-b shadow-[inset_0_-1px_0_0_rgba(255,255,255,0.05)] border-transparent" aria-labelledby="hero-title">
 
       {/*
         MEDIA LAYER PLACEHOLDER
@@ -29,7 +29,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-bg opacity-90" aria-hidden="true" />
       </div>
 
-      <div className="relative z-10 w-full max-w-6xl px-6 mx-auto flex flex-col items-center text-center mt-12 pb-24 sm:pb-32">
+      <div className="relative z-10 w-full max-w-6xl px-6 mx-auto flex flex-col items-center text-center pb-24 sm:pb-32">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -40,7 +40,7 @@ export default function Hero() {
         >
           <motion.div variants={revealVariants}>
             <p className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] font-mono text-xs font-bold uppercase tracking-widest text-accent">
-              <Sparkles className="w-4 h-4" aria-hidden="true" />
+              <Sparkles className="w-4 h-4 shrink-0" aria-hidden="true" />
               {profile.badge}
             </p>
           </motion.div>
