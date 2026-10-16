@@ -154,6 +154,14 @@ export default async function handler(req, res) {
       signal: controller.signal,
     });
 
+    if (groqRes.status === 429) {
+      // Provider quota or token-per-minute limit: tell the client to retry, distinct from our own per-IP limit.
+      console.error('Groq API Error: status 429 (provider rate limit)');
+      const retryAfter = Number(groqRes.headers?.get?.('retry-after'));
+      res.setHeader?.('Retry-After', String(Number.isFinite(retryAfter) && retryAfter > 0 ? Math.min(Math.ceil(retryAfter), 60) : 30));
+      return reply(res, 429, { error: 'The AI assistant is busy right now. Please try again shortly.', code: 'provider_busy' });
+    }
+
     if (!groqRes.ok) {
       // Log only the status: provider error bodies can echo request content.
       console.error('Groq API Error: status', groqRes.status);

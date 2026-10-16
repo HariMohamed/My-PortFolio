@@ -864,11 +864,19 @@ img {
 
   .footer-shell {
     width: min(1180px, calc(100% - 32px));
-    @apply mx-auto flex flex-col gap-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] border-t border-transparent py-10 text-muted sm:flex-row sm:items-center sm:justify-between;
+    @apply mx-auto flex flex-col gap-5 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05)] border-t border-transparent pb-24 pt-10 text-muted sm:flex-row sm:items-center sm:justify-between;
   }
 
   .footer-shell strong {
     @apply block text-text;
+  }
+
+  .footer-shell .footer-brand {
+    @apply flex items-center gap-2;
+  }
+
+  .footer-shell .footer-mark {
+    @apply inline-flex text-accent;
   }
 
   .footer-shell span {

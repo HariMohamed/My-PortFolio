@@ -84,7 +84,10 @@ export default function FloatingAssistant() {
         signal: controller.signal
       });
 
-      if (res.status === 429) throw new Error('RATE_LIMITED');
+      if (res.status === 429) {
+        const body = await res.json().catch(() => null);
+        throw new Error(body?.code === 'provider_busy' ? 'PROVIDER_BUSY' : 'RATE_LIMITED');
+      }
       if (!res.ok) throw new Error('API Error');
       const data = await res.json();
 
@@ -99,7 +102,9 @@ export default function FloatingAssistant() {
         ? "The assistant took too long to respond. Please try again, or explore the portfolio directly."
         : err.message === "RATE_LIMITED"
           ? "You're sending questions quickly. Please wait a moment and try again."
-          : "The AI assistant is temporarily unavailable. Please try exploring the portfolio directly.";
+          : err.message === "PROVIDER_BUSY"
+            ? "The AI assistant is busy right now. Please try again in a minute, or explore the portfolio directly."
+            : "The AI assistant is temporarily unavailable. Please try exploring the portfolio directly.";
       const fallbackResult = {
         answer,
         destination: { href: "#contact", label: "Get in touch" },

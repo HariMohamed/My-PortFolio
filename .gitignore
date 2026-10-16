@@ -34,3 +34,4 @@ projects/*/index.html
 # Claude Code local configuration
 .claude/
 CLAUDE.md
+.vercel/

@@ -13,6 +13,7 @@ import {
   X,
 } from "lucide-react";
 import { profile } from "../data/profile";
+import BrandMark from "./BrandMark";
 import { scrollToSection as scrollToTarget } from "../utils/scroll";
 
 const navLinks = [
@@ -72,7 +73,7 @@ export default function Navbar({ theme, onToggleTheme, onOpenCommand }) {
     <header className="fixed left-0 right-0 top-0 z-50 border-b border-border bg-bg backdrop-blur-xl">
       <div className="nav-shell">
         <Link to="/" className="brand-link" aria-label={`${profile.name} home`}>
-          <span className="brand-mark">{profile.initials}</span>
+          <span className="brand-mark"><BrandMark /></span>
           <span className="hidden sm:inline">{profile.name}</span>
         </Link>
 

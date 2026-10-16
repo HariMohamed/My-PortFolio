@@ -68,7 +68,9 @@ projects.forEach((project) => {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%23090909'/%3E%3Cpath d='M18 72h64v8H18z' fill='%2300f58c'/%3E%3Ctext x='50' y='61' font-family='Arial,sans-serif' font-size='42' font-weight='800' fill='%23f5f5f5' text-anchor='middle'%3EHR%3C/text%3E%3C/svg%3E" />
+    <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/brand/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
     <script type="application/ld+json">
       ${JSON.stringify(jsonLd, null, 2).replace(/\n/g, '\n      ')}
     </script>

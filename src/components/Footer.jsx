@@ -1,11 +1,12 @@
 import { Command, Github, Linkedin, Mail } from "lucide-react";
 import { profile } from "../data/profile";
+import BrandMark from "./BrandMark";
 
 export default function Footer({ onOpenCommand }) {
   return (
     <footer className="footer-shell">
       <div>
-        <strong>{profile.name}</strong>
+        <strong className="footer-brand"><span className="footer-mark"><BrandMark height={18} /></span>{profile.name}</strong>
         <span>{profile.positioning}</span>
       </div>
       <div className="footer-links">
