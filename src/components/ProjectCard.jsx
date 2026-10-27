@@ -50,7 +50,7 @@ export default function ProjectCard({ project, index = 0 }) {
 
       <div className="flex flex-col flex-grow p-6">
         <div className="mb-4">
-          <p className="mb-2 font-mono text-xs font-bold uppercase text-accent">
+          <p className="mb-2 font-mono text-xs font-bold uppercase text-accent-text">
             {project.category}
           </p>
           <h3 className="font-display text-3xl font-extrabold text-text tracking-tight mb-2">

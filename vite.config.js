@@ -2,6 +2,7 @@ import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "node:path";
 import { loadProjects } from "./scripts/load-projects.mjs";
+import tailwindcss from "@tailwindcss/vite";
 
 const slugs = (await loadProjects()).map((project) => project.slug);
 
@@ -52,6 +53,7 @@ function localChatApi() {
 export default defineConfig({
   plugins: [
     react(),
+    tailwindcss(),
     localChatApi(),
     {
       name: "preview-rewrite",
@@ -65,6 +67,11 @@ export default defineConfig({
       },
     },
   ],
+  resolve: {
+    alias: {
+      "@": resolve("src"),
+    },
+  },
   build: {
     rollupOptions: {
       input: {

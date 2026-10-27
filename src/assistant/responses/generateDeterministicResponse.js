@@ -42,6 +42,13 @@ const projectSuggestions = (project) => [
   ...(project.slug !== "syndicai" ? [{ label: "Explore SyndicAI", href: "/projects/syndicai" }] : []),
 ];
 
+// Only fields published in the profile data are ever returned; a missing phone is reported as unavailable.
+export function contactAnswer(profile, normalized) {
+  const wantsPhone = /(^| )(phone|number|call|telephone|tel)( |$)/.test(normalized);
+  if (wantsPhone) return profile.phone ? `Hari's published phone number is ${profile.phone}. You can also write to ${profile.email}.` : `A phone number isn't published in the portfolio. You can contact Hari at ${profile.email}.`;
+  return `You can contact Hari at ${profile.email}, view the CV, or use the GitHub and LinkedIn links in the contact section.`;
+}
+
 export function generateDeterministicResponse({ query, retrieval, contextProject = null }) {
   const normalized = normalize(query);
   const project = retrieval?.entities?.project || detectEntities(normalized, contextProject).project;
@@ -74,7 +81,7 @@ export function generateDeterministicResponse({ query, retrieval, contextProject
   if (has(normalized, ["stack", "technology", "technologies", "frontend", "react", "python", "database", "skill", "ui", "interface"])) return { answer: `The engineering stack is ${skillGroups.map((group) => `${group.title}: ${group.skills.join(", ")}`).join("; ")}. Current focus areas include ${currentFocus.join(", ")}.`, destination: sectionTargets.skills, suggestions: [{ label: "Ask about a project", query: "Tell me about SyndicAI." }, sectionTargets.focus], contextProject };
   if (has(normalized, ["experience", "worked", "work history", "company", "job", "role", "professional"])) return { answer: `Hari's documented experience includes ${professionalExperience.map((item) => `${item.role} at ${item.organization} (${item.period})`).join("; ")}.`, destination: sectionTargets.experience, suggestions: [{ label: "Explore Engineering Stack", href: "/#skills" }, { label: "Ask about education", query: "What did he study?" }], contextProject };
   if (has(normalized, ["education", "study", "studied", "degree", "academic", "school", "training"])) return { answer: `Hari's documented academic background includes ${academicEducation.map((item) => `${item.role} at ${item.organization} (${item.period})`).join("; ")}.`, destination: sectionTargets.education, suggestions: [{ label: "Explore Experience", href: "/#experience" }, { label: "Explore Engineering Stack", href: "/#skills" }], contextProject };
-  if (has(normalized, ["contact", "email", "phone", "linkedin", "cv", "resume", "github", "reach"])) return { answer: `You can contact Hari at ${profile.email}, view the CV, or use the GitHub and LinkedIn links in the contact section.`, destination: sectionTargets.contact, suggestions: [{ label: "Explore Projects", href: "/#projects" }, { label: "Explore Experience", href: "/#experience" }], contextProject };
+  if (has(normalized, ["contact", "email", "phone", "linkedin", "cv", "resume", "github", "reach"])) return { answer: contactAnswer(profile, normalized), destination: sectionTargets.contact, suggestions: [{ label: "Explore Projects", href: "/#projects" }, { label: "Explore Experience", href: "/#experience" }], contextProject };
   if (has(normalized, ["who", "what does", "background", "based", "kind of developer", "available", "looking for", "roles"])) return { answer: `${profile.name} is a ${profile.role} based in ${profile.location}. ${profile.availability}.`, destination: sectionTargets.contact, suggestions: [{ label: "Explore Projects", href: "/#projects" }, { label: "Explore Experience", href: "/#experience" }], contextProject };
   return { needsLLM: true, contextProject };
 }

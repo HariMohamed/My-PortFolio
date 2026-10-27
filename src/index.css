@@ -1,7 +1,27 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
+@source not "../.claude-flow"; /* local agent state is not gitignored but holds class-like strings (e.g. bg-background) */
 
+@theme {
+  --color-surface-2: var(--color-surface-strong);
+  --color-text: var(--color-text-primary);
+  --color-muted: var(--color-text-muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--color-primary);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
 :root {
   color-scheme: dark;
   --color-bg: #09090b;
@@ -11,6 +31,8 @@
   --color-text-primary: #f8fafc;
   --color-text-secondary: #cbd5e1;
   --color-text-muted: #94a3b8;
+  --color-accent-text: var(--color-primary); /* accent-coloured TEXT (links, active nav, hero badge/stack line) */
+  --color-on-accent: var(--color-bg); /* text on accent-filled buttons */
   --color-primary: #44E6A9;
   --color-primary-strong: #22d3ee;
   --color-border: transparent; /* Remove solid borders globally */
@@ -37,6 +59,8 @@
   --color-text-primary: #101412;
   --color-text-secondary: #3b423f;
   --color-text-muted: #5c6761;
+  --color-accent-text: #0f6c4f;
+  --color-on-accent: #000000;
   --color-primary: #168b68;
   --color-primary-strong: #0f6c4f;
   --color-border: rgba(12, 24, 18, 0.12);
@@ -81,23 +105,25 @@ body::selection {
   color: var(--color-text-primary);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-button,
-input {
-  font: inherit;
-}
+  button,
+  input {
+    font: inherit;
+  }
 
-button {
-  cursor: pointer;
-}
+  button {
+    cursor: pointer;
+  }
 
-img {
-  display: block;
-  max-width: 100%;
+  img {
+    display: block;
+    max-width: 100%;
+  }
 }
 
 :focus-visible {
@@ -144,7 +170,7 @@ img {
   }
 
   .nav-link-active {
-    @apply text-accent;
+    @apply text-accent-text;
     background: rgba(68, 230, 169, 0.1);
   }
 
@@ -175,7 +201,7 @@ img {
   }
 
   .btn-primary {
-    @apply bg-accent text-bg hover:-translate-y-0.5 hover:shadow-md transition-all;
+    @apply bg-accent text-on-accent hover:-translate-y-0.5 hover:shadow-md transition-all;
     border: none;
   }
 
@@ -369,7 +395,7 @@ img {
   }
 
   .metric-card span {
-    @apply mt-2 block font-mono text-xs font-bold uppercase text-accent;
+    @apply mt-2 block font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   .metric-card p {
@@ -397,7 +423,7 @@ img {
   }
 
   .eyebrow {
-    @apply mb-3 font-mono text-xs font-bold uppercase text-accent;
+    @apply mb-3 font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   .section-title h2,
@@ -465,7 +491,7 @@ img {
   }
 
   .project-meta {
-    @apply mb-2 font-mono text-xs font-bold uppercase text-accent;
+    @apply mb-2 font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   .project-card h3,
@@ -495,7 +521,7 @@ img {
   }
 
   .project-contribution > span {
-    @apply font-mono text-xs font-bold uppercase text-accent;
+    @apply font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   .project-contribution ul {
@@ -504,7 +530,7 @@ img {
 
   .detail-card span,
   .contact-kicker {
-    @apply font-mono text-xs font-bold uppercase text-accent;
+    @apply font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   .detail-card p {
@@ -535,7 +561,16 @@ img {
   }
 
   .text-link {
-    @apply inline-flex min-h-11 items-center gap-2 text-sm font-bold text-accent transition hover:text-text;
+    @apply inline-flex min-h-11 items-center gap-2 text-sm font-bold text-accent-text transition hover:text-text;
+  }
+
+  /* URL line inside a text link: dimmed in dark; full opacity in light (0.7 opacity gave 2.65:1 there). */
+  .link-url {
+    @apply text-sm opacity-70;
+  }
+
+  :root[data-theme="light"] .link-url {
+    opacity: 1;
   }
 
   .text-link svg {
@@ -682,7 +717,7 @@ img {
   }
 
   .timeline-card-head p {
-    @apply mb-2 font-mono text-xs font-bold uppercase text-accent;
+    @apply mb-2 font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   .timeline-card-head span {
@@ -729,7 +764,7 @@ img {
   }
 
   .ai-query-form label {
-    @apply font-mono text-xs font-bold uppercase text-accent;
+    @apply font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   .ai-query-row {
@@ -783,7 +818,7 @@ img {
   }
 
   .ai-label {
-    @apply mb-3 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase text-accent;
+    @apply mb-3 inline-flex items-center gap-2 font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   .ai-label svg {
@@ -960,7 +995,7 @@ img {
   }
 
   [cmdk-group-heading] {
-    @apply px-3 py-2 font-mono text-xs font-bold uppercase text-accent;
+    @apply px-3 py-2 font-mono text-xs font-bold uppercase text-accent-text;
   }
 
   [cmdk-item] {
@@ -1071,7 +1106,12 @@ img {
 .assistant-message-bot svg { width: 1rem; flex: 0 0 auto; color: var(--color-primary); }
 .assistant-message-user { justify-self: end; color: var(--color-bg); background: var(--color-primary); }
 .assistant-response { display: grid; gap: 0.65rem; padding: 0.85rem; border-radius: 0.6rem; color: var(--color-text-secondary); background: var(--color-surface-strong); }
-.assistant-response p { margin: 0; font-size: 0.87rem; line-height: 1.55; }
+.assistant-text { display: grid; gap: 0.5rem; font-size: 0.87rem; line-height: 1.55; overflow-wrap: anywhere; }
+.assistant-text p, .assistant-text ul, .assistant-text ol { margin: 0; }
+.assistant-text ul, .assistant-text ol { padding-left: 1.2rem; }
+.assistant-text ul { list-style: disc; }
+.assistant-text ol { list-style: decimal; }
+.assistant-text a { color: var(--color-primary); text-decoration: underline; font-weight: 600; }
 .assistant-destination { width: fit-content; color: var(--color-primary); font-size: 0.82rem; font-weight: 700; }
 .assistant-follow-ups { display: flex; flex-wrap: wrap; gap: 0.4rem 0.75rem; }
 .assistant-follow-ups a, .assistant-follow-ups button { padding: 0; border: 0; color: var(--color-text-muted); background: transparent; font-size: 0.75rem; cursor: pointer; }
@@ -1094,4 +1134,78 @@ img {
 @media (prefers-reduced-motion: reduce) {
   .assistant-trigger { transition: none; }
   .assistant-trigger:hover, .assistant-trigger:focus-visible { transform: none; }
+}
+@layer base {
+  :root {
+    --background: oklch(1 0 0);
+    --foreground: oklch(0.145 0 0);
+    --card: oklch(1 0 0);
+    --card-foreground: oklch(0.145 0 0);
+    --popover: oklch(1 0 0);
+    --popover-foreground: oklch(0.145 0 0);
+    --primary: oklch(0.205 0 0);
+    --primary-foreground: oklch(0.985 0 0);
+    --secondary: oklch(0.97 0 0);
+    --secondary-foreground: oklch(0.205 0 0);
+    --muted: oklch(0.97 0 0);
+    --muted-foreground: oklch(0.556 0 0);
+    --accent: oklch(0.97 0 0);
+    --accent-foreground: oklch(0.205 0 0);
+    --destructive: oklch(0.577 0.245 27.325);
+    --border: oklch(0.922 0 0);
+    --input: oklch(0.922 0 0);
+    --ring: oklch(0.708 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --radius: 0.5rem;
+    --sidebar: oklch(0.985 0 0);
+    --sidebar-foreground: oklch(0.145 0 0);
+    --sidebar-primary: oklch(0.205 0 0);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.97 0 0);
+    --sidebar-accent-foreground: oklch(0.205 0 0);
+    --sidebar-border: oklch(0.922 0 0);
+    --sidebar-ring: oklch(0.708 0 0);
+  }
+  .dark {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --card: oklch(0.205 0 0);
+    --card-foreground: oklch(0.985 0 0);
+    --popover: oklch(0.205 0 0);
+    --popover-foreground: oklch(0.985 0 0);
+    --primary: oklch(0.922 0 0);
+    --primary-foreground: oklch(0.205 0 0);
+    --secondary: oklch(0.269 0 0);
+    --secondary-foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --accent: oklch(0.269 0 0);
+    --accent-foreground: oklch(0.985 0 0);
+    --destructive: oklch(0.704 0.191 22.216);
+    --border: oklch(1 0 0 / 10%);
+    --input: oklch(1 0 0 / 15%);
+    --ring: oklch(0.556 0 0);
+    --chart-1: oklch(0.87 0 0);
+    --chart-2: oklch(0.556 0 0);
+    --chart-3: oklch(0.439 0 0);
+    --chart-4: oklch(0.371 0 0);
+    --chart-5: oklch(0.269 0 0);
+    --sidebar: oklch(0.205 0 0);
+    --sidebar-foreground: oklch(0.985 0 0);
+    --sidebar-primary: oklch(0.488 0.243 264.376);
+    --sidebar-primary-foreground: oklch(0.985 0 0);
+    --sidebar-accent: oklch(0.269 0 0);
+    --sidebar-accent-foreground: oklch(0.985 0 0);
+    --sidebar-border: oklch(1 0 0 / 10%);
+    --sidebar-ring: oklch(0.556 0 0);
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
 }

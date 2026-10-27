@@ -1,11 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import { Bot, MessageSquareText, Send, Sparkles, X } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import ChatMessage from "./ChatMessage";
 import { resolvePortfolioQuestion } from "../data/portfolioKnowledge";
 import { createConversationContext, getContextualIntroduction, getPageContext } from "../assistant/context/conversationContext";
 
 const defaultQuestions = ["Who is Hari?", "Which projects use FastAPI?", "Tell me about OraBella.", "How can I contact you?"];
 const REQUEST_TIMEOUT_MS = 20000;
+const ERROR_MESSAGES = {
+  rate_limited: "You're sending questions quickly. Please wait a moment and try again.",
+  provider_busy: "The AI provider is rate-limiting requests right now. Please try again in a minute, or explore the portfolio directly.",
+  provider_timeout: "The assistant took too long to respond. Please try again, or explore the portfolio directly.",
+  invalid_provider_response: "The assistant returned an unusable response. Please rephrase your question and try again.",
+  unavailable: "The AI assistant is temporarily unavailable. Please try exploring the portfolio directly.",
+};
 
 function starterQuestions(pageContext) {
   if (pageContext.project) return ["What was Hari's role?", "What technologies were used?", "What evidence is available?"];
@@ -84,11 +92,10 @@ export default function FloatingAssistant() {
         signal: controller.signal
       });
 
-      if (res.status === 429) {
+      if (!res.ok) {
         const body = await res.json().catch(() => null);
-        throw new Error(body?.code === 'provider_busy' ? 'PROVIDER_BUSY' : 'RATE_LIMITED');
+        throw new Error(body?.code || 'unavailable');
       }
-      if (!res.ok) throw new Error('API Error');
       const data = await res.json();
 
       const llmResult = {
@@ -98,13 +105,7 @@ export default function FloatingAssistant() {
       };
       setMessages([...newMessages, { role: "assistant", result: llmResult }]);
     } catch(err) {
-      const answer = err.name === "AbortError"
-        ? "The assistant took too long to respond. Please try again, or explore the portfolio directly."
-        : err.message === "RATE_LIMITED"
-          ? "You're sending questions quickly. Please wait a moment and try again."
-          : err.message === "PROVIDER_BUSY"
-            ? "The AI assistant is busy right now. Please try again in a minute, or explore the portfolio directly."
-            : "The AI assistant is temporarily unavailable. Please try exploring the portfolio directly.";
+      const answer = err.name === "AbortError" ? ERROR_MESSAGES.provider_timeout : ERROR_MESSAGES[err.message] || ERROR_MESSAGES.unavailable;
       const fallbackResult = {
         answer,
         destination: { href: "#contact", label: "Get in touch" },
@@ -138,7 +139,7 @@ export default function FloatingAssistant() {
               <div className="assistant-message assistant-message-user" key={`${message.text}-${index}`}>{message.text}</div>
             ) : (
               <div className="assistant-response" key={`${message.result.answer}-${index}`}>
-                <p>{message.result.answer}</p>
+                <ChatMessage text={message.result.answer} />
                 {message.result.destination ? <a className="assistant-destination" href={message.result.destination.href}>{message.result.destination.label}</a> : null}
                 <div className="assistant-follow-ups" aria-label="Suggested follow-up questions">
                   {message.result.suggestions.slice(0, 3).map((suggestion) => suggestion.href ? <a key={suggestion.label} href={suggestion.href}>{suggestion.label}</a> : <button key={suggestion.label} type="button" onClick={() => ask(suggestion.query)} disabled={isLoading}>{suggestion.label}</button>)}

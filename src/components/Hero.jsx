@@ -39,7 +39,7 @@ export default function Hero() {
           className="flex flex-col items-center max-w-4xl"
         >
           <motion.div variants={revealVariants}>
-            <p className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] font-mono text-xs font-bold uppercase tracking-widest text-accent">
+            <p className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] font-mono text-xs font-bold uppercase tracking-widest text-accent-text">
               <Sparkles className="w-4 h-4 shrink-0" aria-hidden="true" />
               {profile.badge}
             </p>
@@ -62,7 +62,7 @@ export default function Hero() {
 
           <motion.p
             variants={revealVariants}
-            className="text-sm sm:text-base font-mono text-accent mb-10"
+            className="text-sm sm:text-base font-mono text-accent-text mb-10"
           >
             {profile.stackLine}
           </motion.p>
@@ -86,15 +86,15 @@ export default function Hero() {
             className="flex flex-wrap items-center justify-center gap-3"
             aria-label="Social links"
           >
-            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent hover:bg-white/[0.05]" href={profile.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent-text hover:bg-white/[0.05]" href={profile.socials.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <Github className="w-4 h-4" aria-hidden="true" />
               GitHub
             </a>
-            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent hover:bg-white/[0.05]" href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent-text hover:bg-white/[0.05]" href={profile.socials.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <Linkedin className="w-4 h-4" aria-hidden="true" />
               LinkedIn
             </a>
-            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent hover:bg-white/[0.05]" href={profile.socials.email} aria-label="Email">
+            <a className="inline-flex h-11 items-center gap-2 rounded-md shadow-[var(--inset-border)] backdrop-blur-md border border-transparent bg-white/[0.02] px-4 text-sm font-semibold text-muted transition-colors hover:text-accent-text hover:bg-white/[0.05]" href={profile.socials.email} aria-label="Email">
               <Mail className="w-4 h-4" aria-hidden="true" />
               Email
             </a>

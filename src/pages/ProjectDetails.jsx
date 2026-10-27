@@ -157,7 +157,7 @@ export default function ProjectDetails() {
               <a className="text-link" href={project.links.live} target="_blank" rel="noopener noreferrer">
                 <ArrowUpRight aria-hidden="true" />
                 Live Product ↓<br/>
-                <span className="text-sm opacity-70">{project.links.live}</span>
+                <span className="link-url">{project.links.live}</span>
               </a>
             )}
           </div>
