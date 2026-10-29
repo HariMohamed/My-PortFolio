@@ -7,6 +7,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import viteConfig from "../vite.config.js";
 import { loadProjects } from "../scripts/load-projects.mjs";
+import { homeSeo, ogImageSize, profileLinks, projectSeo } from "../src/utils/seo.js";
 
 // Node-only checks (no browser). Test groups, from weakest to strongest evidence:
 //   1. Data/configuration assertions (read the repo, never write to it).
@@ -23,6 +24,18 @@ const siteUrl = "https://harimohamedrizq.vercel.app";
 const expectedSlugs = ["syndicai", "elalaouilabo", "gym-coaching-saas", "cfqma-platform", "orabella"];
 const read = (...p) => fs.readFileSync(path.join(root, ...p), "utf8");
 const lf = (text) => text.replace(/\r\n/g, "\n");
+// Reads width/height from a JPEG's start-of-frame marker (no image dependency needed).
+function jpegSize(file) {
+  const b = fs.readFileSync(file);
+  if (b[0] !== 0xff || b[1] !== 0xd8) throw new Error(`${file} is not a JPEG`);
+  for (let i = 2; i < b.length; ) {
+    if (b[i] !== 0xff) { i++; continue; }
+    const marker = b[i + 1];
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) return { width: b.readUInt16BE(i + 7), height: b.readUInt16BE(i + 5) };
+    i += 2 + b.readUInt16BE(i + 2);
+  }
+  throw new Error(`No size found in ${file}`);
+}
 const sha = (file) => crypto.createHash("sha256").update(lf(fs.readFileSync(file, "utf8"))).digest("hex");
 
 const scratchRoot = path.join(root, "test-results");
@@ -210,17 +223,79 @@ test.describe("Routing and SEO regression", () => {
       expect(html.match(/<link rel="canonical"/g)).toHaveLength(1);
       expect(html).toContain(`<link rel="canonical" href="${canonical}" />`);
       expect(html).toContain(`<meta property="og:url" content="${canonical}" />`);
-      expect(html).toContain(`<title>Building ${project.title}`);
+      const seo = projectSeo(project);
+      const esc = (v) => v.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      expect(html).toContain(`<title>${esc(seo.title)}</title>`);
+      expect(html).toContain(`<meta name="description" content="${esc(seo.description)}" />`);
+      // Social preview: one project-specific absolute HTTPS image, declared with its real size, same for Open Graph and Twitter.
+      expect(seo.image).toBe(`${siteUrl}/og/${project.slug}.jpg`);
+      for (const tag of [
+        `<meta property="og:image" content="${seo.image}" />`,
+        `<meta name="twitter:image" content="${seo.image}" />`,
+        `<meta property="og:image:width" content="${ogImageSize.width}" />`,
+        `<meta property="og:image:height" content="${ogImageSize.height}" />`,
+        `<meta property="og:image:type" content="${ogImageSize.type}" />`,
+        `<meta property="og:image:alt" content="${esc(seo.imageAlt)}" />`,
+        `<meta name="twitter:image:alt" content="${esc(seo.imageAlt)}" />`,
+        `<meta property="og:site_name" content="Hari Mohamed Rizq" />`,
+      ]) expect(html, tag).toContain(tag);
+      expect(html.match(/property="og:image"/g)).toHaveLength(1);
+      expect(html).not.toMatch(/localhost|127\.0\.0\.1|file:\/\//);
+      // Crawlers that do not run JavaScript still get the page's own heading and summary.
+      expect(html).toMatch(new RegExp(`<noscript>[\\s\\S]*<h1>${esc(project.title)}</h1>[\\s\\S]*</noscript>`));
       const ld = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g);
       expect(ld).toHaveLength(1);
-      expect(JSON.parse(ld[0].replace(/<\/?script[^>]*>/g, "")).url).toBe(canonical);
+      const json = JSON.parse(ld[0].replace(/<\/?script[^>]*>/g, ""));
+      expect(json.url).toBe(canonical);
+      expect(json["@type"]).toBe("CreativeWork");
+      expect(json["@id"]).toBe(`${canonical}#project`);
+      expect(json.image).toBe(seo.image);
+      expect(json.description).toBe(project.summary);
+      expect(json.author["@id"]).toBe(`${siteUrl}/#person`);
     }
+    // Distinct pages must not share titles or descriptions.
+    const seos = projects.map(projectSeo);
+    expect(new Set(seos.map((s) => s.title)).size).toBe(seos.length);
+    expect(new Set(seos.map((s) => s.description)).size).toBe(seos.length);
+    expect(new Set(seos.map((s) => s.image)).size).toBe(seos.length);
     const urls = [...fs.readFileSync(path.join(ws.dir, "public", "sitemap.xml"), "utf8").matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]);
     expect(urls).toEqual([`${siteUrl}/`, ...projects.map((p) => `${siteUrl}/projects/${p.slug}`)]);
     expect(urls).toEqual([`${siteUrl}/`, ...expectedSlugs.map((s) => `${siteUrl}/projects/${s}`)]);
     const llms = fs.readFileSync(path.join(ws.dir, "public", "llms.txt"), "utf8");
     projects.forEach((p) => expect(llms).toContain(`${siteUrl}/projects/${p.slug}`));
     expect(read("index.html")).toContain(`<link rel="canonical" href="${siteUrl}/" />`);
+  });
+
+  test("[assets] every page has a real 1200x630 JPEG social preview and the homepage metadata is consistent", async () => {
+    const files = ["og-image.jpg", ...expectedSlugs.map((s) => `og/${s}.jpg`)];
+    for (const file of files) {
+      const full = path.join(root, "public", file);
+      expect(fs.existsSync(full), file).toBe(true);
+      expect(jpegSize(full), file).toEqual({ width: ogImageSize.width, height: ogImageSize.height });
+      expect(fs.statSync(full).size, `${file} should stay light for social crawlers`).toBeLessThan(300 * 1024);
+    }
+
+    const html = read("index.html");
+    expect(homeSeo.image).toBe(`${siteUrl}/og-image.jpg`);
+    for (const tag of [
+      `<meta property="og:image" content="${homeSeo.image}" />`,
+      `<meta name="twitter:image" content="${homeSeo.image}" />`,
+      `<meta property="og:image:width" content="${ogImageSize.width}" />`,
+      `<meta property="og:image:height" content="${ogImageSize.height}" />`,
+      `<meta property="og:site_name" content="Hari Mohamed Rizq" />`,
+    ]) expect(html, tag).toContain(tag);
+    expect(html).toMatch(/<noscript>[\s\S]*<h1>[\s\S]*<!--seo-projects-->[\s\S]*<\/noscript>/);
+
+    const ld = JSON.parse(html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
+    const person = ld["@graph"].find((n) => n["@type"] === "Person");
+    const website = ld["@graph"].find((n) => n["@type"] === "WebSite");
+    expect(person["@id"]).toBe(`${siteUrl}/#person`);
+    expect(website["@id"]).toBe(`${siteUrl}/#website`);
+    expect(person.areaServed, "areaServed is not a schema.org Person property").toBeUndefined();
+    expect(person.sameAs).toEqual([profileLinks.github, profileLinks.linkedin]);
+    // The public profile links are declared in two places; keep them identical.
+    expect(read("src", "data", "profile.js")).toContain(profileLinks.github);
+    expect(read("src", "data", "profile.js")).toContain(profileLinks.linkedin);
   });
 
   // ===== 3. Built output (isolated build) ===================================
@@ -233,6 +308,13 @@ test.describe("Routing and SEO regression", () => {
       const html = fs.readFileSync(path.join(dist, "projects", slug, "index.html"), "utf8");
       expect(html).toContain(`<link rel="canonical" href="${siteUrl}/projects/${slug}" />`);
     }
+    const builtHome = fs.readFileSync(path.join(dist, "index.html"), "utf8");
+    expect(builtHome).not.toContain("<!--seo-projects-->");
+    for (const slug of expectedSlugs) {
+      expect(builtHome, `homepage fallback links to ${slug}`).toContain(`<a href="/projects/${slug}">`);
+      expect(fs.existsSync(path.join(dist, "og", `${slug}.jpg`)), `dist/og/${slug}.jpg`).toBe(true);
+    }
+    expect(fs.existsSync(path.join(dist, "og-image.jpg"))).toBe(true);
     expect(fs.readFileSync(path.join(dist, "404.html"), "utf8")).toContain("noindex");
     expect(lf(fs.readFileSync(path.join(dist, "sitemap.xml"), "utf8"))).toBe(lf(read("public", "sitemap.xml")));
   });

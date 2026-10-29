@@ -1,11 +1,8 @@
-export const siteUrl = "https://harimohamedrizq.vercel.app";
+import { homeSeo, siteName, siteUrl } from "./seo";
 
-export const defaultMetadata = {
-  title: "Hari Mohamed Rizq | Full-Stack Developer & AI Integration Engineer",
-  description:
-    "Hari Mohamed Rizq — Full-Stack Developer & AI Integration Engineer. Building web applications, SaaS platforms, and AI-powered systems.",
-  url: `${siteUrl}/`,
-};
+export { siteUrl };
+
+export const defaultMetadata = homeSeo;
 
 function setMeta(attribute, key, content) {
   let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
@@ -31,18 +28,21 @@ function setCanonical(url) {
   link.setAttribute("href", url);
 }
 
-export function setPageMetadata({ title, description, url }) {
+// Keeps the client-rendered head identical to what the static HTML already declares for the route.
+export function setPageMetadata({ title, description, url, image = homeSeo.image, imageAlt = homeSeo.imageAlt, robots = "index, follow" }) {
   document.title = title;
   setMeta("name", "description", description);
+  setMeta("name", "robots", robots);
   setMeta("property", "og:title", title);
   setMeta("property", "og:description", description);
   setMeta("property", "og:url", url);
-  setMeta("property", "og:image", `${siteUrl}/og-image.jpg`);
-  setMeta("property", "og:image:alt", `${title} preview`);
+  setMeta("property", "og:site_name", siteName);
+  setMeta("property", "og:image", image);
+  setMeta("property", "og:image:alt", imageAlt);
   setMeta("name", "twitter:card", "summary_large_image");
   setMeta("name", "twitter:title", title);
   setMeta("name", "twitter:description", description);
-  setMeta("name", "twitter:image", `${siteUrl}/og-image.jpg`);
-  setMeta("name", "twitter:image:alt", `${title} preview`);
+  setMeta("name", "twitter:image", image);
+  setMeta("name", "twitter:image:alt", imageAlt);
   setCanonical(url);
 }

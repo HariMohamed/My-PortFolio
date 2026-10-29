@@ -3,13 +3,14 @@
 **Identity:** Hari Mohamed Rizq
 **Role:** Full-Stack Developer & AI Integration Engineer
 **Canonical URL:** https://harimohamedrizq.vercel.app/
+**Profiles:** GitHub https://github.com/HariMohamed | LinkedIn https://www.linkedin.com/in/mohamed-rizq-hari-4a6416249/
 
 ## Projects
 
 ### 1. SyndicAI
 * **Status:** Deployed SaaS MVP
 * **Description:** Backend integration and architecture for a multi-portal SaaS platform managing condominium operations, integrating LLM workflows and multi-tenant data isolation.
-* **Role:** Implemented the FastAPI backend and AI integration layer, Designed multi-tenant data boundaries with PostgreSQL RLS, Integrated asynchronous PDF generation with Celery
+* **Role:** Implemented the FastAPI backend and AI integration layer; Designed multi-tenant data boundaries with PostgreSQL RLS; Integrated asynchronous PDF generation with Celery
 * **Technologies:** FastAPI, Python, PostgreSQL, Celery, Redis, LangChain
 * **Case Study:** https://harimohamedrizq.vercel.app/projects/syndicai
 * **Live Product:** https://syndicai-ssp.vercel.app/
@@ -18,7 +19,7 @@
 ### 2. El Alaoui Labo
 * **Status:** Deployed Professional Website
 * **Description:** A statically generated Next.js frontend for a photography studio, optimized for local SEO, performance, and direct WhatsApp client bookings.
-* **Role:** Implemented the responsive Next.js frontend, Structured technical SEO and metadata, Integrated the WhatsApp-first contact workflow
+* **Role:** Implemented the responsive Next.js frontend; Structured technical SEO and metadata; Integrated the WhatsApp-first contact workflow
 * **Technologies:** Next.js, React, TypeScript, Tailwind CSS
 * **Case Study:** https://harimohamedrizq.vercel.app/projects/elalaouilabo
 * **Live Product:** https://elalaouilabo.vercel.app/
@@ -27,7 +28,7 @@
 ### 3. Gym Coaching SaaS
 * **Status:** Deployed MVP
 * **Description:** A full-stack SaaS MVP built with Next.js and Supabase, providing fitness coaches with a centralized workspace to manage athletes and training programs.
-* **Role:** Implemented the coach and athlete workflow UI, Integrated Supabase authentication and data access, Added validation and subscription workflow integrations
+* **Role:** Implemented the coach and athlete workflow UI; Integrated Supabase authentication and data access; Added validation and subscription workflow integrations
 * **Technologies:** Next.js, React, Supabase, Stripe, Tailwind CSS, Zod
 * **Case Study:** https://harimohamedrizq.vercel.app/projects/gym-coaching-saas
 * **Live Product:** https://gym-coaching-site.vercel.app/
@@ -36,7 +37,7 @@
 ### 4. CFQMA Platform
 * **Status:** Deployed Full-Stack Platform
 * **Description:** A full-stack MERN platform built for a training center, featuring public content presentation, student pre-registration, and an administrative content management system.
-* **Role:** Implemented the React frontend and content presentation, Integrated the REST API and MongoDB-backed content, Built the administrative content workflow
+* **Role:** Implemented the React frontend and content presentation; Integrated the REST API and MongoDB-backed content; Built the administrative content workflow
 * **Technologies:** React, Node.js, Express, MongoDB, Tailwind CSS
 * **Case Study:** https://harimohamedrizq.vercel.app/projects/cfqma-platform
 * **Live Product:** https://cfqma-platform.vercel.app/
@@ -45,7 +46,7 @@
 ### 5. OraBella
 * **Status:** Deployed E-commerce
 * **Description:** A modern Moroccan watch e-commerce web application featuring product discovery, categorization, and a Cash on Delivery checkout flow.
-* **Role:** Developed the e-commerce architecture and product discovery UI, Implemented the cart, checkout, and Cash on Delivery workflows, Integrated Supabase for backend data and admin management
+* **Role:** Developed the e-commerce architecture and product discovery UI; Implemented the cart, checkout, and Cash on Delivery workflows; Integrated Supabase for backend data and admin management
 * **Technologies:** Next.js, React, TypeScript, Tailwind CSS, Supabase, shadcn/ui
 * **Case Study:** https://harimohamedrizq.vercel.app/projects/orabella
 * **Live Product:** https://orabellam.vercel.app/

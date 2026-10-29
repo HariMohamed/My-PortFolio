@@ -4,7 +4,22 @@ import { resolve } from "node:path";
 import { loadProjects } from "./scripts/load-projects.mjs";
 import tailwindcss from "@tailwindcss/vite";
 
-const slugs = (await loadProjects()).map((project) => project.slug);
+const projects = await loadProjects();
+const slugs = projects.map((project) => project.slug);
+
+// Fills the homepage <noscript> fallback (crawlers that do not run JavaScript) with the real project list.
+const escapeHtml = (value) => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+function seoProjectLinks() {
+  return {
+    name: "seo-project-links",
+    transformIndexHtml: (html) =>
+      html.replace(
+        "<!--seo-projects-->",
+        // function replacer: the text is inserted literally ("$&", "$1" in a title must not be treated as patterns)
+        () => projects.map((p) => `<li><a href="/projects/${p.slug}">${escapeHtml(p.title)}</a> &mdash; ${escapeHtml(p.category)}</li>`).join(""),
+      ),
+  };
+}
 
 const projectInputs = {};
 slugs.forEach((slug) => {
@@ -54,6 +69,7 @@ export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
+    seoProjectLinks(),
     localChatApi(),
     {
       name: "preview-rewrite",

@@ -10,6 +10,7 @@ import TechChip from "../components/TechChip";
 import { getProjectBySlug } from "../data/projects";
 import { profile } from "../data/profile";
 import { defaultMetadata, setPageMetadata, siteUrl } from "../utils/metadata";
+import { projectSeo } from "../utils/seo";
 
 function DetailSection({ title, children }) {
   return (
@@ -26,16 +27,13 @@ export default function ProjectDetails() {
 
   useEffect(() => {
     if (project) {
-      setPageMetadata({
-        title: `Building ${project.title} — ${project.category} | Hari Mohamed Rizq`,
-        description: project.summary,
-        url: `${siteUrl}/projects/${project.slug}`,
-      });
+      setPageMetadata(projectSeo(project));
     } else {
       setPageMetadata({
         title: "Project Not Found | Hari Mohamed Rizq",
         description: "The requested portfolio case study could not be found.",
         url: `${siteUrl}/projects/${slug || "not-found"}`,
+        robots: "noindex",
       });
     }
 
