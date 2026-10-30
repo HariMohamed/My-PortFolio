@@ -18,8 +18,8 @@ import { scrollToSection as scrollToTarget } from "../utils/scroll";
 
 const navLinks = [
   { label: "Projects", id: "projects" },
-  { label: "Skills", id: "skills" },
   { label: "Experience", id: "experience" },
+  { label: "Skills", id: "skills" },
   { label: "Contact", id: "contact" },
 ];
 
